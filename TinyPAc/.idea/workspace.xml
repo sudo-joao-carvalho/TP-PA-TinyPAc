@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngineState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngineEvolve.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/IMazeElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OSZzvdm1JJH80EljyMSJ3GGGPh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="" />
+      <created>1681556210067</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681556210067</updated>
+      <workItem from="1681556211131" duration="4146000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
