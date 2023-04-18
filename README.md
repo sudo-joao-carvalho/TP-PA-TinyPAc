@@ -1,2 +1,2 @@
 # TP-PA-TinyPAc
- PacMan Game
+ PacMan-Like Game
