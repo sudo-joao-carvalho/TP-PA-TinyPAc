@@ -26,9 +26,11 @@ public class GameContext {
 
     public String loadNextLevel(){return gameState.loadNextLevel();}
 
-    public String gameOverMenu(){return gameState.gameOverMenu();}
+    public String showMenu(){return gameState.showMenu();}
 
-    public String winMenu(){return gameState.winMenu();}
+    public String keyPressed(){return gameState.keyPressed();}
+
+    public String restart(){return gameState.restart();}
 
     //POSTERIORMENTE METER AQUI GET DATA(DADOS DE ELEMENTOS DO JOGO)
 }

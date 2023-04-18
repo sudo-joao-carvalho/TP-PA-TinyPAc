@@ -17,7 +17,7 @@ public interface IGameState {
 
     String keyPressed(); // funcao para sair do wait_begin
 
-    String changeLevel(); // funcao do nextLevel para ir para o wait_begin e começar um novo nivel
+    //String changeLevel(); // funcao do nextLevel para ir para o wait_begin e começar um novo nivel
 
     String restart(); // NA FUNCAO RESTART TENHO QUE SABER QUAL O NIVEL PARA QUE O JOGADOR VAI PARA O WAIT_BEGIN SABER
 

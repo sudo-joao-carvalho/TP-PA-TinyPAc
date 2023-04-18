@@ -9,8 +9,8 @@ public abstract class GameStateAdapter implements IGameState {
     protected GameContext context;
 
     protected GameStateAdapter(GameContext context, Game game){
-        this.context = context;
-        this.game = game;
+        this.context    = context;
+        this.game       = game;
     }
 
     protected void changeState(EGameState newState){context.changeState(newState.createState(context, game));}
@@ -33,8 +33,8 @@ public abstract class GameStateAdapter implements IGameState {
     @Override
     public String keyPressed(){return "A key was pressed";}
 
-    @Override
-    public String changeLevel(){return "New Level";}
+    //@Override
+    //public String changeLevel(){return "New Level";}
 
     @Override
     public String restart(){return "Restarting Level";}
