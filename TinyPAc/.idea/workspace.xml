@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/GameTextUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/GameTextUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681556210067</updated>
       <workItem from="1681556211131" duration="18187000" />
-      <workItem from="1681910310889" duration="15474000" />
+      <workItem from="1681910310889" duration="15729000" />
     </task>
     <servers />
   </component>
