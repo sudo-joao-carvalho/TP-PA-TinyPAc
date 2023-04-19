@@ -3,13 +3,15 @@ package pt.isec.pa.tinypac.model.fsm;
 import pt.isec.pa.tinypac.model.data.Game;
 import pt.isec.pa.tinypac.model.fsm.states.MenuState;
 
+import java.io.IOException;
+
 public class GameContext {
 
     Game game;
 
     IGameState gameState;
 
-    public GameContext(){
+    public GameContext() throws IOException {
         game = new Game("Level101.txt");
         this.gameState = new MenuState(this, game);
     }
@@ -24,7 +26,7 @@ public class GameContext {
 
     public String resume(){return gameState.resume();}
 
-    public String loadNextLevel(){return gameState.loadNextLevel();}
+    //public String loadNextLevel(){return gameState.loadNextLevel();}
 
     public String showMenu(){return gameState.showMenu();}
 
@@ -33,4 +35,5 @@ public class GameContext {
     public String restart(){return gameState.restart();}
 
     //POSTERIORMENTE METER AQUI GET DATA(DADOS DE ELEMENTOS DO JOGO)
+    public Game getGame(){return game;}
 }

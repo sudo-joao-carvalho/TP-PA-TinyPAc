@@ -12,7 +12,7 @@ public interface IGameState {
     String start();
     String pause();
     String resume();
-    String loadNextLevel();
+    //String loadNextLevel();
     String showMenu();
 
     String keyPressed(); // funcao para sair do wait_begin

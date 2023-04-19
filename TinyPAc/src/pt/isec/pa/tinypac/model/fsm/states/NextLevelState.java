@@ -5,7 +5,7 @@ import pt.isec.pa.tinypac.model.fsm.EGameState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.GameStateAdapter;
 
-public class NextLevelState extends GameStateAdapter {
+/*public class NextLevelState extends GameStateAdapter {
 
     public NextLevelState(GameContext context, Game game){
         super(context, game);
@@ -23,4 +23,4 @@ public class NextLevelState extends GameStateAdapter {
 
     @Override
     public EGameState getState(){return EGameState.NEXT_LEVEL;}
-}
+}*/

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public enum EGameState {
 
-    MENU, WAIT_BEGIN, PLAYING_LEVEL, PAUSED, GAMEOVER_MENU, WIN_MENU, NEXT_LEVEL;
+    MENU, WAIT_BEGIN, PLAYING_LEVEL, PAUSED, GAMEOVER_MENU, WIN_MENU/*, NEXT_LEVEL*/;
 
     //FRABRICA DE OBJETOS
     IGameState createState(GameContext context, Game game){
@@ -19,7 +19,7 @@ public enum EGameState {
             case PAUSED ->  new PausedState(context, game); //neste estado o jogo encontra-se em pausa
             case WIN_MENU -> new WinMenuState(context, game); //neste estado esta a ser exibido o menu de vitoria
             case GAMEOVER_MENU -> new GameOverMenuState(context, game); //neste estado esta a ser exibido o menu de derrota
-            case NEXT_LEVEL -> new NextLevelState(context, game); //neste estado muda o nivel atual
+            //case NEXT_LEVEL -> new NextLevelState(context, game); //neste estado muda o nivel atual
         };
 
     }

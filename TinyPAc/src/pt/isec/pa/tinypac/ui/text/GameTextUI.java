@@ -21,13 +21,26 @@ public class GameTextUI {
                 case PAUSED -> pauseUI();
                 case GAMEOVER_MENU -> gameOverMenuUI();
                 case WIN_MENU -> winMenuUI();
-                case NEXT_LEVEL -> nextLevelUI();
+                //case NEXT_LEVEL -> nextLevelUI();
             }
         }
+
+        menuUI();
     }
 
     public void menuUI(){
         System.out.println("MenuUI");
+
+        System.out.println("MAP\n");
+
+        /*for(int h = 0; h < gameContextFsm.getGame().getLevel().getMapHeight(); h++){  -> DEBUG: ver se esta a ler bem o mapa
+            for(int w = 0; w < gameContextFsm.getGame().getLevel().getMapWidth(); w++){
+                System.out.print(gameContextFsm.getGame().getLevel().getMaze()[h][w]);
+            }
+            System.out.println();
+        }*/
+
+        //gameContextFsm.getGame().getLevel().printMap(); -> DEBUG: ver se esta a ler bem o mapa
         System.out.println(gameContextFsm.start());
     }
 

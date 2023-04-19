@@ -24,8 +24,8 @@ public abstract class GameStateAdapter implements IGameState {
     @Override
     public String resume(){return "Game Resumed";}
 
-    @Override
-    public String loadNextLevel(){return "Next Level";}
+    //@Override
+    //public String loadNextLevel(){return "Next Level";}
 
     @Override
     public String showMenu(){return "Menu";}
@@ -37,7 +37,7 @@ public abstract class GameStateAdapter implements IGameState {
     //public String changeLevel(){return "New Level";}
 
     @Override
-    public String restart(){return "Restarting Level";}
+    public String restart(){return "Restarting Level";} //esta funcao pode ser para ir do gameOver para o waitbegin como do win para o waitbegin
 
 
     /*String start();

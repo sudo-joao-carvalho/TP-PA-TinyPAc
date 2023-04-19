@@ -1,11 +1,14 @@
-package pt.isec.pa.tinypac.model.data;
+package pt.isec.pa.tinypac.model.data.cell;
 
-public class Ghost {
+import pt.isec.pa.tinypac.model.data.IMazeElement;
+
+public class Cell implements IMazeElement {
 
     private int cordX;
+
     private int cordY;
 
-    public Ghost(int cordX, int cordY){ // Na herança cada um vai ter o seu nome e funcoes diferentes
+    public Cell(int cordX, int cordY){ // depois na herança cada celula vai ter um type diferente
         this.cordX = cordX;
         this.cordY = cordY;
     }
@@ -20,5 +23,10 @@ public class Ghost {
 
     public void setCordY(int cordY){
         this.cordY = cordY;
+    }
+
+    @Override
+    public char getSymbol(){ //default
+        return 'x';
     }
 }

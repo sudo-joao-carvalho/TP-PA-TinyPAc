@@ -14,10 +14,11 @@ public class WinMenuState extends GameStateAdapter {
     }
 
     @Override
-    public String loadNextLevel(){
+    public String restart(){
 
         //APENAS PARA TESTE
-        changeState(EGameState.NEXT_LEVEL);
+        //changeState(EGameState.NEXT_LEVEL);
+        changeState(EGameState.WAIT_BEGIN);
         return "PROXIMO NIVEL";
     }
 
