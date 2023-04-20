@@ -7,13 +7,11 @@ public class Game {
     private TinyPac tinyPac;
     private ArrayList<Ghost> ghosts;
     private Level level;
-    private int levelNumber;
     private int lifes;
     private int score;
 
     public Game(/*String levelFile*/int levelNumber){
-        this.levelNumber  = levelNumber;
-        this.level      = new Level("Level10" + levelNumber + ".txt");
+        this.level      = new Level(levelNumber);
         this.tinyPac    = new TinyPac(0, 0); //Coordenadas de spawn
         this.ghosts     = new ArrayList<Ghost>();
         for(Ghost ghost: ghosts){
@@ -47,14 +45,6 @@ public class Game {
         this.level = level;
     }
 
-    public String getLevelFile() {
-        return levelFile;
-    }
-
-    public void setLevelFile(String levelFile) {
-        this.levelFile = levelFile;
-    }
-
     public int getLifes() {
         return lifes;
     }
@@ -70,4 +60,5 @@ public class Game {
     public void setScore(int score) {
         this.score = score;
     }
+
 }

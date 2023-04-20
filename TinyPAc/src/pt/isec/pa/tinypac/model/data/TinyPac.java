@@ -1,5 +1,8 @@
 package pt.isec.pa.tinypac.model.data;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class TinyPac implements IMazeElement{
 
     private int cordX;
@@ -18,9 +21,7 @@ public class TinyPac implements IMazeElement{
 
     public int getCordY(){return this.cordY;}
 
-    public void setCordY(int cordY){
-        this.cordY = cordY;
-    }
+    public void setCordY(int cordY){this.cordY = cordY;}
 
     @Override
     public char getSymbol(){

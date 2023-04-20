@@ -1,9 +1,11 @@
 package pt.isec.pa.tinypac.gameengine;
 import java.util.HashSet;
 import java.util.Set;
-public final class GameEngine implements IGameEngine { private GameEngineState state;
+public final class GameEngine implements IGameEngine {
+    private GameEngineState state;
     private GameEngineThread controlThread;
-    private Set<IGameEngineEvolve> clients; System.Logger logger;
+    private Set<IGameEngineEvolve> clients;
+    System.Logger logger;
     private void setState(GameEngineState state) {
         this.state = state; logger.log(System.Logger.Level.INFO,state.toString());
     }

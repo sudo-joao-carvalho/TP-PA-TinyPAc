@@ -1,39 +1,29 @@
 package pt.isec.pa.tinypac.model.fsm;
 
 import pt.isec.pa.tinypac.model.data.Game;
-import pt.isec.pa.tinypac.model.fsm.states.MenuState;
-
-import java.io.IOException;
+import pt.isec.pa.tinypac.model.fsm.states.WaitBeginState;
 
 public class GameContext {
 
     Game game;
 
-    IGameState gameState;
+    IMobsState gameState;
 
     public GameContext(){
         game = new Game(/*"Level101.txt"*/ 1);
-        this.gameState = new MenuState(this, game);
+        this.gameState = new WaitBeginState(this, game);
     }
 
-    public EGameState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
+    public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
 
-    void changeState(IGameState newState){this.gameState = newState;}
+    void changeState(IMobsState newState){this.gameState = newState;}
 
-    public String start(){return gameState.start();} //faze executar o state
+    public boolean move(){return gameState.move();}
 
-    public String pause(){return gameState.pause();}
+    public boolean eat(){return gameState.eat();}
 
-    public String resume(){return gameState.resume();}
+    public boolean endLevel(){return gameState.endLevel();}
 
-    //public String loadNextLevel(){return gameState.loadNextLevel();}
-
-    public String showMenu(){return gameState.showMenu();}
-
-    public String keyPressed(){return gameState.keyPressed();}
-
-    public String restart(){return gameState.restart();}
-
-    //POSTERIORMENTE METER AQUI GET DATA(DADOS DE ELEMENTOS DO JOGO)
+    //getData
     public Game getGame(){return game;}
 }

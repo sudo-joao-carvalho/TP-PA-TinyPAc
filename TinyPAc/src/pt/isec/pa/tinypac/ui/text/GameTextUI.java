@@ -15,12 +15,10 @@ public class GameTextUI {
     public void start(){
         /*while(!finish){
             switch(gameContextFsm.getState()){
-                case MENU -> menuUI();
                 case WAIT_BEGIN -> waitBeginUI();
-                case PLAYING_LEVEL -> playingLevelUI();
-                case PAUSED -> pauseUI();
-                case GAMEOVER_MENU -> gameOverMenuUI();
-                case WIN_MENU -> winMenuUI();
+                case MOVE -> moveUI();
+                case EAT -> eatUI();
+                case END_LEVEL -> endLevelUI();
                 //case NEXT_LEVEL -> nextLevelUI();
             }
         }*/
@@ -41,10 +39,10 @@ public class GameTextUI {
         }*/
 
         //gameContextFsm.getGame().getLevel().printMap(); -> DEBUG: ver se esta a ler bem o mapa
-        System.out.println(gameContextFsm.start());
+        //System.out.println(gameContextFsm.start());
     }
 
-    private void waitBeginUI() {
+    /*private void waitBeginUI() {
         System.out.println("Wait_BeginUI");
         System.out.println(gameContextFsm.keyPressed());
     }
@@ -74,5 +72,5 @@ public class GameTextUI {
     private void nextLevelUI() {
         System.out.println("Next_LevelUI");
         gameContextFsm.restart();
-    }
+    }*/
 }

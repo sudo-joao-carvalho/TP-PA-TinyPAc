@@ -3,15 +3,12 @@ package pt.isec.pa.tinypac.model.fsm;
 import pt.isec.pa.tinypac.model.data.Game;
 import pt.isec.pa.tinypac.model.fsm.states.*;
 
+public enum EMobsState {
 
-import java.awt.*;
-
-public enum EGameState {
-
-    MENU, WAIT_BEGIN, PLAYING_LEVEL, PAUSED, GAMEOVER_MENU, WIN_MENU/*, NEXT_LEVEL*/;
+    //MENU, WAIT_BEGIN, PLAYING_LEVEL, PAUSED, GAMEOVER_MENU, WIN_MENU/*, NEXT_LEVEL*/;
 
     //FRABRICA DE OBJETOS
-    IGameState createState(GameContext context, Game game){
+    /*IMobsState createState(GameContext context, Game game){
         return switch(this){
             case MENU -> new MenuState(context, game);
             case WAIT_BEGIN -> new WaitBeginState(context, game); //neste estado ele espera que o utilizador pressione uma tecla
@@ -22,5 +19,16 @@ public enum EGameState {
             //case NEXT_LEVEL -> new NextLevelState(context, game); //neste estado muda o nivel atual
         };
 
+    }*/
+
+    WAIT_BEGIN, MOVE, EAT, END_LEVEL;
+
+    IMobsState createState(GameContext context, Game game){
+        return switch(this){
+            case WAIT_BEGIN -> new WaitBeginState(context, game);
+            case MOVE -> new MoveState(context, game);
+            case EAT -> new EatState(context, game);
+            case END_LEVEL -> new EndLevelState(context, game);
+        };
     }
 }

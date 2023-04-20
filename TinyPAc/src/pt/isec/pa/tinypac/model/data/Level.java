@@ -12,9 +12,11 @@ public class Level {
     private int mapHeight;
     private int mapWidth;
     private String levelFile;
+    private int levelNumber;
 
-    public Level(String levelFile){
-        this.levelFile = levelFile;
+    public Level(int levelNumber){
+        this.levelNumber = levelNumber;
+        this.levelFile = "../Level10" + levelNumber + ".txt";
         this.map = setMap();
         this.maze = setMaze();
     }
@@ -55,11 +57,11 @@ public class Level {
         try{
             char[][] auxMap;
 
-            File file = new File("../" + levelFile);
+            File file = new File(levelFile);
             Scanner sc = new Scanner(file);
 
             String firstLine = sc.nextLine();
-            int height = 0;
+            int height = 1;
             int width = width = firstLine.length();
 
             while(sc.hasNextLine()){
@@ -154,4 +156,6 @@ public class Level {
     public int getMapHeight(){return this.mapHeight;}
 
     public int getMapWidth(){return this.mapWidth;}
+
+    public int getLevelNumber(){return this.levelNumber;}
 }
