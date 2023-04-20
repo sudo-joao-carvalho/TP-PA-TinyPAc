@@ -12,7 +12,7 @@ public class GameContext {
     IGameState gameState;
 
     public GameContext(){
-        game = new Game("Level101.txt");
+        game = new Game(/*"Level101.txt"*/ 1);
         this.gameState = new MenuState(this, game);
     }
 

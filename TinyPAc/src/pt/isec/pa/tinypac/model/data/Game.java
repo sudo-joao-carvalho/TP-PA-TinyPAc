@@ -7,13 +7,13 @@ public class Game {
     private TinyPac tinyPac;
     private ArrayList<Ghost> ghosts;
     private Level level;
-    private String levelFile;
+    private int levelNumber;
     private int lifes;
     private int score;
 
-    public Game(String levelFile){
-        this.levelFile  = levelFile;
-        this.level      = new Level(levelFile);
+    public Game(/*String levelFile*/int levelNumber){
+        this.levelNumber  = levelNumber;
+        this.level      = new Level("Level10" + levelNumber + ".txt");
         this.tinyPac    = new TinyPac(0, 0); //Coordenadas de spawn
         this.ghosts     = new ArrayList<Ghost>();
         for(Ghost ghost: ghosts){
