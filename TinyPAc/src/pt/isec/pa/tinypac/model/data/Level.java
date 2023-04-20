@@ -2,9 +2,8 @@ package pt.isec.pa.tinypac.model.data;
 
 import pt.isec.pa.tinypac.model.data.cell.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class Level {
 
@@ -14,7 +13,7 @@ public class Level {
     private int mapWidth;
     private String levelFile;
 
-    public Level(String levelFile) throws IOException {
+    public Level(String levelFile){
         this.levelFile = levelFile;
         this.map = setMap();
         this.maze = setMaze();
@@ -51,7 +50,49 @@ public class Level {
         return auxMaze;
     }
 
-    public char[][] setMap() throws IOException {
+    public char[][] setMap() {
+
+        try{
+            char[][] auxMap;
+
+            File file = new File("../" + levelFile);
+            Scanner sc = new Scanner(file);
+
+            String firstLine = sc.nextLine();
+            int height = 0;
+            int width = width = firstLine.length();
+
+            while(sc.hasNextLine()){
+                height++;
+                sc.nextLine();
+            }
+
+            this.mapHeight = height;
+            this.mapWidth = width;
+            sc.close();
+
+            //ler as letras para o array
+            auxMap = new char[mapHeight][mapWidth];
+            sc = new Scanner(file);
+
+            for(int h = 0; h < mapHeight; h++){
+                String line = sc.nextLine();
+                for(int w = 0; w < mapWidth; w++){
+                    auxMap[h][w] = line.charAt(w);
+                }
+            }
+
+            sc.close();
+            return auxMap;
+
+        }catch(FileNotFoundException e){
+            System.out.println("File Not Found: " + levelFile);
+            return null;
+        }
+
+    }
+
+    /*public char[][] setMap() throws IOException {
 
         char[][] auxMap;
         //primeira leitura do ficheiro
@@ -97,7 +138,7 @@ public class Level {
             }
         }
 
-    }
+    }*/
 
     /*public void printMap(){                           //DEBUG: ver se esta a ler e a printar bem o mapa
         for (int i = 0; i < map.length; i++) {

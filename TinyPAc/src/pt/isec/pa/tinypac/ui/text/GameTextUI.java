@@ -13,7 +13,7 @@ public class GameTextUI {
     }
 
     public void start(){
-        while(!finish){
+        /*while(!finish){
             switch(gameContextFsm.getState()){
                 case MENU -> menuUI();
                 case WAIT_BEGIN -> waitBeginUI();
@@ -23,7 +23,7 @@ public class GameTextUI {
                 case WIN_MENU -> winMenuUI();
                 //case NEXT_LEVEL -> nextLevelUI();
             }
-        }
+        }*/
 
         menuUI();
     }
@@ -31,9 +31,9 @@ public class GameTextUI {
     public void menuUI(){
         System.out.println("MenuUI");
 
-        //System.out.println("MAP\n");
+        /*System.out.println("MAP\n");
 
-        /*for(int h = 0; h < gameContextFsm.getGame().getLevel().getMapHeight(); h++){  -> DEBUG: ver se esta a ler bem o mapa
+        for(int h = 0; h < gameContextFsm.getGame().getLevel().getMapHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
             for(int w = 0; w < gameContextFsm.getGame().getLevel().getMapWidth(); w++){
                 System.out.print(gameContextFsm.getGame().getLevel().getMaze()[h][w]);
             }

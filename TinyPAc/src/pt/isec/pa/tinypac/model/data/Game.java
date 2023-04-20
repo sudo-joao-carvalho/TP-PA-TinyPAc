@@ -5,25 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 public class Game {
     private TinyPac tinyPac;
-    //private Maze maze;
     private ArrayList<Ghost> ghosts;
-
     private Level level;
-
     private String levelFile;
-
     private int lifes;
-
     private int score;
 
-    public Game(String levelFile) throws IOException /* isto esta aqui por causa da excecao de abrir o file no level*/{
+    public Game(String levelFile){
+        this.levelFile  = levelFile;
+        this.level      = new Level(levelFile);
         this.tinyPac    = new TinyPac(0, 0); //Coordenadas de spawn
         this.ghosts     = new ArrayList<Ghost>();
         for(Ghost ghost: ghosts){
             ghost       = new Ghost(0 ,0); //Coordenadas de spawn
         }
-        this.levelFile  = levelFile;
-        this.level      = new Level(levelFile);
         this.lifes      = 3;
         this.score      = 0;
     }

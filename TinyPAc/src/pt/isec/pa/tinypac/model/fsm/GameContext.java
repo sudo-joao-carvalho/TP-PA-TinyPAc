@@ -11,7 +11,7 @@ public class GameContext {
 
     IGameState gameState;
 
-    public GameContext() throws IOException {
+    public GameContext(){
         game = new Game("Level101.txt");
         this.gameState = new MenuState(this, game);
     }
