@@ -62,7 +62,7 @@ public class Level {
 
             String firstLine = sc.nextLine();
             int height = 1;
-            int width = width = firstLine.length();
+            int width = firstLine.length();
 
             while(sc.hasNextLine()){
                 height++;

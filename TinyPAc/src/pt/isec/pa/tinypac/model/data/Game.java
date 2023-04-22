@@ -18,7 +18,7 @@ public class Game {
             ghost       = new Ghost(0 ,0); //Coordenadas de spawn
         }
         this.lifes      = 3;
-        this.score      = 0;
+        this.score      = 100;
     }
 
     public TinyPac getTinyPac() {

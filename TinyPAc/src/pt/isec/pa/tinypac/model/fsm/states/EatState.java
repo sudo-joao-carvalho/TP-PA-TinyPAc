@@ -15,6 +15,11 @@ public class EatState extends MobsStateAdapter {
 
     @Override
     public boolean eat(){
+        if(game.getScore() == 100){
+            changeState(EMobsState.END_LEVEL);
+            return true;
+        }
+
         game.setScore(game.getScore() + 10);
         changeState(EMobsState.MOVE);
         return true;
