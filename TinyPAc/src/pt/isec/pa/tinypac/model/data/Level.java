@@ -58,6 +58,8 @@ public class Level {
             char[][] auxMap;
 
             File file = new File(levelFile);
+            if(!file.exists())
+                return null;
             Scanner sc = new Scanner(file);
 
             String firstLine = sc.nextLine();
