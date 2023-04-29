@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/Level101.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/Level101.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngineState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngineState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngineEvolve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngineEvolve.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/IMazeElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/IMazeElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Maze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/GameTextUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/GameTextUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +94,7 @@
       <workItem from="1682775834392" duration="3000" />
       <workItem from="1682775866310" duration="95000" />
       <workItem from="1682776047692" duration="47000" />
-      <workItem from="1682776099269" duration="9433000" />
+      <workItem from="1682776099269" duration="10459000" />
     </task>
     <servers />
   </component>
