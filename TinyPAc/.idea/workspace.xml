@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +63,8 @@
       <workItem from="1681910310889" duration="15780000" />
       <workItem from="1681938969515" duration="29000" />
       <workItem from="1681999177530" duration="11383000" />
-      <workItem from="1682104354503" duration="14423000" />
+      <workItem from="1682104354503" duration="14457000" />
+      <workItem from="1682675276140" duration="2079000" />
     </task>
     <servers />
   </component>
