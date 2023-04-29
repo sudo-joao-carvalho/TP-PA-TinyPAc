@@ -9,7 +9,6 @@ public class GameTextUI {
 
     boolean finish;
 
-    int flag = 0;
     public GameTextUI(GameContext gameContext){
         this.gameContextFsm = gameContext;
         this.finish         = false;
@@ -28,6 +27,21 @@ public class GameTextUI {
     }
 
     public void menuUI(){
+
+        System.out.println("MAP\n");
+        //System.out.println(gameContextFsm.getGame().getLevelManager().getLevel().getElementAt(30, 0));
+        //System.out.println(gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight());
+        //System.out.println(gameContextFsm.getGame().getLevelManager().getLevel().getLevelWidth());
+
+        for(int h = 0; h < gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
+            for(int w = 0; w < gameContextFsm.getGame().getLevelManager().getLevel().getLevelWidth(); w++){
+                System.out.print(gameContextFsm.getGame().getLevelManager().getLevel().getElementAt(h, w));
+            }
+            System.out.println();
+        }
+
+
+
         System.out.printf("MenuUI");
 
         switch(PAInput.chooseOption("TinyPAc", "Iniciar Jogo", "Consultar Top 5", "Sair")){
@@ -40,15 +54,6 @@ public class GameTextUI {
                     menuUI();
             }
         }
-
-        /*System.out.println("MAP\n");
-
-        for(int h = 0; h < gameContextFsm.getGame().getLevel().getMapHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
-            for(int w = 0; w < gameContextFsm.getGame().getLevel().getMapWidth(); w++){
-                System.out.print(gameContextFsm.getGame().getLevel().getMaze()[h][w]);
-            }
-            System.out.println();
-        }*/
 
         //gameContextFsm.getGame().getLevel().printMap(); -> DEBUG: ver se esta a ler bem o mapa
         //System.out.println(gameContextFsm.start());

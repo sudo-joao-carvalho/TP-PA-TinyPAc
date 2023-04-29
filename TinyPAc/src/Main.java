@@ -19,6 +19,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
+
         GameContext context = new GameContext();
         GameTextUI textUI = new GameTextUI(context);
 

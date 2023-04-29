@@ -1,13 +1,16 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
+import pt.isec.pa.tinypac.model.data.Level;
+
 public class Warp extends Cell{
 
-    public Warp(int warpCordY, int warpCordX){
-        super(warpCordY, warpCordX);
+    public static final char SYMBOL = 'W';
+    public Warp(Level level){
+        super(level);
     }
 
     @Override
     public char getSymbol(){
-        return 'W';
+        return SYMBOL;
     }
 }

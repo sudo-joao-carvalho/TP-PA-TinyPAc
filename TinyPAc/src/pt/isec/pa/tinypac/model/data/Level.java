@@ -7,25 +7,32 @@ import java.util.Scanner;
 
 public class Level {
 
+    //private int levelNumber;
+    private int height;
+    private int width;
     Maze maze;
-    private char [][]map;
-    private int mapHeight;
-    private int mapWidth;
-    private String levelFile;
-    private int levelNumber;
 
-    public Level(int levelNumber){
-        this.levelNumber = levelNumber;
-        this.levelFile = "../Level10" + levelNumber + ".txt";
-        this.map = setMap();
-        this.maze = setMaze();
+    public Level(/*int levelNumber, */int height, int width){
+        //this.levelNumber = levelNumber;
+        this.height = height;
+        this.width = width;
+        this.maze = new Maze(height, width);
     }
 
     public char[][] getMaze(){
         return maze.getMaze();
     }
 
-    public Maze setMaze(){
+    public void addElement(Element element, int x, int y){maze.set(y, x, element);}
+
+    public char getElementAt(int x, int y){
+        return maze.get(y, x).getSymbol();
+    }
+
+    public int getLevelHeight(){return this.height;}
+    public int getLevelWidth(){return this.width;}
+
+    /*public Maze setMaze(){
 
         Maze auxMaze = new Maze(mapHeight, mapWidth);
 
@@ -50,51 +57,7 @@ public class Level {
         }
 
         return auxMaze;
-    }
-
-    public char[][] setMap() {
-
-        try{
-            char[][] auxMap;
-
-            File file = new File(levelFile);
-            if(!file.exists())
-                return null;
-            Scanner sc = new Scanner(file);
-
-            String firstLine = sc.nextLine();
-            int height = 1;
-            int width = firstLine.length();
-
-            while(sc.hasNextLine()){
-                height++;
-                sc.nextLine();
-            }
-
-            this.mapHeight = height;
-            this.mapWidth = width;
-            sc.close();
-
-            //ler as letras para o array
-            auxMap = new char[mapHeight][mapWidth];
-            sc = new Scanner(file);
-
-            for(int h = 0; h < mapHeight; h++){
-                String line = sc.nextLine();
-                for(int w = 0; w < mapWidth; w++){
-                    auxMap[h][w] = line.charAt(w);
-                }
-            }
-
-            sc.close();
-            return auxMap;
-
-        }catch(FileNotFoundException e){
-            System.out.println("File Not Found: " + levelFile);
-            return null;
-        }
-
-    }
+    }*/
 
     /*public char[][] setMap() throws IOException {
 
@@ -153,11 +116,11 @@ public class Level {
         }
     }*/
 
-    public char[][] getMap(){return this.map;}
+    /*public char[][] getMap(){return this.map;}
 
     public int getMapHeight(){return this.mapHeight;}
 
     public int getMapWidth(){return this.mapWidth;}
 
-    public int getLevelNumber(){return this.levelNumber;}
+    public int getLevelNumber(){return this.levelNumber;}*/
 }

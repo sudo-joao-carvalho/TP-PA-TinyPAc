@@ -1,13 +1,16 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
+import pt.isec.pa.tinypac.model.data.Level;
+
 public class Portal extends Cell{
 
-    public Portal(int portalCordY, int portalCordX){
-        super(portalCordY, portalCordX);
+    public static final char SYMBOL = 'Y';
+    public Portal(Level level){
+        super(level);
     }
 
     @Override
     public char getSymbol(){
-        return 'Y';
+        return SYMBOL;
     }
 }

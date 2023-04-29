@@ -1,13 +1,16 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
+import pt.isec.pa.tinypac.model.data.Level;
+
 public class Fruit extends Cell{
 
-    public Fruit(int fruitCordY, int fruitCordX){
-        super(fruitCordY, fruitCordX);
+    public static final char SYMBOL = 'F';
+    public Fruit(Level level){
+        super(level);
     }
 
     @Override
     public char getSymbol(){
-        return 'F';
+        return SYMBOL;
     }
 }

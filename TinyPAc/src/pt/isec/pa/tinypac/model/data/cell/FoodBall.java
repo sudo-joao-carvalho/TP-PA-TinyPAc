@@ -1,13 +1,17 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
+import pt.isec.pa.tinypac.model.data.Level;
+
 public class FoodBall extends Cell{
 
-    public FoodBall(int foodBallCordY, int foodBallCordX){
-        super(foodBallCordY, foodBallCordX);
+    public static final char SYMBOL = 'o';
+
+    public FoodBall(Level level){
+        super(level);
     }
 
     @Override
     public char getSymbol(){
-        return 'o';
+        return SYMBOL;
     }
 }
