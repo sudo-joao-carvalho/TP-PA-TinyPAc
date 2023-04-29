@@ -47,8 +47,8 @@ public class LanternaUI implements IGameEngineEvolve {
     private void show() throws IOException {
         char[][] env = level.getLevel().getMaze();
         screen.startScreen();
-        for (int y = 0; y < /*env.length*/level.getLevel().getLevelHeight(); y++) {
-            for (int x = 0; x < /*env[0].length*/level.getLevel().getLevelWidth(); x++) {
+        for (int y = 0; y < env.length; y++) {
+            for (int x = 0; x < env[0].length; x++) {
                 TextColor tc = switch(env[y][x]) {
                     case TinyPac.SYMBOL -> TextColor.ANSI.WHITE;
                     case Wall.SYMBOL -> TextColor.ANSI.YELLOW;
