@@ -1,12 +1,15 @@
 package pt.isec.pa.tinypac.ui;
 import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.LevelManager;
@@ -22,8 +25,15 @@ public class LanternaUI implements IGameEngineEvolve {
 
     public LanternaUI(LevelManager level) throws IOException {
         this.level = level;
-        screen = new DefaultTerminalFactory().createScreen();
-        screen.setCursorPosition(null);
+        /*screen = new DefaultTerminalFactory().createScreen();
+        screen.setCursorPosition(null);*/
+
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
+        TerminalSize size = new TerminalSize(80, 40);
+        terminalFactory.setInitialTerminalSize(size);
+        TerminalScreen screen = new TerminalScreen(terminalFactory.createTerminal());
+
+        this.screen = screen;
         show();
     }
 
