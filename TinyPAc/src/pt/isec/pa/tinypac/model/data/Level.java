@@ -42,7 +42,7 @@ public class Level {
                     case 'F' -> element = new Fruit(h, w);
                     case 'M' -> element = new TinyPac(h, w); //cada uma destas classes tem que dar override ao getSymbol da IMazeElement
                     case 'O' -> element = new PowerBall(h, w);
-                    case 'Y' -> element = new Portal(h, w); //so pode existir uma instancia, fazer PADRAO SINGLETON
+                    case 'Y' -> element = new Portal(h, w);
                     case 'y' -> element = new GhostCave(h, w);
                 }
                 auxMaze.set(h, w, element);
