@@ -5,37 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TinyPAc.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/LevelManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Element.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/files/Level101.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/Level101.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/TinyPAc.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/TinyPac.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/TinyPac.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/FoodBall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/FoodBall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Fruit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Fruit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/GhostCave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/GhostCave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Portal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Portal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/PowerBall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/PowerBall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Wall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Warp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/cell/Warp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/text/GameTextUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/TinyPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/TinyPac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/FoodBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/FoodBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Fruit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/GhostCave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/GhostCave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Portal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Portal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/PowerBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/PowerBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Wall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Warp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/cell/Warp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/GameTextUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/GameTextUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +93,7 @@
       <workItem from="1682775834392" duration="3000" />
       <workItem from="1682775866310" duration="95000" />
       <workItem from="1682776047692" duration="47000" />
-      <workItem from="1682776099269" duration="8122000" />
+      <workItem from="1682776099269" duration="9433000" />
     </task>
     <servers />
   </component>
@@ -127,5 +102,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -29,18 +29,13 @@ public class GameTextUI {
     public void menuUI(){
 
         System.out.println("MAP\n");
-        //System.out.println(gameContextFsm.getGame().getLevelManager().getLevel().getElementAt(30, 0));
-        //System.out.println(gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight());
-        //System.out.println(gameContextFsm.getGame().getLevelManager().getLevel().getLevelWidth());
 
-        for(int h = 0; h < gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
+        /*for(int h = 0; h < gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
             for(int w = 0; w < gameContextFsm.getGame().getLevelManager().getLevel().getLevelWidth(); w++){
                 System.out.print(gameContextFsm.getGame().getLevelManager().getLevel().getElementAt(h, w));
             }
             System.out.println();
-        }
-
-
+        }*/
 
         System.out.printf("MenuUI");
 

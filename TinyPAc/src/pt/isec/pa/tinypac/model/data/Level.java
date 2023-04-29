@@ -23,9 +23,9 @@ public class Level {
         return maze.getMaze();
     }
 
-    public void addElement(Element element, int x, int y){maze.set(y, x, element);}
+    public void addElement(Element element, int y, int x){maze.set(y, x, element);}
 
-    public char getElementAt(int x, int y){
+    public char getElementAt(int y, int x){
         return maze.get(y, x).getSymbol();
     }
 
