@@ -10,7 +10,7 @@ public class Game {
     public Game(/*String levelFile*/int levelNumber){
         this.levelManager      = new LevelManager(levelNumber);
         this.lifes      = 3;
-        this.score      = 100;
+        this.score      = 0;
     }
 
     public LevelManager getLevelManager() {

@@ -1,5 +1,6 @@
 package pt.isec.pa.tinypac.model;
 
+import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
@@ -11,7 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LevelManager /*implements IGameEngineEvolve*/ {
+public class LevelManager implements IGameEngineEvolve {
 
 
     private int levelNumber;
@@ -92,5 +93,13 @@ public class LevelManager /*implements IGameEngineEvolve*/ {
 
     public Level getLevel(){
         return level;
+    }
+
+    @Override
+    public void evolve(IGameEngine gameEngine, long currentTime){
+        if(level == null)
+            return ;
+        //level.evolve();
+        //saveLogs();
     }
 }

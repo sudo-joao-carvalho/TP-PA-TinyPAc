@@ -3,9 +3,14 @@ package pt.isec.pa.tinypac.model.data;
 import pt.isec.pa.tinypac.model.data.cell.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Level {
+
+    public record Position(int y, int x) {}
 
     //private int levelNumber;
     private int height;
@@ -107,20 +112,24 @@ public class Level {
 
     }*/
 
-    /*public void printMap(){                           //DEBUG: ver se esta a ler e a printar bem o mapa
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
+    /*public boolean evolve() {
+
+        List<Element> lst = new ArrayList<>();
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y,x) instanceof Element element) {
+                    lst.add(element);
+                    if (element instanceof Evolver)
+                        nr_evolvers++;
+                    else if (organism instanceof Virus)
+                        nr_virus++;
+                }
+        if (nr_evolvers==0 || nr_virus == 0)
+            return false;
+
+        Collections.shuffle(lst);
+        for(var organism : lst)
+            organism.evolve();
+        return true;
     }*/
-
-    /*public char[][] getMap(){return this.map;}
-
-    public int getMapHeight(){return this.mapHeight;}
-
-    public int getMapWidth(){return this.mapWidth;}
-
-    public int getLevelNumber(){return this.levelNumber;}*/
 }
