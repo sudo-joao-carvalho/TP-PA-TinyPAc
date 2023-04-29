@@ -112,24 +112,62 @@ public class Level {
 
     }*/
 
-    /*public boolean evolve() {
+    public Element getOrganism(int y,int x) {
+        IMazeElement e = maze.get(y,x);
+        if (e instanceof Element element)
+            return element;
+        return null;
+    }
 
-        List<Element> lst = new ArrayList<>();
+    public Position getPositionOf(Element element) {
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y,x) == element)
+                    return new Position(y,x);
+        return null;
+    }
+
+    /*public void setPositionOf(int y, int x, Element element) {
+        maze.set(y, x, element);
+    }*/
+
+    public void setPositionOf(Position position, Element element) {
+        maze.set(position.y(), position.x(), element);
+    }
+
+    public boolean onlyOneSpecies() {
+        int n = 0;
+
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
                 if (maze.get(y,x) instanceof Element element) {
-                    lst.add(element);
-                    if (element instanceof Evolver)
-                        nr_evolvers++;
-                    else if (organism instanceof Virus)
-                        nr_virus++;
+                    if (element instanceof TinyPac)
+                        n++;
+                    /*else if (organism instanceof Virus)
+                        nr_virus++;*/
                 }
-        if (nr_evolvers==0 || nr_virus == 0)
-            return false;
+        return (n==0);
+    }
 
+    public boolean evolve() {
+        int n = 0;
+
+        List<Element> lst = new ArrayList<>();
+        for(int y = 0; y < height;y++) {
+            for (int x = 0; x < width; x++) {
+                if (maze.get(y, x) instanceof Element element) {
+                    lst.add(element);
+                    if (element instanceof TinyPac)
+                        //maze.set(y, x + 1, element);
+                        n++;
+                    /*else if (organism instanceof Virus)
+                        nr_virus++;*/
+                }
+            }
+        }
         Collections.shuffle(lst);
-        for(var organism : lst)
-            organism.evolve();
+        for(var element : lst)
+            element.evolve();
         return true;
-    }*/
+    }
 }

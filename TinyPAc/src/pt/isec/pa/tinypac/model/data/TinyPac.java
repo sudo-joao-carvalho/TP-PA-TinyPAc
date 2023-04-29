@@ -1,29 +1,16 @@
 package pt.isec.pa.tinypac.model.data;
 
+import pt.isec.pa.tinypac.model.data.cell.Wall;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class TinyPac extends Element{
     public static final char SYMBOL = 'M';
 
-    /*private int cordX;
-    private int cordY;*/
-
-    public TinyPac(Level level/*int cordX, int cordY*/){
+    public TinyPac(Level level){
         super(level);
-        /*this.cordX = cordX;
-        this.cordY = cordY;*/
     }
-
-    /*public int getCordX() {return this.cordX;}
-
-    public void setCordX(int cordX) {
-        this.cordX = cordX;
-    }
-
-    public int getCordY(){return this.cordY;}
-
-    public void setCordY(int cordY){this.cordY = cordY;}*/
 
     @Override
     public char getSymbol(){
@@ -31,5 +18,10 @@ public class TinyPac extends Element{
     }
 
     @Override
-    public void evolve(){}
+    public void evolve(){
+
+        Level.Position myPos = level.getPositionOf(this);
+        level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
+        System.out.println("Novo");
+    }
 }

@@ -14,6 +14,7 @@ import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.LevelManager;
 import pt.isec.pa.tinypac.model.data.TinyPac;
+import pt.isec.pa.tinypac.model.data.cell.FoodBall;
 import pt.isec.pa.tinypac.model.data.cell.Wall;
 
 
@@ -39,7 +40,7 @@ public class LanternaUI implements IGameEngineEvolve {
 
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
-        /*try {
+        try {
             show();
             KeyStroke key = screen.pollInput();
             if (level.onlyOneSpecies() ||
@@ -51,26 +52,28 @@ public class LanternaUI implements IGameEngineEvolve {
                 gameEngine.stop();
                 screen.close();
             }
-        } catch (IOException e) { }*/
+        } catch (IOException e) { }
     }
 
     private void show() throws IOException {
-        char[][] env = level.getLevel().getMaze();
+        char[][] map = level.getLevel().getMaze();
         screen.startScreen();
-        for (int y = 0; y < env.length; y++) {
-            for (int x = 0; x < env[0].length; x++) {
-                TextColor tc = switch(env[y][x]) {
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map[0].length; x++) {
+                TextColor tc = switch(map[y][x]) {
                     case TinyPac.SYMBOL -> TextColor.ANSI.WHITE;
                     case Wall.SYMBOL -> TextColor.ANSI.YELLOW;
+                    case FoodBall.SYMBOL -> TextColor.ANSI.CYAN;
                     default -> TextColor.ANSI.BLACK;
                 };
-                TextColor bc = switch(env[y][x]) {
+                TextColor bc = switch(map[y][x]) {
                     case TinyPac.SYMBOL -> TextColor.ANSI.RED;
                     case Wall.SYMBOL -> TextColor.ANSI.BLUE;
+                    case FoodBall.SYMBOL -> TextColor.ANSI.GREEN;
                     default -> TextColor.ANSI.WHITE;
                 };
-                screen.setCharacter(x,y, TextCharacter.fromCharacter(env[y][x],tc,bc)[0]);
-                //screen.setCharacter(x,y, TextCharacter.fromCharacter(env[y][x],tc,bc, SGR.BOLD)[0]);
+                screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc)[0]);
+                //screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc, SGR.BOLD)[0]);
             }
         }
         screen.refresh();

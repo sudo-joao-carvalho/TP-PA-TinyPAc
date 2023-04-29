@@ -99,7 +99,11 @@ public class LevelManager implements IGameEngineEvolve {
     public void evolve(IGameEngine gameEngine, long currentTime){
         if(level == null)
             return ;
-        //level.evolve();
+        level.evolve();
         //saveLogs();
+    }
+
+    public boolean onlyOneSpecies(){
+        return level.onlyOneSpecies();
     }
 }
