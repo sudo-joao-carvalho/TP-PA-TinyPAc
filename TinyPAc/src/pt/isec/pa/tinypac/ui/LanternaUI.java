@@ -1,19 +1,16 @@
 package pt.isec.pa.tinypac.ui;
-import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.LevelManager;
-import pt.isec.pa.tinypac.model.data.TinyPac;
+import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 import pt.isec.pa.tinypac.model.data.cell.FoodBall;
 import pt.isec.pa.tinypac.model.data.cell.Wall;
 
@@ -62,14 +59,14 @@ public class LanternaUI implements IGameEngineEvolve {
             for (int x = 0; x < map[0].length; x++) {
                 TextColor tc = switch(map[y][x]) {
                     case TinyPac.SYMBOL -> TextColor.ANSI.WHITE;
-                    case Wall.SYMBOL -> TextColor.ANSI.YELLOW;
-                    case FoodBall.SYMBOL -> TextColor.ANSI.CYAN;
+                    case Wall.SYMBOL -> TextColor.ANSI.BLUE;
+                    case FoodBall.SYMBOL -> TextColor.ANSI.YELLOW;
                     default -> TextColor.ANSI.BLACK;
                 };
                 TextColor bc = switch(map[y][x]) {
                     case TinyPac.SYMBOL -> TextColor.ANSI.RED;
-                    case Wall.SYMBOL -> TextColor.ANSI.BLUE;
-                    case FoodBall.SYMBOL -> TextColor.ANSI.GREEN;
+                    case Wall.SYMBOL -> TextColor.ANSI.BLACK;
+                    case FoodBall.SYMBOL -> TextColor.ANSI.BLACK;
                     default -> TextColor.ANSI.WHITE;
                 };
                 screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc)[0]);

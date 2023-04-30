@@ -1,12 +1,10 @@
 package pt.isec.pa.tinypac.model.data;
 
-import pt.isec.pa.tinypac.model.data.cell.*;
+import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class Level {
 
@@ -167,7 +165,8 @@ public class Level {
         }
         Collections.shuffle(lst);
         for(var element : lst)
-            element.evolve();
+            //element.evolve();
+            element.move();
         return true;
     }
 }

@@ -4,8 +4,7 @@ import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
-import pt.isec.pa.tinypac.model.data.Maze;
-import pt.isec.pa.tinypac.model.data.TinyPac;
+import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 import pt.isec.pa.tinypac.model.data.cell.*;
 
 import java.io.File;
