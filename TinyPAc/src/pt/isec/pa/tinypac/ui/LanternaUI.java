@@ -1,4 +1,5 @@
 package pt.isec.pa.tinypac.ui;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
@@ -7,6 +8,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.LevelManager;
@@ -21,22 +23,35 @@ public class LanternaUI implements IGameEngineEvolve {
     LevelManager level;
     Screen screen;
 
+    Terminal terminal;
+
     public LanternaUI(LevelManager level) throws IOException {
         this.level = level;
         /*screen = new DefaultTerminalFactory().createScreen();
         screen.setCursorPosition(null);*/
 
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
+        //this.terminal = new DefaultTerminalFactory();
+        //TerminalSize size = new TerminalSize(80, 40);
+        //terminal.setInitialTerminalSize(size);
+        DefaultTerminalFactory terminal = new DefaultTerminalFactory();
         TerminalSize size = new TerminalSize(80, 40);
-        terminalFactory.setInitialTerminalSize(size);
-        TerminalScreen screen = new TerminalScreen(terminalFactory.createTerminal());
+        terminal.setInitialTerminalSize(size);
+        this.terminal = terminal.createTerminal();
+        TerminalScreen screen = new TerminalScreen(this.terminal);
 
         this.screen = screen;
         show();
     }
 
-    public void start(){
-
+    public void start() throws IOException {
+        try{
+            //screen.setCursorPosition(new TerminalPosition(0, 0));
+            terminal.setCursorPosition(0,0);
+            terminal.putString("Trabalho Académico: DEIS-ISEC   João Alves Pereira de Carvalho 2019131769");
+        }catch(IOException e){
+            System.out.println("ERRO");
+        }
+        //screen.putString()
     }
 
     @Override
@@ -57,6 +72,8 @@ public class LanternaUI implements IGameEngineEvolve {
     }
 
     private void show() throws IOException {
+        start();
+
         char[][] map = level.getLevel().getMaze();
         screen.startScreen();
         for (int y = 0; y < map.length; y++) {
@@ -73,7 +90,7 @@ public class LanternaUI implements IGameEngineEvolve {
                     case FoodBall.SYMBOL -> TextColor.ANSI.BLACK;
                     default -> TextColor.ANSI.WHITE;
                 };
-                screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc)[0]);
+                screen.setCharacter(x + 2,y + 2, TextCharacter.fromCharacter(map[y][x],tc,bc)[0]);
                 //screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc, SGR.BOLD)[0]);
             }
         }

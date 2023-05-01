@@ -24,7 +24,7 @@ public class Main {
 
         LevelManager levelManager = new LevelManager(1);
         GameContext context = new GameContext();
-        GameTextUI textUI = new GameTextUI(context);
+        //GameTextUI textUI = new GameTextUI(context);
 
         GameEngine gameEngine = new GameEngine();
         LanternaUI lanternaUI = new LanternaUI(levelManager);
@@ -35,6 +35,6 @@ public class Main {
 
         gameEngine.waitForTheEnd();
 
-        textUI.menuUI();
+        //textUI.menuUI();
     }
 }
