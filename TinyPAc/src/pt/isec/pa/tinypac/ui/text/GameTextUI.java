@@ -19,7 +19,7 @@ public class GameTextUI {
                 switch(gameContextFsm.getState()){
                     case WAIT_BEGIN -> waitBeginUI();
                     case MOVE -> moveUI();
-                    case EAT -> eatUI();
+                    case VULNERABLE -> vulnerableUI();
                     case END_LEVEL -> endLevelUI();
                     //case NEXT_LEVEL -> nextLevelUI();
                 }
@@ -28,15 +28,17 @@ public class GameTextUI {
 
     public void menuUI(){
 
-        System.out.println("MAP\n");
+        /*System.out.println("MAP\n");
 
-        /*for(int h = 0; h < gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
+        for(int h = 0; h < gameContextFsm.getGame().getLevelManager().getLevel().getLevelHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
             for(int w = 0; w < gameContextFsm.getGame().getLevelManager().getLevel().getLevelWidth(); w++){
                 System.out.print(gameContextFsm.getGame().getLevelManager().getLevel().getElementAt(h, w));
             }
             System.out.println();
         }*/
 
+        System.out.println("Trabalho Académico: DEIS-ISEC   João Alves Pereira de Carvalho 2019131769");
+        System.out.println();
         System.out.printf("MenuUI");
 
         switch(PAInput.chooseOption("TinyPAc", "Iniciar Jogo", "Consultar Top 5", "Sair")){
@@ -64,18 +66,18 @@ public class GameTextUI {
 
         System.out.println("MoveUI");
 
-        switch(PAInput.chooseOption("TinyPAc", "Move", "Eat", "End Level")){
+        switch(PAInput.chooseOption("TinyPAc", "Move", "Vulnerable", "End Level")){
             case 1 -> gameContextFsm.move();
-            case 2 -> gameContextFsm.eat();
+            case 2 -> gameContextFsm.vulnerable();
             case 3 -> gameContextFsm.endLevel();
         }
     }
 
-    private void eatUI(){
+    private void vulnerableUI(){
         System.out.println("EatUI");
 
-        if(PAInput.chooseOption("TinyPAc", "Eat") == 1)
-            gameContextFsm.eat();
+        if(PAInput.chooseOption("TinyPAc", "Vulnerable") == 1)
+            gameContextFsm.vulnerable();
         else finish = true;
     }
 

@@ -5,16 +5,16 @@ import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
-public class EatState extends MobsStateAdapter {
+public class VulnerableState extends MobsStateAdapter {
 
-    public EatState(GameContext context, Game game){
+    public VulnerableState(GameContext context, Game game){
         super(context, game);
 
         //SETTERS
     }
 
     @Override
-    public boolean eat(){
+    public boolean vulnerable(){
         if(game.getScore() == 100){
             changeState(EMobsState.END_LEVEL);
             return true;
@@ -26,5 +26,5 @@ public class EatState extends MobsStateAdapter {
     }
 
     @Override
-    public EMobsState getState(){return EMobsState.EAT;}
+    public EMobsState getState(){return EMobsState.VULNERABLE;}
 }

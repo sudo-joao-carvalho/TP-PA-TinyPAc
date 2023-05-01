@@ -19,7 +19,7 @@ public abstract class MobsStateAdapter implements IMobsState {
     public boolean move(){return false;}
 
     @Override
-    public boolean eat(){return false;}
+    public boolean vulnerable(){return false;}
 
     @Override
     public boolean endLevel(){return false;}

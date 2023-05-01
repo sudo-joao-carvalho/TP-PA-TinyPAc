@@ -20,7 +20,7 @@ public class GameContext {
 
     public boolean move(){return gameState.move();}
 
-    public boolean eat(){return gameState.eat();}
+    public boolean vulnerable(){return gameState.vulnerable();}
 
     public boolean endLevel(){return gameState.endLevel();}
 

@@ -21,13 +21,13 @@ public enum EMobsState {
 
     }*/
 
-    WAIT_BEGIN, MOVE, EAT, END_LEVEL;
+    WAIT_BEGIN, MOVE, VULNERABLE, END_LEVEL;
 
     IMobsState createState(GameContext context, Game game){
         return switch(this){
             case WAIT_BEGIN -> new WaitBeginState(context, game);
             case MOVE -> new MoveState(context, game);
-            case EAT -> new EatState(context, game);
+            case VULNERABLE -> new VulnerableState(context, game);
             case END_LEVEL -> new EndLevelState(context, game);
         };
     }

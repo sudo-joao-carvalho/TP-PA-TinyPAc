@@ -14,8 +14,8 @@ public class MoveState extends MobsStateAdapter {
     }
 
     @Override
-    public boolean eat(){
-        changeState(EMobsState.EAT);
+    public boolean vulnerable(){
+        changeState(EMobsState.VULNERABLE);
         return true;
     }
 
