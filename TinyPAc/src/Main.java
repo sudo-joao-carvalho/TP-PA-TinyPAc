@@ -9,22 +9,12 @@ import pt.isec.pa.tinypac.ui.LanternaUI;
 
 import java.io.IOException;
 
-/*public class Main {
-    public static void main(String[] args){
-        //GameEngine engine = new GameEngine();
-        GameContext context = new GameContext();
-        GameTextUI textUI = new GameTextUI(context);
-
-        textUI.menuUI();
-    }
-}*/
-
 public class Main {
     public static void main(String[] args) throws IOException {
 
         LevelManager levelManager = new LevelManager(1);
         GameContext context = new GameContext();
-        //GameTextUI textUI = new GameTextUI(context);
+        GameTextUI textUI = new GameTextUI(context);
 
         GameEngine gameEngine = new GameEngine();
         LanternaUI lanternaUI = new LanternaUI(levelManager, context);
@@ -35,6 +25,6 @@ public class Main {
 
         gameEngine.waitForTheEnd();
 
-        //textUI.menuUI();
+        textUI.menuUI();
     }
 }

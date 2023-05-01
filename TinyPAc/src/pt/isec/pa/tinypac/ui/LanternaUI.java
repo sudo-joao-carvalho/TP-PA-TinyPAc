@@ -12,6 +12,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.LevelManager;
+import pt.isec.pa.tinypac.model.data.cell.EmptyCell;
 import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 import pt.isec.pa.tinypac.model.data.cell.FoodBall;
 import pt.isec.pa.tinypac.model.data.cell.Wall;
@@ -23,7 +24,6 @@ import java.io.IOException;
 
 public class LanternaUI implements IGameEngineEvolve {
     LevelManager level;
-    GameContext gameContextFsm;
     Screen screen;
     Terminal terminal;
 
@@ -31,7 +31,6 @@ public class LanternaUI implements IGameEngineEvolve {
 
     public LanternaUI(LevelManager level, GameContext gameContext) throws IOException {
         this.finish = false;
-        this.gameContextFsm = gameContext;
         this.level = level;
 
         DefaultTerminalFactory terminal = new DefaultTerminalFactory();
@@ -47,7 +46,6 @@ public class LanternaUI implements IGameEngineEvolve {
     public void start() throws IOException {
 
         try{
-            //screen.setCursorPosition(new TerminalPosition(0, 0));
             terminal.setCursorPosition(0,0);
             terminal.putString("Trabalho Académico: DEIS-ISEC   João Alves Pereira de Carvalho 2019131769");
 
@@ -91,6 +89,7 @@ public class LanternaUI implements IGameEngineEvolve {
                     case TinyPac.SYMBOL -> TextColor.ANSI.RED;
                     case Wall.SYMBOL -> TextColor.ANSI.BLACK;
                     case FoodBall.SYMBOL -> TextColor.ANSI.BLACK;
+                    case EmptyCell.SYMBOL -> TextColor.ANSI.BLACK;
                     default -> TextColor.ANSI.WHITE;
                 };
                 screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc)[0]);
