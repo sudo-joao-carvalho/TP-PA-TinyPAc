@@ -1,5 +1,7 @@
 package pt.isec.pa.tinypac.model.data;
 
+import java.awt.event.KeyEvent;
+
 public abstract class Element implements IMazeElement{
 
     protected Level level;
@@ -10,6 +12,6 @@ public abstract class Element implements IMazeElement{
 
     //abstract public void evolve();
 
-    public boolean move(){return false;}
+    public boolean move(KeyEvent e){return false;}
     public boolean eat(){return false;}
 }

@@ -87,9 +87,7 @@ public class LanternaUI implements IGameEngineEvolve {
                 };
                 TextColor bc = switch(map[y][x]) {
                     case TinyPac.SYMBOL -> TextColor.ANSI.RED;
-                    case Wall.SYMBOL -> TextColor.ANSI.BLACK;
-                    case FoodBall.SYMBOL -> TextColor.ANSI.BLACK;
-                    case EmptyCell.SYMBOL -> TextColor.ANSI.BLACK;
+                    case Wall.SYMBOL, FoodBall.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.BLACK;
                     default -> TextColor.ANSI.WHITE;
                 };
                 screen.setCharacter(x,y, TextCharacter.fromCharacter(map[y][x],tc,bc)[0]);

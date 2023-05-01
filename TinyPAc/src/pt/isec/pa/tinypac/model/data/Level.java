@@ -2,6 +2,7 @@ package pt.isec.pa.tinypac.model.data;
 
 import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -148,7 +149,7 @@ public class Level {
     }
 
     public boolean evolve() {
-        int n = 0;
+        /*int n = 0;
 
         List<Element> lst = new ArrayList<>();
         for(int y = 0; y < height;y++) {
@@ -159,10 +160,11 @@ public class Level {
                         //maze.set(y, x + 1, element);
                         n++;
                     /*else if (organism instanceof Virus)
-                        nr_virus++;*/
+                        nr_virus++;
                 }
             }
-        }
+        }*/
+        List<Element> lst = new ArrayList<>();
         Collections.shuffle(lst);
         for(var element : lst)
             //element.evolve();
