@@ -77,7 +77,6 @@ public class LevelManager implements IGameEngineEvolve {
                     auxLevel.addElement(element, h, w);
 
                 }
-                //System.out.println("1");
             }
 
             sc.close();

@@ -50,8 +50,6 @@ public class GameTextUI {
             }
         }
 
-        //gameContextFsm.getGame().getLevel().printMap(); -> DEBUG: ver se esta a ler bem o mapa
-        //System.out.println(gameContextFsm.start());
     }
 
     private void waitBeginUI(){
@@ -65,17 +63,6 @@ public class GameTextUI {
     private void moveUI(){
 
         System.out.println("MoveUI");
-
-        /*System.out.println("MAP\n");
-
-        for(int h = 0; h < gameContextFsm.getGame().getLevel().getMapHeight(); h++){  //-> DEBUG: ver se esta a ler bem o mapa
-            for(int w = 0; w < gameContextFsm.getGame().getLevel().getMapWidth(); w++){
-                System.out.print(gameContextFsm.getGame().getLevel().getMaze()[h][w]);
-            }
-            System.out.println();
-        }
-
-        System.out.println();*/
 
         switch(PAInput.chooseOption("TinyPAc", "Move", "Eat", "End Level")){
             case 1 -> gameContextFsm.move();

@@ -27,12 +27,13 @@ public class MoveState extends MobsStateAdapter {
 
     @Override
     public boolean endLevel(){
-        if(game.getScore() == 100){
+        /*if(game.getScore() == 100){
             changeState(EMobsState.END_LEVEL);
             return true;
-        }
+        }*/
 
-        changeState(EMobsState.MOVE);
+        //changeState(EMobsState.MOVE);
+        changeState(EMobsState.END_LEVEL);
         return false;
 
     }

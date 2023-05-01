@@ -35,6 +35,10 @@ public class LanternaUI implements IGameEngineEvolve {
         show();
     }
 
+    public void start(){
+
+    }
+
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
         try {
