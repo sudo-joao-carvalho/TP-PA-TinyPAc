@@ -14,14 +14,14 @@ public class VulnerableState extends MobsStateAdapter {
     }
 
     @Override
-    public boolean vulnerable(){
-        if(game.getScore() == 100){
-            changeState(EMobsState.END_LEVEL);
-            return true;
-        }
-
-        game.setScore(game.getScore() + 10);
+    public boolean move(){
         changeState(EMobsState.MOVE);
+        return true;
+    }
+
+    @Override
+    public boolean endLevel(){
+        changeState(EMobsState.END_LEVEL);
         return true;
     }
 

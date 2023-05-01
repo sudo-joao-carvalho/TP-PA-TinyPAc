@@ -74,11 +74,12 @@ public class GameTextUI {
     }
 
     private void vulnerableUI(){
-        System.out.println("EatUI");
+        System.out.println("VulnerableUI");
 
-        if(PAInput.chooseOption("TinyPAc", "Vulnerable") == 1)
-            gameContextFsm.vulnerable();
-        else finish = true;
+        switch(PAInput.chooseOption("TinyPAc", "Move", "EndLevel")){
+            case 1 -> gameContextFsm.move();
+            case 2 -> gameContextFsm.endLevel();
+        }
     }
 
     private void endLevelUI(){
