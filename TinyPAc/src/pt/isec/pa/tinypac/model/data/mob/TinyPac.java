@@ -2,6 +2,7 @@ package pt.isec.pa.tinypac.model.data.mob;
 
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
+import pt.isec.pa.tinypac.model.data.cell.EmptyCell;
 import pt.isec.pa.tinypac.model.data.cell.Wall;
 
 public class TinyPac extends Element {
@@ -24,9 +25,8 @@ public class TinyPac extends Element {
     @Override
     public boolean move(){
         Level.Position myPos = level.getPositionOf(this);
-        level.addElement(new Wall(level), myPos.y(), myPos.x());
+        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
         level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
-        System.out.println("Novo");
         return true;
     }
 
