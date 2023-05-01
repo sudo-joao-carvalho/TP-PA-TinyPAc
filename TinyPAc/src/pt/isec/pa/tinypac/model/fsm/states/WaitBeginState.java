@@ -13,20 +13,6 @@ public class WaitBeginState extends MobsStateAdapter{
         //SETTERS
     }
 
-    /*@Override
-    public void keyPressed(KeyEvent e){
-        int keyCode = e.getKeyCode();
-
-        if(keyCode == KeyEvent.VK_UP){
-            System.out.println("Carreguei na tecla para cima");
-        }else if(keyCode == KeyEvent.VK_DOWN){
-            System.out.println("Carreguei na tecla para baixo");
-        }else if(keyCode == KeyEvent.VK_LEFT){
-            System.out.println("Carreguei na tecla para a esquerda");
-        }else if(keyCode == KeyEvent.VK_RIGHT){
-            System.out.println("Carreguei na tecla para a direita");
-        }
-    }*/
     @Override
     public boolean move(){
         //quando ele se mover vai passar para o estado seguinte que é MoveState

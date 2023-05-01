@@ -97,7 +97,6 @@ public class LevelManager implements IGameEngineEvolve {
         if(level == null)
             return ;
         level.evolve();
-        //saveLogs();
     }
 
     public boolean onlyOneSpecies(){

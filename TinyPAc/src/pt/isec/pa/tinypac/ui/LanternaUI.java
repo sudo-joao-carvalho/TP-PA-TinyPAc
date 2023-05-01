@@ -17,7 +17,6 @@ import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 import pt.isec.pa.tinypac.model.data.cell.FoodBall;
 import pt.isec.pa.tinypac.model.data.cell.Wall;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
-import pt.isec.pa.tinypac.utils.PAInput;
 
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class LanternaUI implements IGameEngineEvolve {
         TerminalScreen screen = new TerminalScreen(this.terminal);
 
         this.screen = screen;
-        show();
+        //show();
     }
 
     public void start() throws IOException {

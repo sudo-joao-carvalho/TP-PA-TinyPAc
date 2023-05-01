@@ -20,18 +20,13 @@ public class TinyPac extends Element {
         return SYMBOL;
     }
 
-    /*@Override
-    public void evolve(){
-        move();
-    }*/
-
     @Override
-    public boolean move(KeyEvent e){
-        /*Level.Position myPos = level.getPositionOf(this);
+    public boolean move(/*KeyEvent e*/){
+        Level.Position myPos = level.getPositionOf(this);
         level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-        level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);*/
+        level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
 
-        int keyCode = e.getKeyCode();
+        /*int keyCode = e.getKeyCode();
 
         if(keyCode == KeyEvent.VK_UP){
             Level.Position myPos = level.getPositionOf(this);
@@ -49,7 +44,7 @@ public class TinyPac extends Element {
             Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
-        }
+        }*/
         return true;
     }
 
