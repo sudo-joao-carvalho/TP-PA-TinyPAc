@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class LevelManager implements IGameEngineEvolve {
 
-
     private int levelNumber;
     Level level;
 

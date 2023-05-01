@@ -27,7 +27,7 @@ public class Main {
         //GameTextUI textUI = new GameTextUI(context);
 
         GameEngine gameEngine = new GameEngine();
-        LanternaUI lanternaUI = new LanternaUI(levelManager);
+        LanternaUI lanternaUI = new LanternaUI(levelManager, context);
 
         gameEngine.registerClient(levelManager);
         gameEngine.registerClient(lanternaUI);
