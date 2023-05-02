@@ -10,7 +10,7 @@ public class GameContext {
     IMobsState gameState;
 
     public GameContext(){
-        game = new Game(/*"Level101.txt"*/ 1);
+        game = new Game(1);
         this.gameState = new WaitBeginState(this, game);
     }
 
