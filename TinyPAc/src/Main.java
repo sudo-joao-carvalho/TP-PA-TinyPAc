@@ -1,8 +1,5 @@
 import pt.isec.pa.tinypac.gameengine.GameEngine;
-import pt.isec.pa.tinypac.gameengine.IGameEngine;
-import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.LevelManager;
-import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.ui.text.GameTextUI;
 import pt.isec.pa.tinypac.ui.LanternaUI;
