@@ -25,3 +25,5 @@ public class Main {
         textUI.menuUI();
     }
 }
+
+//melhorar diagrama de estados... descriçoes meter move em tudo, meter so o endlevelsstate para o final do jogo, de resto voltar dos moves para o waitbegin

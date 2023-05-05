@@ -26,9 +26,11 @@ public class LanternaUI implements IGameEngineEvolve {
     Screen screen;
     Terminal terminal;
 
+    //GameContext gameContextFsm;
     boolean finish;
 
     public LanternaUI(LevelManager level, GameContext gameContext) throws IOException {
+        //this.gameContextFsm = gameContext;
         this.finish = false;
         this.level = level;
 
@@ -68,6 +70,11 @@ public class LanternaUI implements IGameEngineEvolve {
                 gameEngine.stop();
                 screen.close();
             }
+
+            /*if(key.getKeyType() == KeyType.ArrowUp){
+                gameContextFsm.move();
+                System.out.println("Moving up");
+            }*/
         } catch (IOException e) { }
     }
 
