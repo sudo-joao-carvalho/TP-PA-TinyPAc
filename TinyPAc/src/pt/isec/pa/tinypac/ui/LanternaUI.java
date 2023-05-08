@@ -197,6 +197,7 @@ public class LanternaUI implements IGameEngineEvolve {
             screen.refresh();
 
             KeyStroke newKey = terminal.pollInput();
+            terminal.flush();
 
             if (newKey != null) {
                 KeyType newKeyType = null;
@@ -217,7 +218,7 @@ public class LanternaUI implements IGameEngineEvolve {
 
             gameContext.changePacmanDirection(currentKeyType);
             try {
-                Thread.sleep(500);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

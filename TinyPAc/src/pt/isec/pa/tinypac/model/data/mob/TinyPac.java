@@ -26,20 +26,17 @@ public class TinyPac extends Element {
 
         //int keyCode = key.getKeyCode();
 
+        Level.Position myPos = level.getPositionOf(this);
         if(key == KeyType.ArrowUp) {
-            Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y() - 1, myPos.x());
         }else if(key == KeyType.ArrowDown){
-            Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y() + 1, myPos.x());
         }else if(key == KeyType.ArrowLeft){
-            Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y(), myPos.x() - 1);
         }else if(key == KeyType.ArrowRight){
-            Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
         }
