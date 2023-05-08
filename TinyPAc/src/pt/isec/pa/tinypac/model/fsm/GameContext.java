@@ -1,6 +1,11 @@
 package pt.isec.pa.tinypac.model.fsm;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import pt.isec.pa.tinypac.gameengine.IGameEngine;
+import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Game;
+import pt.isec.pa.tinypac.model.fsm.states.MoveState;
 import pt.isec.pa.tinypac.model.fsm.states.WaitBeginState;
 
 public class GameContext {
@@ -15,15 +20,26 @@ public class GameContext {
     }
 
     public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
-
     void changeState(IMobsState newState){this.gameState = newState;}
 
-    public boolean move(){return gameState.move();}
+    public boolean evolve(){return gameState.evolve();}
 
-    public boolean vulnerable(){return gameState.vulnerable();}
+    public boolean pause(){return gameState.pause();}
 
-    public boolean endLevel(){return gameState.endLevel();}
+    /*@Override
+    public void evolve(IGameEngine gameEngine, long currentTime){
+        if(game.getLevel() == null)
+            return ;
+        game.getLevel().evolve();
+    }*/
 
-    //getData
-    public Game getGame(){return game;}
+    public Game getGame(){return this.game;}
+
+    public void changePacmanDirection(KeyType key) {
+        IMobsState currentState = this.gameState;
+        if (currentState instanceof MoveState) {
+            MoveState moveState = (MoveState) currentState;
+            moveState.changePacmanDirection(key);
+        }
+    }
 }

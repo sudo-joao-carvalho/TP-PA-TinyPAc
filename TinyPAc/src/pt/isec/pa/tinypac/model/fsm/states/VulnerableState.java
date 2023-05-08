@@ -14,16 +14,13 @@ public class VulnerableState extends MobsStateAdapter {
     }
 
     @Override
-    public boolean move(){
+    public boolean evolve(){
         changeState(EMobsState.MOVE);
         return true;
     }
 
     @Override
-    public boolean endLevel(){
-        changeState(EMobsState.END_LEVEL);
-        return true;
-    }
+    public boolean pause(){return false;}
 
     @Override
     public EMobsState getState(){return EMobsState.VULNERABLE;}

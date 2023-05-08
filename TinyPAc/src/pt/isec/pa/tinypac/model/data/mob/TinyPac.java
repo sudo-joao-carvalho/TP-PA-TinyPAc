@@ -1,12 +1,10 @@
 package pt.isec.pa.tinypac.model.data.mob;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.data.cell.EmptyCell;
-import pt.isec.pa.tinypac.model.data.cell.Wall;
-
-import javax.swing.*;
-import java.awt.event.KeyEvent;
 
 public class TinyPac extends Element {
     public static final char SYMBOL = 'M';
@@ -21,31 +19,30 @@ public class TinyPac extends Element {
     }
 
     @Override
-    public boolean move(/*KeyEvent e*/){
-        Level.Position myPos = level.getPositionOf(this);
-        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-        level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
+    public void evolve(KeyType key){ //move
+        //Level.Position myPos = level.getPositionOf(this);
+        //level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+        //level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
 
-        /*int keyCode = e.getKeyCode();
+        //int keyCode = key.getKeyCode();
 
-        if(keyCode == KeyEvent.VK_UP){
+        if(key == KeyType.ArrowUp) {
             Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y() - 1, myPos.x());
-        }else if(keyCode == KeyEvent.VK_DOWN){
+        }else if(key == KeyType.ArrowDown){
             Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y() + 1, myPos.x());
-        }else if(keyCode == KeyEvent.VK_LEFT){
+        }else if(key == KeyType.ArrowLeft){
             Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y(), myPos.x() - 1);
-        }else if(keyCode == KeyEvent.VK_RIGHT){
+        }else if(key == KeyType.ArrowRight){
             Level.Position myPos = level.getPositionOf(this);
             level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
             level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
-        }*/
-        return true;
+        }
     }
 
     @Override

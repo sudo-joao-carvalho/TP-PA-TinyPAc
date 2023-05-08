@@ -16,11 +16,9 @@ public abstract class MobsStateAdapter implements IMobsState {
     protected void changeState(EMobsState newState){context.changeState(newState.createState(context, game));}
 
     @Override
-    public boolean move(){return false;}
+    public boolean evolve(){return false;}
 
     @Override
-    public boolean vulnerable(){return false;}
+    public boolean pause(){return false;}
 
-    @Override
-    public boolean endLevel(){return false;}
 }

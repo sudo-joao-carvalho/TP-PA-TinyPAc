@@ -15,12 +15,7 @@ public class EndLevelState extends MobsStateAdapter {
     }
 
     @Override
-    public boolean endLevel(){
-        //aqui vai mudar o level
-        //game.setLevel(new Level(game.getLevel().getLevelNumber() + 1)); // demonstraçao que vai para o nivel seguinte
-        changeState(EMobsState.WAIT_BEGIN);
-        return true;
-    }
+    public boolean pause(){return false;}
 
     @Override
     public EMobsState getState(){return EMobsState.END_LEVEL;}

@@ -1,5 +1,8 @@
 package pt.isec.pa.tinypac.model.data;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public abstract class Element implements IMazeElement{
@@ -10,8 +13,8 @@ public abstract class Element implements IMazeElement{
         this.level = level;
     } // o facto de ter aqui o construtor eu depois n tenho que repetir nas classes derivadas
 
-    //abstract public void evolve();
+    abstract public void evolve(KeyType key);
 
-    public boolean move(){return false;}
+    //public boolean evovle(){return false;}
     public boolean eat(){return false;}
 }

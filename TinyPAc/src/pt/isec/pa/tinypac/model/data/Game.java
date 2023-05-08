@@ -1,26 +1,27 @@
 package pt.isec.pa.tinypac.model.data;
 
-import pt.isec.pa.tinypac.model.LevelManager;
-
 public class Game {
-    private LevelManager levelManager;
+    //private LevelManager levelManager;
+    private Level level;
     private int lifes;
     private int score;
 
     public Game(/*String levelFile*/int levelNumber){
-        this.levelManager      = new LevelManager(levelNumber);
+        //this.levelManager      = new LevelManager(levelNumber);
+        this.level = new Level(levelNumber);
         this.lifes      = 3;
         this.score      = 0;
     }
 
-    public LevelManager getLevelManager() {
-        return levelManager;
-    }
+    //public LevelManager getLevelManager() {
+        //return levelManager;
+    //}
 
     /*public void setLevel(Level level) {
         this.level = level;
     }*/
 
+    public Level getLevel() {return this.level;}
     public int getLifes() {
         return lifes;
     }
