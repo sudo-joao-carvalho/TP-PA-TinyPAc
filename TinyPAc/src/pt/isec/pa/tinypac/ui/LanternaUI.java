@@ -30,7 +30,7 @@ public class LanternaUI implements IGameEngineEvolve {
         this.gameContext    = gameContext;
 
         this.terminal       = new DefaultTerminalFactory()
-                            .setInitialTerminalSize(new TerminalSize(100, 100))
+                            .setInitialTerminalSize(new TerminalSize(50, 50))
                             .createTerminal();
         this.screen         = new TerminalScreen(terminal);
         show();
@@ -40,7 +40,7 @@ public class LanternaUI implements IGameEngineEvolve {
     public void evolve(IGameEngine gameEngine, long currentTime) {
         try {
             show();
-            KeyStroke key = screen.pollInput();
+            KeyStroke key = terminal.pollInput();
             if (gameContext.getGame().getLevel().onlyOneSpecies() ||
                     ( key != null &&
                             (key.getKeyType() == KeyType.Escape ||
@@ -165,7 +165,8 @@ public class LanternaUI implements IGameEngineEvolve {
 
         terminal.clearScreen();
         terminal.flush();
-        terminal.setCursorPosition(0,2);
+        terminal.setCursorVisible(false);
+        terminal.setCursorPosition(0,0);
         terminal.flush();
 
         KeyStroke currentKey = terminal.readInput();
@@ -190,7 +191,7 @@ public class LanternaUI implements IGameEngineEvolve {
                         case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL -> TextColor.ANSI.CYAN;
                         default -> TextColor.ANSI.BLACK;
                     };
-                    screen.setCharacter(x, y, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
+                    screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
                 }
             }
             screen.refresh();
@@ -200,16 +201,7 @@ public class LanternaUI implements IGameEngineEvolve {
             if (newKey != null) {
                 KeyType newKeyType = null;
                 switch (newKey.getKeyType()) {
-                    case ArrowUp:
-                        newKeyType = newKey.getKeyType();
-                        break;
-                    case ArrowDown:
-                        newKeyType = newKey.getKeyType();
-                        break;
-                    case ArrowLeft:
-                        newKeyType = newKey.getKeyType();
-                        break;
-                    case ArrowRight:
+                    case ArrowUp, ArrowDown, ArrowLeft, ArrowRight:
                         newKeyType = newKey.getKeyType();
                         break;
                     default:
@@ -224,6 +216,11 @@ public class LanternaUI implements IGameEngineEvolve {
             }
 
             gameContext.changePacmanDirection(currentKeyType);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
