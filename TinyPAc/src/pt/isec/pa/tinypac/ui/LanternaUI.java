@@ -230,15 +230,28 @@ public class LanternaUI implements IGameEngineEvolve {
         terminal.clearScreen();
         terminal.flush();
         terminal.setCursorPosition(0,0);
-        terminal.putString("VULNERABLE STATE");
         terminal.flush();
 
 
-        /*KeyStroke currentKey = terminal.readInput();
+        KeyStroke currentKey = terminal.readInput();
         KeyType currentKeyType = currentKey.getKeyType();
         terminal.flush();
 
-        while(gameContext.getState() == EMobsState.MOVE) {
+        Thread timerThread = new Thread(() -> {
+            int seconds = 0;
+            while (seconds < 5) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                seconds++;
+            }
+            gameContext.evolve();
+        });
+        timerThread.start();
+
+        while(gameContext.getState() == EMobsState.VULNERABLE) {
             terminal.putString("SCORE: " + TinyPac.SCORE);
             terminal.setCursorVisible(false);
 
@@ -283,14 +296,13 @@ public class LanternaUI implements IGameEngineEvolve {
             }
 
             gameContext.changePacmanDirection(currentKeyType);
+
             try {
                 Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(gameContext.checkVulnerable())
-                gameContext.evolve();
-        }*/
+        }
 
     }
 }

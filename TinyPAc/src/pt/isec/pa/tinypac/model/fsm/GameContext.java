@@ -6,6 +6,7 @@ import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Game;
 import pt.isec.pa.tinypac.model.fsm.states.MoveState;
+import pt.isec.pa.tinypac.model.fsm.states.VulnerableState;
 import pt.isec.pa.tinypac.model.fsm.states.WaitBeginState;
 
 public class GameContext {
@@ -39,6 +40,10 @@ public class GameContext {
         IMobsState currentState = this.gameState;
         if (currentState instanceof MoveState moveState) {
             moveState.changePacmanDirection(key);
+        }
+
+        if (currentState instanceof VulnerableState vulnerableState) {
+            vulnerableState.changePacmanDirection(key);
         }
     }
 }
