@@ -177,7 +177,7 @@ public class Level {
 
     }*/
 
-    public Element getOrganism(int y,int x) {
+    public Element getElement(int y,int x) {
         IMazeElement e = maze.get(y,x);
         if (e instanceof Element element)
             return element;
@@ -213,6 +213,41 @@ public class Level {
                 }
         return (n==0);
     }
+
+    public <T extends Element> List<Position> getElementNeighbors(int y, int x, Class<T> type) {
+        List<Position> lst = new ArrayList<>();
+        for (int yd = -1; yd <= 1; yd++) {
+            for (int xd = -1; xd <= 1; xd++) {
+                if (yd != 0 || xd != 0) {
+                    var element = maze.get(y + yd, x + xd);
+                    if (type.isInstance(element)) {
+                        lst.add(new Position(y + yd, x + xd));
+                    }
+                }
+            }
+        }
+        return lst;
+    }
+
+    /*public boolean isValidPosition(int y, int x, ){
+
+        Level.Position myPos = getPositionOf();
+
+        List<Level.Position> lst = getElementNeighbors(myPos.y(), myPos.x(), TinyPac.class);
+        if (lst.isEmpty())
+            return false;
+        Collections.shuffle(lst);
+
+        for(Level.Position pos: lst){
+            if(pos.y() == y && pos.x() == x){
+                return !(getElement(pos.y(), pos.x()) instanceof EmptyCell) &&
+                        !(getElement(pos.y(), pos.x()) instanceof Portal);
+            }
+
+        }
+
+        return false;
+    }*/
 
     public boolean evolve(KeyType key) {
         int n = 0;

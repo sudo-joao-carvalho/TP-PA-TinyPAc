@@ -87,8 +87,6 @@ public class LanternaUI implements IGameEngineEvolve {
                     while(!finish){
                         terminal.clearScreen();
                         terminal.flush();
-                        System.out.println("Entrou no loop while");
-                        System.out.println("finish: " + finish);
 
                         switch(gameContext.getState()){
                             case WAIT_BEGIN -> waitBeginUI();
@@ -165,7 +163,6 @@ public class LanternaUI implements IGameEngineEvolve {
 
         terminal.clearScreen();
         terminal.flush();
-        terminal.setCursorVisible(false);
         terminal.setCursorPosition(0,0);
         terminal.flush();
 
@@ -174,6 +171,7 @@ public class LanternaUI implements IGameEngineEvolve {
         terminal.flush();
 
         while(gameContext.getState() == EMobsState.MOVE) {
+            terminal.setCursorVisible(false);
 
             char[][] map = gameContext.getGame().getLevel().getMaze();
             for (int y = 0; y < map.length; y++) {
@@ -188,7 +186,7 @@ public class LanternaUI implements IGameEngineEvolve {
                     };
                     TextColor bc = switch (map[y][x]) {
                         case TinyPac.SYMBOL -> TextColor.ANSI.RED;
-                        case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL -> TextColor.ANSI.CYAN;
+                        case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.CYAN;
                         default -> TextColor.ANSI.BLACK;
                     };
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
@@ -212,7 +210,6 @@ public class LanternaUI implements IGameEngineEvolve {
 
                 if(newKeyType != null && newKeyType != currentKeyType){
                     currentKeyType = newKeyType;
-                    gameContext.changePacmanDirection(currentKeyType);
                 }
             }
 
