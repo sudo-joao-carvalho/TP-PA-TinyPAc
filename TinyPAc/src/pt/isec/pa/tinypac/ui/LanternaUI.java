@@ -215,7 +215,7 @@ public class LanternaUI implements IGameEngineEvolve {
 
             gameContext.changePacmanDirection(currentKeyType);
             try {
-                Thread.sleep(300);
+                Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

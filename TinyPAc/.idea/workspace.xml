@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4d4e4214-e675-4e85-865e-71191fb2a0ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/mob/TinyPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/mob/TinyPac.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/LanternaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/LanternaUI.java" afterDir="false" />
     </list>
@@ -102,7 +99,7 @@
       <workItem from="1682776047692" duration="47000" />
       <workItem from="1682776099269" duration="47252000" />
       <workItem from="1683187530657" duration="5063000" />
-      <workItem from="1683546854108" duration="32837000" />
+      <workItem from="1683546854108" duration="34196000" />
     </task>
     <servers />
   </component>

@@ -6,6 +6,7 @@ import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.data.cell.EmptyCell;
 import pt.isec.pa.tinypac.model.data.cell.Portal;
+import pt.isec.pa.tinypac.model.data.cell.Wall;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,20 +22,21 @@ public class TinyPac extends Element {
 
         Level.Position myPos = level.getPositionOf(this);
 
-        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), TinyPac.class);
-        if (lst.isEmpty())
+        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        if (lst.isEmpty()) {
             return false;
+        }
         Collections.shuffle(lst);
 
         for(Level.Position pos: lst){
             if(pos.y() == y && pos.x() == x){
-                return !(level.getElement(pos.y(), pos.x()) instanceof EmptyCell) &&
+                return !(level.getElement(pos.y(), pos.x()) instanceof Wall) &&
                         !(level.getElement(pos.y(), pos.x()) instanceof Portal);
             }
 
         }
 
-        return false;
+        return true;
     }
     @Override
     public void evolve(KeyType key){ //move
@@ -55,21 +57,6 @@ public class TinyPac extends Element {
                 level.addElement(new TinyPac(level), myPos.y() + dy, myPos.x() + dx);
             }
         }
-
-        /*Level.Position myPos = level.getPositionOf(this);
-        if(key == KeyType.ArrowUp) {
-            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-            level.addElement(new TinyPac(level), myPos.y() - 1, myPos.x());
-        }else if(key == KeyType.ArrowDown){
-            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-            level.addElement(new TinyPac(level), myPos.y() + 1, myPos.x());
-        }else if(key == KeyType.ArrowLeft){
-            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-            level.addElement(new TinyPac(level), myPos.y(), myPos.x() - 1);
-        }else if(key == KeyType.ArrowRight){
-            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-            level.addElement(new TinyPac(level), myPos.y(), myPos.x() + 1);
-        }*/
     }
 
     @Override
