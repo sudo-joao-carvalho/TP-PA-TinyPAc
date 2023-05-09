@@ -26,6 +26,8 @@ public class LanternaUI implements IGameEngineEvolve {
     Terminal terminal;
     boolean finish = false;
 
+    private KeyType lastKeyTyped = KeyType.ArrowRight;
+
     public LanternaUI(GameContext gameContext) throws IOException {
         this.gameContext    = gameContext;
 
@@ -166,8 +168,8 @@ public class LanternaUI implements IGameEngineEvolve {
         terminal.setCursorPosition(0,0);
         terminal.flush();
 
-        KeyStroke currentKey = terminal.readInput();
-        KeyType currentKeyType = currentKey.getKeyType();
+        //KeyStroke currentKey = terminal.readInput();
+        KeyType currentKeyType = this.lastKeyTyped;
         terminal.flush();
 
         while(gameContext.getState() == EMobsState.MOVE) {
@@ -215,6 +217,7 @@ public class LanternaUI implements IGameEngineEvolve {
             }
 
             gameContext.changePacmanDirection(currentKeyType);
+            this.lastKeyTyped = currentKeyType;
             gameContext.evolve();
 
             try {
@@ -233,8 +236,9 @@ public class LanternaUI implements IGameEngineEvolve {
         terminal.flush();
 
 
-        KeyStroke currentKey = terminal.readInput();
-        KeyType currentKeyType = currentKey.getKeyType();
+        //KeyStroke currentKey = terminal.readInput();
+        //KeyType currentKeyType = currentKey.getKeyType();
+        KeyType currentKeyType = this.lastKeyTyped;
         terminal.flush();
 
         Thread timerThread = new Thread(() -> {
@@ -296,7 +300,7 @@ public class LanternaUI implements IGameEngineEvolve {
             }
 
             gameContext.changePacmanDirection(currentKeyType);
-
+            this.lastKeyTyped = currentKeyType;
             try {
                 Thread.sleep(250);
             } catch (InterruptedException e) {
