@@ -171,6 +171,7 @@ public class LanternaUI implements IGameEngineEvolve {
         terminal.flush();
 
         while(gameContext.getState() == EMobsState.MOVE) {
+            //terminal.putString("SCORE: " + gameContext.getGame().getLevel());
             terminal.setCursorVisible(false);
 
             char[][] map = gameContext.getGame().getLevel().getMaze();

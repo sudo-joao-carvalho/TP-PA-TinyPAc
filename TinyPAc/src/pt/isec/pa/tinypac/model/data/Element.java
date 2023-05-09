@@ -16,5 +16,5 @@ public abstract class Element implements IMazeElement{
     abstract public void evolve(KeyType key);
 
     //public boolean evovle(){return false;}
-    public boolean eat(){return false;}
+    //public boolean eat(int y, int x){return false;}
 }

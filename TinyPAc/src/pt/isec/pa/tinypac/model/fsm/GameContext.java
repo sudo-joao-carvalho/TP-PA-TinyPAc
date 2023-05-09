@@ -37,8 +37,7 @@ public class GameContext {
 
     public void changePacmanDirection(KeyType key) {
         IMobsState currentState = this.gameState;
-        if (currentState instanceof MoveState) {
-            MoveState moveState = (MoveState) currentState;
+        if (currentState instanceof MoveState moveState) {
             moveState.changePacmanDirection(key);
         }
     }

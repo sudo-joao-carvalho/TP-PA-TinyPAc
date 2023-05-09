@@ -21,7 +21,7 @@ public class MoveState extends MobsStateAdapter {
 
     @Override
     public boolean evolve(){
-        //changeState(EMobsState.MOVE);
+        //changeState(EMobsState.VULNERABLE);
         return true;
     }
 

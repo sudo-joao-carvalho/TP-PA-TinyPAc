@@ -4,18 +4,39 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
-import pt.isec.pa.tinypac.model.data.cell.EmptyCell;
-import pt.isec.pa.tinypac.model.data.cell.Portal;
-import pt.isec.pa.tinypac.model.data.cell.Wall;
+import pt.isec.pa.tinypac.model.data.cell.*;
 
 import java.util.Collections;
 import java.util.List;
 
 public class TinyPac extends Element {
     public static final char SYMBOL = 'M';
+    private static int lifes = 3;
+    private static int score = 0;
 
     public TinyPac(Level level){
         super(level);
+    }
+
+    public Element checkFood(int y, int x){
+        Level.Position myPos = level.getPositionOf(this);
+
+        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        if (lst.isEmpty()) {
+            return null;
+        }
+        Collections.shuffle(lst);
+
+        for(Level.Position pos: lst){
+            if(pos.y() == y && pos.x() == x){
+                if(level.getElement(pos.y(), pos.x()) instanceof FoodBall || level.getElement(pos.y(), pos.x()) instanceof PowerBall)
+                    return level.getElement(pos.y(), pos.x());
+            }
+
+        }
+
+        return null;
+
     }
 
     public boolean isValidPosition(int y, int x){
@@ -38,6 +59,18 @@ public class TinyPac extends Element {
 
         return true;
     }
+
+    //@Override
+    public boolean eat(int y, int x){
+
+        if(checkFood(y, x) instanceof FoodBall)
+            score += 1;
+
+
+        if(checkFood(y, x) instanceof PowerBall)
+            score += 10;
+        return true;
+    }
     @Override
     public void evolve(KeyType key){ //move
 
@@ -53,6 +86,7 @@ public class TinyPac extends Element {
         if (dx != 0 || dy != 0) {
             // Verifica se o movimento é válido
             if (isValidPosition(myPos.y() + dy, myPos.x() + dx)) {
+                eat(myPos.y() + dy, myPos.x() + dx);
                 level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
                 level.addElement(new TinyPac(level), myPos.y() + dy, myPos.x() + dx);
             }
@@ -60,12 +94,23 @@ public class TinyPac extends Element {
     }
 
     @Override
-    public boolean eat(){
-        return true;
-    }
-
-    @Override
     public char getSymbol(){
         return SYMBOL;
+    }
+
+    public int getLifes() {
+        return lifes;
+    }
+
+    public void setLifes(int lifes) {
+        this.lifes = lifes;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

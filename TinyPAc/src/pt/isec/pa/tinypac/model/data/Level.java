@@ -17,11 +17,9 @@ public class Level {
 
     private int height;
     private int width;
-    private int levelNumber;
     Maze maze;
 
-    public Level(int levelNumber/*int height, int width*/){
-        this.levelNumber = levelNumber;
+    public Level(int levelNumber){
         String filePath = "files/Level10" + levelNumber + ".txt";
         this.maze = setMaze(filePath);
     }
@@ -177,6 +175,10 @@ public class Level {
 
     }*/
 
+    /*public Element getTinyPac() {
+
+    }*/
+
     public Element getElement(int y,int x) {
         IMazeElement e = maze.get(y,x);
         if (e instanceof Element element)
@@ -191,10 +193,6 @@ public class Level {
                     return new Position(y,x);
         return null;
     }
-
-    /*public void setPositionOf(int y, int x, Element element) {
-        maze.set(y, x, element);
-    }*/
 
     public void setPositionOf(Position position, Element element) {
         maze.set(position.y(), position.x(), element);
@@ -267,9 +265,9 @@ public class Level {
         }
 
         Collections.shuffle(lst);
-        for(var element : lst)
+        for(var element : lst) {
             element.evolve(key);
-            //element.move();
+        }
         return true;
     }
 
