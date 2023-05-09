@@ -8,5 +8,7 @@ public interface IMobsState {
 
     EMobsState getState();
 
+    boolean checkVulnerable();
+
     //a engine vai estar sempre a chamar o evolve() mas depois em cada estado temos que mudar o que o evolve faz por exemplo no estado pause o evolve() nao faz nada
 }

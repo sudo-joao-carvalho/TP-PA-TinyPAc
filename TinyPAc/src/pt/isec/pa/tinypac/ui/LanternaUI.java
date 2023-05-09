@@ -91,7 +91,7 @@ public class LanternaUI implements IGameEngineEvolve {
                         switch(gameContext.getState()){
                             case WAIT_BEGIN -> waitBeginUI();
                             case MOVE -> moveUI();
-                            //case VULNERABLE -> vulnerableUI();
+                            case VULNERABLE -> vulnerableUI();
                             //case END_LEVEL -> endLevelUI();
                             //case NEXT_LEVEL -> nextLevelUI();
                         }
@@ -171,10 +171,10 @@ public class LanternaUI implements IGameEngineEvolve {
         terminal.flush();
 
         while(gameContext.getState() == EMobsState.MOVE) {
-            //terminal.putString("SCORE: " + gameContext.getGame().getLevel());
+            terminal.putString("SCORE: " + TinyPac.SCORE);
             terminal.setCursorVisible(false);
 
-            char[][] map = gameContext.getGame().getLevel().getMaze();
+            char[][] map = gameContext.getGame().getLevel().getMaze();//TIRAR GETGAME DO CONTEXT
             for (int y = 0; y < map.length; y++) {
                 for (int x = 0; x < map[0].length; x++) {
                     TextColor tc = switch (map[y][x]) {
@@ -215,11 +215,82 @@ public class LanternaUI implements IGameEngineEvolve {
             }
 
             gameContext.changePacmanDirection(currentKeyType);
+            gameContext.evolve();
+
             try {
                 Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void vulnerableUI() throws IOException {
+
+        terminal.clearScreen();
+        terminal.flush();
+        terminal.setCursorPosition(0,0);
+        terminal.putString("VULNERABLE STATE");
+        terminal.flush();
+
+
+        /*KeyStroke currentKey = terminal.readInput();
+        KeyType currentKeyType = currentKey.getKeyType();
+        terminal.flush();
+
+        while(gameContext.getState() == EMobsState.MOVE) {
+            terminal.putString("SCORE: " + TinyPac.SCORE);
+            terminal.setCursorVisible(false);
+
+            char[][] map = gameContext.getGame().getLevel().getMaze();//TIRAR GETGAME DO CONTEXT
+            for (int y = 0; y < map.length; y++) {
+                for (int x = 0; x < map[0].length; x++) {
+                    TextColor tc = switch (map[y][x]) {
+                        case TinyPac.SYMBOL, PowerBall.SYMBOL -> TextColor.ANSI.YELLOW;
+                        case FoodBall.SYMBOL -> TextColor.ANSI.YELLOW_BRIGHT;
+                        case Warp.SYMBOL -> TextColor.ANSI.RED;
+                        case Wall.SYMBOL -> TextColor.ANSI.BLACK;
+                        case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
+                        default -> TextColor.ANSI.WHITE;
+                    };
+                    TextColor bc = switch (map[y][x]) {
+                        case TinyPac.SYMBOL -> TextColor.ANSI.GREEN;
+                        case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.RED;
+                        default -> TextColor.ANSI.BLACK;
+                    };
+                    screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
+                }
+            }
+            screen.refresh();
+
+            KeyStroke newKey = terminal.pollInput();
+            terminal.flush();
+
+            if (newKey != null) {
+                KeyType newKeyType = null;
+                switch (newKey.getKeyType()) {
+                    case ArrowUp, ArrowDown, ArrowLeft, ArrowRight:
+                        newKeyType = newKey.getKeyType();
+                        break;
+                    default:
+                        // Ignore other keys
+                        break;
+                }
+
+                if(newKeyType != null && newKeyType != currentKeyType){
+                    currentKeyType = newKeyType;
+                }
+            }
+
+            gameContext.changePacmanDirection(currentKeyType);
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(gameContext.checkVulnerable())
+                gameContext.evolve();
+        }*/
+
     }
 }

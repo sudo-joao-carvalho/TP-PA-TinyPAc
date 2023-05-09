@@ -6,6 +6,7 @@ public class Game {
     public Game(int levelNumber){
         this.level = new Level(levelNumber);
     }
+
     public Level getLevel() {return this.level;}
 
 }

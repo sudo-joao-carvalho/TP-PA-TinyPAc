@@ -21,4 +21,7 @@ public abstract class MobsStateAdapter implements IMobsState {
     @Override
     public boolean pause(){return false;}
 
+    @Override
+    public boolean checkVulnerable(){return false;}
+
 }

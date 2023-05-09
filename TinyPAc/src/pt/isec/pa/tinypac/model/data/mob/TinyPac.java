@@ -11,11 +11,21 @@ import java.util.List;
 
 public class TinyPac extends Element {
     public static final char SYMBOL = 'M';
-    private static int lifes = 3;
-    private static int score = 0;
+    public static int SCORE = 0;
+    private int lifes = 3;
+
+    private boolean isOP = false;
 
     public TinyPac(Level level){
         super(level);
+    }
+
+    public int getLifes() {
+        return lifes;
+    }
+
+    public void setLifes(int lifes) {
+        this.lifes = lifes;
     }
 
     public Element checkFood(int y, int x){
@@ -31,6 +41,7 @@ public class TinyPac extends Element {
             if(pos.y() == y && pos.x() == x){
                 if(level.getElement(pos.y(), pos.x()) instanceof FoodBall || level.getElement(pos.y(), pos.x()) instanceof PowerBall)
                     return level.getElement(pos.y(), pos.x());
+                else return null;
             }
 
         }
@@ -61,16 +72,26 @@ public class TinyPac extends Element {
     }
 
     //@Override
-    public boolean eat(int y, int x){
+    public void eat(int y, int x){
 
         if(checkFood(y, x) instanceof FoodBall)
-            score += 1;
+            SCORE += 1;
 
-
-        if(checkFood(y, x) instanceof PowerBall)
-            score += 10;
-        return true;
+        if(checkFood(y, x) instanceof PowerBall){
+            SCORE += 10;
+            enterOP();
+        }
     }
+
+    public void enterOP(){
+        this.isOP = true;
+    }
+
+    public void leaveOP(){
+        this.isOP = false;
+    }
+
+    public boolean isOP(){return this.isOP;}
     @Override
     public void evolve(KeyType key){ //move
 
@@ -88,7 +109,9 @@ public class TinyPac extends Element {
             if (isValidPosition(myPos.y() + dy, myPos.x() + dx)) {
                 eat(myPos.y() + dy, myPos.x() + dx);
                 level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-                level.addElement(new TinyPac(level), myPos.y() + dy, myPos.x() + dx);
+
+                Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+                level.setPositionOf(newPos, this);
             }
         }
     }
@@ -98,19 +121,4 @@ public class TinyPac extends Element {
         return SYMBOL;
     }
 
-    public int getLifes() {
-        return lifes;
-    }
-
-    public void setLifes(int lifes) {
-        this.lifes = lifes;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 }

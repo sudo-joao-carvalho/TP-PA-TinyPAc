@@ -19,9 +19,15 @@ public class MoveState extends MobsStateAdapter {
         game.getLevel().evolve(key);
     }
 
+    public boolean checkVulnerable(){
+        return game.getLevel().getTinyPac().isOP();
+    }
+
     @Override
     public boolean evolve(){
-        //changeState(EMobsState.VULNERABLE);
+        if(checkVulnerable()){
+            changeState(EMobsState.VULNERABLE);
+        }
         return true;
     }
 

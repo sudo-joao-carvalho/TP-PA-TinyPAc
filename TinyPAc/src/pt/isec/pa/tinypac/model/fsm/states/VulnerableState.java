@@ -9,8 +9,8 @@ public class VulnerableState extends MobsStateAdapter {
 
     public VulnerableState(GameContext context, Game game){
         super(context, game);
-
         //SETTERS
+        //game.getLevel().getTinyPac().enterOP();
     }
 
     @Override

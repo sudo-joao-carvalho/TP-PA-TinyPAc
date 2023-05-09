@@ -11,13 +11,18 @@
       <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/Level.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/mob/TinyPac$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/mob/TinyPac$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/mob/TinyPac.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/data/mob/TinyPac.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/GameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/GameContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/IMobsState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/IMobsState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/MobsStateAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/MobsStateAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/states/MoveState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/model/fsm/states/MoveState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TinyPAc/pt/isec/pa/tinypac/ui/LanternaUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/mob/TinyPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/mob/TinyPac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/IMobsState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/IMobsState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/MobsStateAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/MobsStateAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/MoveState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/MoveState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/VulnerableState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/VulnerableState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/LanternaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/LanternaUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +114,7 @@
       <workItem from="1682776047692" duration="47000" />
       <workItem from="1682776099269" duration="47252000" />
       <workItem from="1683187530657" duration="5063000" />
-      <workItem from="1683546854108" duration="38956000" />
+      <workItem from="1683546854108" duration="43977000" />
     </task>
     <servers />
   </component>

@@ -20,9 +20,13 @@ public class Level {
     Maze maze;
 
     public Level(int levelNumber){
-        String filePath = "files/Level10" + levelNumber + ".txt";
-        this.maze = setMaze(filePath);
+        String filePath     = "files/Level10" + levelNumber + ".txt";
+        this.maze           = setMaze(filePath);
+        //this.score          = 0;
     }
+
+    //public void setScore(int num){this.score += num;}
+    //public int getScore(){return this.score;}
 
     public Maze setMaze(String filePath) {
 
@@ -175,9 +179,16 @@ public class Level {
 
     }*/
 
-    /*public Element getTinyPac() {
-
-    }*/
+    public TinyPac getTinyPac() {
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof TinyPac){
+                        return (TinyPac) element;
+                    }
+                }
+        return null;
+    }
 
     public Element getElement(int y,int x) {
         IMazeElement e = maze.get(y,x);
