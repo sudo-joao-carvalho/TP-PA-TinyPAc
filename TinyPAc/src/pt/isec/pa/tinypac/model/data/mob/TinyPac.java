@@ -112,8 +112,10 @@ public class TinyPac extends Element {
 
                 Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
                 level.setPositionOf(newPos, this);
+                System.out.println("movi me para " + newPos);
             }
         }
+
     }
 
     @Override

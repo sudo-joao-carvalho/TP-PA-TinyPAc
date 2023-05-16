@@ -24,7 +24,7 @@ public class LanternaUI implements IGameEngineEvolve {
     GameContext gameContext;
     Screen screen;
     Terminal terminal;
-    boolean finish = false;
+    boolean vulnerable = false;
 
     private KeyType lastKeyTyped = KeyType.ArrowRight;
 
@@ -43,14 +43,102 @@ public class LanternaUI implements IGameEngineEvolve {
         try {
             show();
             KeyStroke key = terminal.pollInput();
-            if (gameContext.getGame().getLevel().onlyOneSpecies() ||
-                    ( key != null &&
-                            (key.getKeyType() == KeyType.Escape ||
-                                    (key.getKeyType() == KeyType.Character &&
-                                            key.getCharacter().equals('q'))))
+            if ( key != null &&
+                    (key.getKeyType() == KeyType.Escape ||
+                            (key.getKeyType() == KeyType.Character &&
+                                    key.getCharacter().equals('q')))
             ){
+                System.out.println("jogo encerrado");
                 gameEngine.stop();
                 screen.close();
+            }
+
+            if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
+                gameContext.retrieveKey(KeyType.ArrowUp);
+
+                gameContext.evolve();
+                if(gameContext.getState() == EMobsState.VULNERABLE){
+                    vulnerable = true;
+                    Thread timerThread = new Thread(() -> {
+                        int seconds = 0;
+                        while (seconds < 5) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            seconds++;
+                        }
+                        gameContext.evolve(); //mudança de estado
+                        vulnerable = false;
+                    });
+                    timerThread.start();
+                }
+            } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
+                gameContext.retrieveKey(KeyType.ArrowDown);
+
+                gameContext.evolve();
+                if(gameContext.getState() == EMobsState.VULNERABLE){
+                    vulnerable = true;
+                    Thread timerThread = new Thread(() -> {
+                        int seconds = 0;
+                        while (seconds < 5) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            seconds++;
+                        }
+                        gameContext.evolve(); //mudança de estado
+                        vulnerable = false;
+                    });
+                    timerThread.start();
+                }
+            }
+            else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
+                gameContext.retrieveKey(KeyType.ArrowRight);
+
+                gameContext.evolve();
+                if(gameContext.getState() == EMobsState.VULNERABLE){
+                    vulnerable = true;
+                    Thread timerThread = new Thread(() -> {
+                        int seconds = 0;
+                        while (seconds < 5) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            seconds++;
+                        }
+                        gameContext.evolve(); //mudança de estado
+                        vulnerable = false;
+                    });
+                    timerThread.start();
+                }
+            }
+            else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
+                gameContext.retrieveKey(KeyType.ArrowLeft);
+
+                gameContext.evolve();
+                if(gameContext.getState() == EMobsState.VULNERABLE){
+                    vulnerable = true;
+                    Thread timerThread = new Thread(() -> {
+                        int seconds = 0;
+                        while (seconds < 5) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            seconds++;
+                        }
+                        gameContext.evolve(); //mudança de estado
+                        vulnerable = false;
+                    });
+                    timerThread.start();
+                }
             }
 
 
@@ -58,87 +146,141 @@ public class LanternaUI implements IGameEngineEvolve {
     }
 
     private void show() throws IOException {
-        screen.startScreen();
-        terminal.setCursorVisible(false);
-        try{
-            terminal.clearScreen();
-            terminal.flush();
-            terminal.setCursorPosition(0,0);
-            terminal.putString("Trabalho Académico: DEIS-ISEC   João Alves Pereira de Carvalho 2019131769");
 
-            terminal.setCursorPosition(0, 2);
-            terminal.putString("TinyPAc");
-            terminal.setCursorPosition(0, 6);
-            terminal.putString("1 - Iniciar Jogo");
-            terminal.setCursorPosition(0, 8);
-            terminal.putString("2 - Consultar Top 5");
-            terminal.setCursorPosition(0, 10);
-            terminal.putString("3 - Sair");
-            terminal.setCursorPosition(0, 11);
-            terminal.flush();
+        if(!vulnerable){
+            screen.startScreen();
 
-            KeyStroke key = screen.readInput();
-            terminal.clearScreen();
-            terminal.flush();
-            if(key.getKeyType() == KeyType.Character){
-                char c = key.getCharacter();
-                int num = c - '0';
-
-                if(num == 1){
-                    //terminal.flush();
-                    while(!finish){
-                        terminal.clearScreen();
-                        terminal.flush();
-
-                        switch(gameContext.getState()){
-                            case WAIT_BEGIN -> waitBeginUI();
-                            case MOVE -> moveUI();
-                            case VULNERABLE -> vulnerableUI();
-                            //case END_LEVEL -> endLevelUI();
-                            //case NEXT_LEVEL -> nextLevelUI();
-                        }
-
-                    }
-                }else if(num == 2){
-                    //terminal.flush();
-                    terminal.setCursorPosition(0, 0);
-                    terminal.putString("TOP 5:");
-                    terminal.flush();
-                }else if(num == 3){
-                    terminal.clearScreen();
-                    terminal.flush();
-                    terminal.setCursorPosition(0, 0);
-                    terminal.putString("Deseja mesmo sair?");
-                    terminal.setCursorPosition(0, 2);
-                    terminal.putString("1 - Sim");
-                    terminal.setCursorPosition(0, 4);
-                    terminal.putString("2 - Não");
-                    terminal.flush();//faz as coisas aparecerem no ecra imediatamente
-
-                    KeyStroke key2 = screen.readInput();
-                    if(key2.getKeyType() == KeyType.Character){
-                        char c2 = key2.getCharacter();
-                        int num2 = c2 - '0';
-
-                        if(num2 == 1){
-                            terminal.clearScreen();
-                            terminal.flush();
-                            finish = true;
-                        }
-
-                        else{
-                            terminal.clearScreen();
-                            terminal.flush();
-                            show();
-                        }
-                    }
+            char[][] map = gameContext.getMap();
+            for (int y = 0; y < map.length; y++) {
+                for (int x = 0; x < map[0].length; x++) {
+                    TextColor tc = switch (map[y][x]) {
+                        case TinyPac.SYMBOL, PowerBall.SYMBOL -> TextColor.ANSI.YELLOW;
+                        case FoodBall.SYMBOL -> TextColor.ANSI.YELLOW_BRIGHT;
+                        case Warp.SYMBOL -> TextColor.ANSI.RED;
+                        case Wall.SYMBOL -> TextColor.ANSI.BLACK;
+                        case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
+                        default -> TextColor.ANSI.WHITE;
+                    };
+                    TextColor bc = switch (map[y][x]) {
+                        case TinyPac.SYMBOL -> TextColor.ANSI.RED;
+                        case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.CYAN;
+                        default -> TextColor.ANSI.BLACK;
+                    };
+                    screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
                 }
             }
-
-        }catch(IOException e){
-            System.out.println("ERRO");
+            screen.refresh();
+        }else{
+            char[][] map = gameContext.getMap();
+            for (int y = 0; y < map.length; y++) {
+                for (int x = 0; x < map[0].length; x++) {
+                    TextColor tc = switch (map[y][x]) {
+                        case TinyPac.SYMBOL, PowerBall.SYMBOL -> TextColor.ANSI.YELLOW;
+                        case FoodBall.SYMBOL -> TextColor.ANSI.YELLOW_BRIGHT;
+                        case Warp.SYMBOL -> TextColor.ANSI.RED;
+                        case Wall.SYMBOL -> TextColor.ANSI.BLACK;
+                        case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
+                        default -> TextColor.ANSI.WHITE;
+                    };
+                    TextColor bc = switch (map[y][x]) {
+                        case TinyPac.SYMBOL -> TextColor.ANSI.GREEN;
+                        case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.RED;
+                        default -> TextColor.ANSI.BLACK;
+                    };
+                    screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
+                }
+            }
+            screen.refresh();
         }
+
+
     }
+
+//    private void show() throws IOException {
+//        screen.startScreen();
+//        terminal.setCursorVisible(false);
+//        try{
+//            terminal.clearScreen();
+//            terminal.flush();
+//            terminal.setCursorPosition(0,0);
+//            terminal.putString("Trabalho Académico: DEIS-ISEC   João Alves Pereira de Carvalho 2019131769");
+//
+//            terminal.setCursorPosition(0, 2);
+//            terminal.putString("TinyPAc");
+//            terminal.setCursorPosition(0, 6);
+//            terminal.putString("1 - Iniciar Jogo");
+//            terminal.setCursorPosition(0, 8);
+//            terminal.putString("2 - Consultar Top 5");
+//            terminal.setCursorPosition(0, 10);
+//            terminal.putString("3 - Sair");
+//            terminal.setCursorPosition(0, 11);
+//            terminal.flush();
+//
+//            KeyStroke key = screen.readInput();
+//            terminal.clearScreen();
+//            terminal.flush();
+//            if(key.getKeyType() == KeyType.Character){
+//                char c = key.getCharacter();
+//                int num = c - '0';
+//
+//                if(num == 1){
+//                    terminal.clearScreen();
+//                    terminal.flush();
+//                    waitBeginUI();
+//                    //terminal.flush();
+//                    /*while(!finish){
+//                        terminal.clearScreen();
+//                        terminal.flush();
+//
+//                        switch(gameContext.getState()){
+//                            case WAIT_BEGIN -> waitBeginUI();
+//                            case MOVE -> moveUI();
+//                            case VULNERABLE -> vulnerableUI();
+//                            //case END_LEVEL -> endLevelUI();
+//                            //case NEXT_LEVEL -> nextLevelUI();
+//                        }
+//
+//                    }*/
+//                }else if(num == 2){
+//                    //terminal.flush();
+//                    terminal.setCursorPosition(0, 0);
+//                    terminal.putString("TOP 5:");
+//                    terminal.flush();
+//                }else if(num == 3){
+//                    terminal.clearScreen();
+//                    terminal.flush();
+//                    terminal.setCursorPosition(0, 0);
+//                    terminal.putString("Deseja mesmo sair?");
+//                    terminal.setCursorPosition(0, 2);
+//                    terminal.putString("1 - Sim");
+//                    terminal.setCursorPosition(0, 4);
+//                    terminal.putString("2 - Não");
+//                    terminal.flush();//faz as coisas aparecerem no ecra imediatamente
+//
+//                    KeyStroke key2 = screen.readInput();
+//                    if(key2.getKeyType() == KeyType.Character){
+//                        char c2 = key2.getCharacter();
+//                        int num2 = c2 - '0';
+//
+//                        if(num2 == 1){
+//                            terminal.clearScreen();
+//                            terminal.flush();
+//                            finish = true;
+//                        }
+//
+//                        else{
+//                            terminal.clearScreen();
+//                            terminal.flush();
+//                            show();
+//                        }
+//                    }
+//                }
+//            }
+//
+//        }catch(IOException e){
+//            System.out.println("ERRO");
+//        }
+//    }
 
     private void waitBeginUI() throws IOException {
         terminal.clearScreen();
@@ -155,9 +297,11 @@ public class LanternaUI implements IGameEngineEvolve {
             int num = c - '0';
 
             if(num == 1){
-                gameContext.evolve();
+                gameContext.evolve(); //mudança de estado
+                if(gameContext.getState() == EMobsState.MOVE)
+                    moveUI();
             }
-        }else finish = true;
+        }//else finish = true;
 
     }
 
@@ -172,11 +316,11 @@ public class LanternaUI implements IGameEngineEvolve {
         KeyType currentKeyType = this.lastKeyTyped;
         terminal.flush();
 
-        while(gameContext.getState() == EMobsState.MOVE) {
+        //while(gameContext.getState() == EMobsState.MOVE) {
             terminal.putString("SCORE: " + TinyPac.SCORE);
             terminal.setCursorVisible(false);
 
-            char[][] map = gameContext.getGame().getLevel().getMaze();//TIRAR GETGAME DO CONTEXT
+            char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
                 for (int x = 0; x < map[0].length; x++) {
                     TextColor tc = switch (map[y][x]) {
@@ -218,14 +362,16 @@ public class LanternaUI implements IGameEngineEvolve {
 
             gameContext.changePacmanDirection(currentKeyType);
             this.lastKeyTyped = currentKeyType;
-            gameContext.evolve();
+            gameContext.evolve(); //mudança de estado
+            /*if(gameContext.getState() == EMobsState.VULNERABLE)
+                vulnerableUI();*/
 
             try {
                 Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        //}
     }
 
     private void vulnerableUI() throws IOException {
@@ -251,15 +397,16 @@ public class LanternaUI implements IGameEngineEvolve {
                 }
                 seconds++;
             }
-            gameContext.evolve();
+            gameContext.evolve(); //mudança de estado
         });
         timerThread.start();
 
-        while(gameContext.getState() == EMobsState.VULNERABLE) {
+
+        //while(gameContext.getState() == EMobsState.VULNERABLE) {
             terminal.putString("SCORE: " + TinyPac.SCORE);
             terminal.setCursorVisible(false);
 
-            char[][] map = gameContext.getGame().getLevel().getMaze();//TIRAR GETGAME DO CONTEXT
+            char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
                 for (int x = 0; x < map[0].length; x++) {
                     TextColor tc = switch (map[y][x]) {
@@ -286,12 +433,10 @@ public class LanternaUI implements IGameEngineEvolve {
             if (newKey != null) {
                 KeyType newKeyType = null;
                 switch (newKey.getKeyType()) {
-                    case ArrowUp, ArrowDown, ArrowLeft, ArrowRight:
-                        newKeyType = newKey.getKeyType();
-                        break;
-                    default:
-                        // Ignore other keys
-                        break;
+                    case ArrowUp, ArrowDown, ArrowLeft, ArrowRight -> newKeyType = newKey.getKeyType();
+                    default -> {
+                    }
+                    // Ignore other keys
                 }
 
                 if(newKeyType != null && newKeyType != currentKeyType){
@@ -306,7 +451,7 @@ public class LanternaUI implements IGameEngineEvolve {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        //}
 
     }
 }

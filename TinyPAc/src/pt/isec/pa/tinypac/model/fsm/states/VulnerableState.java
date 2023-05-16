@@ -14,9 +14,9 @@ public class VulnerableState extends MobsStateAdapter {
         //game.getLevel().getTinyPac().enterOP();
     }
 
-    public void changePacmanDirection(KeyType key){
+    /*public void changePacmanDirection(KeyType key){
         game.getLevel().evolve(key);
-    }
+    }*/
 
     public void notVulnerable(){
         game.getLevel().getTinyPac().leaveOP();

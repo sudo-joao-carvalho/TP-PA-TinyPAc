@@ -15,9 +15,9 @@ public class MoveState extends MobsStateAdapter {
     }
 
 
-    public void changePacmanDirection(KeyType key){
+    /*public void changePacmanDirection(KeyType key){
         game.getLevel().evolve(key);
-    }
+    }*/
 
     public boolean checkVulnerable(){
         return game.getLevel().getTinyPac().isOP();
