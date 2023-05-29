@@ -14,7 +14,7 @@ public class Main {
         GameEngine gameEngine = new GameEngine();
 
         gameEngine.registerClient((g,t) -> {
-            context.evolve(g, t);
+            context.evolve(g, t); //quando acontecer isto temos que fazer um Platform.runLater(() ->{ context.evolve; });
         });
 
         gameEngine.registerClient(lanternaUI);
