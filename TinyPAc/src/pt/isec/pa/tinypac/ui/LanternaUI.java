@@ -48,96 +48,102 @@ public class LanternaUI implements IGameEngineEvolve {
                             (key.getKeyType() == KeyType.Character &&
                                     key.getCharacter().equals('q')))
             ){
-                System.out.println("jogo encerrado");
+                //System.out.println("jogo encerrado");
                 gameEngine.stop();
                 screen.close();
             }
 
-            if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
-                gameContext.retrieveKey(KeyType.ArrowUp);
-
-                gameContext.evolve();
-                if(gameContext.getState() == EMobsState.VULNERABLE){
-                    vulnerable = true;
-                    Thread timerThread = new Thread(() -> {
-                        int seconds = 0;
-                        while (seconds < 5) {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            seconds++;
-                        }
-                        gameContext.evolve(); //mudança de estado
-                        vulnerable = false;
-                    });
-                    timerThread.start();
+            if(gameContext.getState() == EMobsState.WAIT_BEGIN){
+                if(key != null && (key.getKeyType() == KeyType.Enter)) {
+                    gameContext.evolve();
                 }
-            } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
-                gameContext.retrieveKey(KeyType.ArrowDown);
+            }else{
+                if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
+                    gameContext.retrieveKey(KeyType.ArrowUp);
 
-                gameContext.evolve();
-                if(gameContext.getState() == EMobsState.VULNERABLE){
-                    vulnerable = true;
-                    Thread timerThread = new Thread(() -> {
-                        int seconds = 0;
-                        while (seconds < 5) {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                    gameContext.evolve();
+                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                        vulnerable = true;
+                        Thread timerThread = new Thread(() -> {
+                            int seconds = 0;
+                            while (seconds < 5) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                seconds++;
                             }
-                            seconds++;
-                        }
-                        gameContext.evolve(); //mudança de estado
-                        vulnerable = false;
-                    });
-                    timerThread.start();
+                            gameContext.evolve(); //mudança de estado
+                            vulnerable = false;
+                        });
+                        timerThread.start();
+                    }
+                } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
+                    gameContext.retrieveKey(KeyType.ArrowDown);
+
+                    gameContext.evolve();
+                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                        vulnerable = true;
+                        Thread timerThread = new Thread(() -> {
+                            int seconds = 0;
+                            while (seconds < 5) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                seconds++;
+                            }
+                            gameContext.evolve(); //mudança de estado
+                            vulnerable = false;
+                        });
+                        timerThread.start();
+                    }
                 }
-            }
-            else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
-                gameContext.retrieveKey(KeyType.ArrowRight);
+                else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
+                    gameContext.retrieveKey(KeyType.ArrowRight);
 
-                gameContext.evolve();
-                if(gameContext.getState() == EMobsState.VULNERABLE){
-                    vulnerable = true;
-                    Thread timerThread = new Thread(() -> {
-                        int seconds = 0;
-                        while (seconds < 5) {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                    gameContext.evolve();
+                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                        vulnerable = true;
+                        Thread timerThread = new Thread(() -> {
+                            int seconds = 0;
+                            while (seconds < 5) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                seconds++;
                             }
-                            seconds++;
-                        }
-                        gameContext.evolve(); //mudança de estado
-                        vulnerable = false;
-                    });
-                    timerThread.start();
+                            gameContext.evolve(); //mudança de estado
+                            vulnerable = false;
+                        });
+                        timerThread.start();
+                    }
                 }
-            }
-            else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
-                gameContext.retrieveKey(KeyType.ArrowLeft);
+                else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
+                    gameContext.retrieveKey(KeyType.ArrowLeft);
 
-                gameContext.evolve();
-                if(gameContext.getState() == EMobsState.VULNERABLE){
-                    vulnerable = true;
-                    Thread timerThread = new Thread(() -> {
-                        int seconds = 0;
-                        while (seconds < 5) {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                    gameContext.evolve();
+                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                        vulnerable = true;
+                        Thread timerThread = new Thread(() -> {
+                            int seconds = 0;
+                            while (seconds < 5) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                seconds++;
                             }
-                            seconds++;
-                        }
-                        gameContext.evolve(); //mudança de estado
-                        vulnerable = false;
-                    });
-                    timerThread.start();
+                            gameContext.evolve(); //mudança de estado
+                            vulnerable = false;
+                        });
+                        timerThread.start();
+                    }
                 }
             }
 
@@ -147,7 +153,8 @@ public class LanternaUI implements IGameEngineEvolve {
 
     private void show() throws IOException {
 
-        if(!vulnerable){
+        //if(!vulnerable) {
+        if(gameContext.getState() == EMobsState.MOVE){
             screen.startScreen();
 
             char[][] map = gameContext.getMap();
@@ -170,7 +177,8 @@ public class LanternaUI implements IGameEngineEvolve {
                 }
             }
             screen.refresh();
-        }else{
+        }else if(gameContext.getState() == EMobsState.VULNERABLE){
+        //}else if(vulnerable){
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
                 for (int x = 0; x < map[0].length; x++) {
@@ -190,6 +198,14 @@ public class LanternaUI implements IGameEngineEvolve {
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
                 }
             }
+            screen.refresh();
+        }else if(gameContext.getState() == EMobsState.WAIT_BEGIN){
+            terminal.clearScreen();
+            terminal.flush();
+            terminal.setCursorPosition(0,2);
+            terminal.putString("Pressiona uma tecla para começar...");
+            terminal.flush();
+
             screen.refresh();
         }
 
@@ -282,7 +298,7 @@ public class LanternaUI implements IGameEngineEvolve {
 //        }
 //    }
 
-    private void waitBeginUI() throws IOException {
+    /*private void waitBeginUI() throws IOException {
         terminal.clearScreen();
         terminal.flush();
         terminal.setCursorPosition(0,2);
@@ -303,9 +319,9 @@ public class LanternaUI implements IGameEngineEvolve {
             }
         }//else finish = true;
 
-    }
+    }*/
 
-    private void moveUI() throws IOException {
+    /*private void moveUI() throws IOException {
 
         terminal.clearScreen();
         terminal.flush();
@@ -364,7 +380,7 @@ public class LanternaUI implements IGameEngineEvolve {
             this.lastKeyTyped = currentKeyType;
             gameContext.evolve(); //mudança de estado
             /*if(gameContext.getState() == EMobsState.VULNERABLE)
-                vulnerableUI();*/
+                vulnerableUI();
 
             try {
                 Thread.sleep(250);
@@ -372,9 +388,9 @@ public class LanternaUI implements IGameEngineEvolve {
                 e.printStackTrace();
             }
         //}
-    }
+    }*/
 
-    private void vulnerableUI() throws IOException {
+    /*private void vulnerableUI() throws IOException {
 
         terminal.clearScreen();
         terminal.flush();
@@ -453,5 +469,5 @@ public class LanternaUI implements IGameEngineEvolve {
             }
         //}
 
-    }
+    }*/
 }

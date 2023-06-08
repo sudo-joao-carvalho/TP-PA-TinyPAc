@@ -190,6 +190,22 @@ public class Level {
         return null;
     }
 
+    public List<Position> getWarps(){
+
+        List<Position> lst = new ArrayList<>();
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof Warp){
+                        Level.Position newPos = new Level.Position(y, x);
+                        lst.add(new Position(y, x));
+                        System.out.println("warp na posicao" + newPos);
+                    }
+                }
+
+        return lst;
+    }
+
     public Element getElement(int y,int x) {
         IMazeElement e = maze.get(y,x);
         if (e instanceof Element element)

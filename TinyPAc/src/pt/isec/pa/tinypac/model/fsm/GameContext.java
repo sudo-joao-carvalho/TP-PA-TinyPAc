@@ -15,7 +15,7 @@ public class GameContext {
 
     IMobsState gameState;
 
-    private KeyType currentKeyType = KeyType.ArrowRight;
+    private KeyType currentKeyType = KeyType.ArrowDown;;//KeyType.ArrowRight;
 
     public GameContext(){
         game = new Game(1);
@@ -41,17 +41,17 @@ public class GameContext {
     public Level getLevel(){return game.getLevel();}
     public char[][] getMap(){return game.getLevel().getMaze();}
 
-    public void changePacmanDirection(KeyType key) {
-        /*IMobsState currentState = this.gameState;
+    /*public void changePacmanDirection(KeyType key) {
+        IMobsState currentState = this.gameState;
         if (currentState instanceof MoveState moveState) {
             moveState.changePacmanDirection(key);
         }
 
         if (currentState instanceof VulnerableState vulnerableState) {
             vulnerableState.changePacmanDirection(key);
-        }*/
+        }
 
-    }
+    }*/
 
     public void retrieveKey(KeyType key){
         currentKeyType = key;

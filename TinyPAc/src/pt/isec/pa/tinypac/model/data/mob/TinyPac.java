@@ -28,6 +28,24 @@ public class TinyPac extends Element {
         this.lifes = lifes;
     }
 
+    public boolean checkWarp(int y, int x){
+        Level.Position myPos = level.getPositionOf(this);
+
+        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        if (lst.isEmpty()) {
+            return false;
+        }
+        Collections.shuffle(lst);
+
+        for(Level.Position pos: lst){
+            if(pos.y() == y && pos.x() == x){
+                return level.getElement(pos.y(), pos.x()) instanceof Warp;
+            }
+        }
+
+        return false;
+    }
+
     public Element checkFood(int y, int x){
         Level.Position myPos = level.getPositionOf(this);
 
@@ -107,12 +125,29 @@ public class TinyPac extends Element {
         if (dx != 0 || dy != 0) {
             // Verifica se o movimento é válido
             if (isValidPosition(myPos.y() + dy, myPos.x() + dx)) {
-                eat(myPos.y() + dy, myPos.x() + dx);
-                level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
 
-                Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
-                level.setPositionOf(newPos, this);
-                System.out.println("movi me para " + newPos);
+                if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
+                    //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
+                    for(Level.Position pos: level.getWarps()){
+
+                        if(pos.y() != myPos.y() + dy || pos.x() != myPos.x() + dx){
+                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                            //System.out.println("\nnovo warp na posicao " + myPos);
+
+                            Level.Position newPos = new Level.Position(pos.y() + dy, pos.x() + dx);
+                            level.setPositionOf(newPos, this);
+                            //System.out.println("\n warping to " + newPos);
+
+                        }
+                    }
+                }else{
+                    eat(myPos.y() + dy, myPos.x() + dx);
+                    level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                    Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+                    level.setPositionOf(newPos, this);
+                    System.out.println("movi me para " + newPos);
+                }
             }
         }
 
