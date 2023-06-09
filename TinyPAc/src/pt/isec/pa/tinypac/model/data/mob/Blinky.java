@@ -34,8 +34,7 @@ public class Blinky extends Element {
         direction = possibleDirections.get(0);
     }
 
-    public boolean chechIfInsideCave(int y, int x){
-
+    public boolean checkWarp(int y, int x){
         Level.Position myPos = level.getPositionOf(this);
 
         List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
@@ -46,10 +45,8 @@ public class Blinky extends Element {
 
         for(Level.Position pos: lst){
             if(pos.y() == y && pos.x() == x){
-                if(level.getElement(pos.y(), pos.x()) instanceof GhostCave || level.getElement(pos.y(), pos.x()) instanceof Portal)
-                    return true;
+                return level.getElement(pos.y(), pos.x()) instanceof Warp;
             }
-
         }
 
         return false;
@@ -152,7 +149,7 @@ public class Blinky extends Element {
             dx = direction.dx;
             dy = direction.dy;
 
-// Verifica se há uma parede na próxima posição
+            // Verifica se há uma parede na próxima posição
             if (!isValidPosition(myPos.y() + dy, myPos.x() + dx)) {
                 // Verifica se há uma interseção (mais de uma direção possível)
                 int directionsCount = 0;
@@ -194,16 +191,50 @@ public class Blinky extends Element {
                 }
             }
 
-// Move Blinky para a nova posição
+            // Move Blinky para a nova posição
             Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
 
             if (isValidPosition(newPos.y(), newPos.x())) {
                 // Verifica se a próxima posição não é uma parede
                 if (!(level.getElement(newPos.y(), newPos.x()) instanceof Wall)) {
-                    level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-                    level.setPositionOf(newPos, this);
-                    System.out.println("Blinky moveu-se para " + newPos);
-                    return;
+                    //level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                    //level.setPositionOf(newPos, this);
+                    //System.out.println("Blinky moveu-se para " + newPos);
+                    //return;
+
+                    // Verifica se há uma FoodBall na posicao atual
+                    if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
+                        level.addElement(new FoodBall(level), myPos.y(), myPos.x());
+                        // Move Blinky para a nova posição
+                        Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
+                        level.setPositionOf(nnewPos, this);
+
+                    }else if(level.getElement(newPos.y(), newPos.x()) instanceof EmptyCell){
+                        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                        // Move Blinky para a nova posição
+                        Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
+                        level.setPositionOf(nnewPos, this);
+                    }else if(level.getElement(newPos.y(), newPos.x()) instanceof PowerBall){
+                        level.addElement(new PowerBall(level), myPos.y(), myPos.x());
+                        // Move Blinky para a nova posição
+                        Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
+                        level.setPositionOf(nnewPos, this);
+                    }else if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
+                        //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
+                        for(Level.Position pos: level.getWarps()){
+
+                            if(pos.y() != myPos.y() + dy || pos.x() != myPos.x() + dx){
+                                level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                                //System.out.println("\nnovo warp na posicao " + myPos);
+
+                                Level.Position nnewPos = new Level.Position(pos.y() + dy, pos.x() + dx);
+                                level.setPositionOf(nnewPos, this);
+                                //System.out.println("\n warping to " + newPos);
+
+                            }
+                        }
+                    }
+
                 }
             }
 
