@@ -252,9 +252,7 @@ public class Blinky extends Element {
 
                             }
                         }
-                    }/*else if(level.getElement(newPos.y(), newPos.x()) instanceof TinyPac){
-                        eat(newPos.y(), newPos.x());
-                    }*/
+                    }
 
                 }
             }
