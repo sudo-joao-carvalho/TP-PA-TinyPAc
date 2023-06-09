@@ -2,7 +2,7 @@ package pt.isec.pa.tinypac.model.data;
 
 import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.model.data.cell.*;
-import pt.isec.pa.tinypac.model.data.mob.TinyPac;
+import pt.isec.pa.tinypac.model.data.mob.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,6 +81,11 @@ public class Level {
                          case PowerBall.SYMBOL -> new PowerBall(this);
                          case Portal.SYMBOL -> new Portal(this);
                          case GhostCave.SYMBOL -> new GhostCave(this);
+                         //GHOSTS
+                         case Blinky.SYMBOL -> new Blinky(this);
+                         case Clyde.SYMBOL -> new Clyde(this);
+                         case Inky.SYMBOL -> new Inky(this);
+                         case Pinky.SYMBOL -> new Pinky(this);
                          default -> null;
                      };
                     auxMaze.set(h ,w, element);
@@ -197,9 +202,7 @@ public class Level {
             for(int x = 0;x < width; x++)
                 if (maze.get(y, x) instanceof Element element) {
                     if (element instanceof Warp){
-                        Level.Position newPos = new Level.Position(y, x);
                         lst.add(new Position(y, x));
-                        System.out.println("warp na posicao" + newPos);
                     }
                 }
 

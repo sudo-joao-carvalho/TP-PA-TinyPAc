@@ -18,7 +18,7 @@ public class Main {
         });
 
         gameEngine.registerClient(lanternaUI);
-        gameEngine.start(500);
+        gameEngine.start(350);
 
         gameEngine.waitForTheEnd();
     }

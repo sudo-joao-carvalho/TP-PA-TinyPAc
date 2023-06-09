@@ -32,10 +32,12 @@ public class GameContext {
     //@Override
     public void evolve(IGameEngine gameEngine, long currentTime){ //evolve de mudança de estado da engine
 
-        if(game.getLevel() == null)
-            return ;
+        if(this.getState() == EMobsState.MOVE || this.getState() == EMobsState.VULNERABLE){ // isto assegura que so se comecem a mover assim que o estado for MOVE
+            if(game.getLevel() == null)
+                return ;
 
-        game.getLevel().evolve(currentKeyType);
+            game.getLevel().evolve(currentKeyType);
+        }
     }
 
     public Level getLevel(){return game.getLevel();}

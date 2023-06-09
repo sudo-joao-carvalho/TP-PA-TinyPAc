@@ -26,7 +26,7 @@ public class LanternaUI implements IGameEngineEvolve {
     Terminal terminal;
     boolean vulnerable = false;
 
-    private KeyType lastKeyTyped = KeyType.ArrowRight;
+    //private KeyType lastKeyTyped = KeyType.ArrowRight;
 
     public LanternaUI(GameContext gameContext) throws IOException {
         this.gameContext    = gameContext;
@@ -153,6 +153,8 @@ public class LanternaUI implements IGameEngineEvolve {
 
     private void show() throws IOException {
 
+        terminal.setCursorVisible(false);
+
         //if(!vulnerable) {
         if(gameContext.getState() == EMobsState.MOVE){
             screen.startScreen();
@@ -200,13 +202,80 @@ public class LanternaUI implements IGameEngineEvolve {
             }
             screen.refresh();
         }else if(gameContext.getState() == EMobsState.WAIT_BEGIN){
+
             terminal.clearScreen();
             terminal.flush();
-            terminal.setCursorPosition(0,2);
+            terminal.setCursorPosition(0, 2);
             terminal.putString("Pressiona uma tecla para começar...");
             terminal.flush();
 
             screen.refresh();
+
+            /*terminal.clearScreen();
+            terminal.flush();
+            terminal.setCursorPosition(0,0);
+            terminal.putString("Trabalho Académico: DEIS-ISEC   João Alves Pereira de Carvalho 2019131769");
+
+            terminal.setCursorPosition(0, 2);
+            terminal.putString("TinyPAc");
+            terminal.setCursorPosition(0, 6);
+            terminal.putString("1 - Iniciar Jogo");
+            terminal.setCursorPosition(0, 8);
+            terminal.putString("2 - Consultar Top 5");
+            terminal.setCursorPosition(0, 10);
+            terminal.putString("3 - Sair");
+            terminal.setCursorPosition(0, 11);
+            terminal.flush();
+
+            KeyStroke key = screen.readInput();
+            terminal.clearScreen();
+            terminal.flush();
+            if(key.getKeyType() == KeyType.Character) {
+                char c = key.getCharacter();
+                int num = c - '0';
+
+                if (num == 1) {
+                    terminal.clearScreen();
+                    terminal.flush();
+                    terminal.setCursorPosition(0, 2);
+                    terminal.putString("Pressiona uma tecla para começar...");
+                    terminal.flush();
+
+                    screen.refresh();
+                } else if (num == 2) {
+                    //terminal.flush();
+                    terminal.setCursorPosition(0, 0);
+                    terminal.putString("TOP 5:");
+                    terminal.flush();
+                } else if (num == 3) {
+                    terminal.clearScreen();
+                    terminal.flush();
+                    terminal.setCursorPosition(0, 0);
+                    terminal.putString("Deseja mesmo sair?");
+                    terminal.setCursorPosition(0, 2);
+                    terminal.putString("1 - Sim");
+                    terminal.setCursorPosition(0, 4);
+                    terminal.putString("2 - Não");
+                    terminal.flush();//faz as coisas aparecerem no ecra imediatamente
+
+                    KeyStroke key2 = screen.readInput();
+                    if (key2.getKeyType() == KeyType.Character) {
+                        char c2 = key2.getCharacter();
+                        int num2 = c2 - '0';
+
+                        if (num2 == 1) {
+                            terminal.clearScreen();
+                            terminal.flush();
+                            //finish = true;
+                        } else {
+                            terminal.clearScreen();
+                            terminal.flush();
+                            show();
+                        }
+                    }
+                }
+            }*/
+
         }
 
 
