@@ -62,22 +62,27 @@ public class Blinky extends Element {
         return !(element instanceof Wall);
     }
 
-    /*@Override
+    @Override
     public boolean eat(int y, int x){
-        Element element = level.getElement(y, x);
+        /*Element element = level.getElement(y, x);
 
         if(!ghostVulnerable){
             if(element instanceof TinyPac){
-                level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                level.addElement(new EmptyCell(level), y, x);
 
-                Level.Position newPos = new Level.Position(pos.y(), pos.x());
+                Level.Position newPos = new Level.Position(y, x);
                 level.setPositionOf(newPos, this);
+
+                System.out.println("Comi o pacman");
+
+                return true;
             }
         }
 
+        return false;*/
+        return false;
 
-
-    }*/
+    }
 
     @Override
     public void evolve(KeyType key) {
