@@ -64,22 +64,46 @@ public class Blinky extends Element {
 
     @Override
     public boolean eat(int y, int x){
-        /*Element element = level.getElement(y, x);
 
-        if(!ghostVulnerable){
-            if(element instanceof TinyPac){
-                level.addElement(new EmptyCell(level), y, x);
+        /*Level.Position myPos = level.getPositionOf(this);
 
-                Level.Position newPos = new Level.Position(y, x);
-                level.setPositionOf(newPos, this);
-
-                System.out.println("Comi o pacman");
-
-                return true;
-            }
+        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        if (lst.isEmpty()) {
+            return false;
         }
+        Collections.shuffle(lst);
 
-        return false;*/
+        for(Level.Position pos: lst){
+            if(pos.y() == y && pos.x() == x){
+                if(level.getElement(pos.y(), pos.x()) instanceof TinyPac){
+                    if(!ghostVulnerable) {
+                        Level.Position tinySpawnPosition = level.getTinyPac().getSpawnPosition();
+                        level.setPositionOf(tinySpawnPosition, level.getTinyPac());
+                        level.addElement(new EmptyCell(level), y, x);
+
+                        Level.Position newPos = new Level.Position(y, x);
+                        level.setPositionOf(newPos, this);
+
+                        // Reduzir vidas do Pacman
+                        int currentLifes = level.getTinyPac().getLifes();
+                        level.getTinyPac().setLifes(currentLifes - 1);
+                        System.out.println("\nComi o pacman");
+                        System.out.println("\nVidas Pacman: " + level.getTinyPac().getLifes());
+
+                        return true;
+                    }
+                }
+            }
+        }*/
+        System.out.println("ghostVulnerable: " + ghostVulnerable);
+
+         if(!ghostVulnerable) {
+             int currentLifes = level.getTinyPac().getLifes();
+             level.getTinyPac().setLifes(currentLifes - 1);
+             System.out.println("\nComi o pacman");
+             System.out.println("\nVidas Pacman: " + level.getTinyPac().getLifes());
+         }
+
         return false;
 
     }
@@ -126,6 +150,7 @@ public class Blinky extends Element {
             }
         }
         else {
+
             myPos = level.getPositionOf(this);
             dx = direction.dx;
             dy = direction.dy;
@@ -174,13 +199,28 @@ public class Blinky extends Element {
 
             // Move Blinky para a nova posição
             Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+            //Level.Position tinySpawnPosition = level.getTinyPacSpawnPosition();
+            //Level.Position troll = new Level.Position(23, 14); // 31, 29
+
+            //System.out.println("Spawn Position = " + tinySpawnPosition);
 
             if (isValidPosition(newPos.y(), newPos.x())) {
                 // Verifica se a próxima posição não é uma parede
                 if (!(level.getElement(newPos.y(), newPos.x()) instanceof Wall)) {
 
-                    // Verifica se há uma FoodBall na posicao atual
-                    if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
+                    if(level.getElement(newPos.y(), newPos.x()) instanceof TinyPac){
+                        level.setPositionOf(myPos, level.getTinyPac());
+                        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                        //level.addElement(new TinyPac(level), myPos.y(), myPos.x()); //IMPLEMENTAR AQUI UM TIMER PARA ELE VOLTAR A ANDAR
+                        eat( myPos.y(), myPos.x());
+
+                        // Move Blinky para a nova posição
+                        Level.Position nnewPos = new Level.Position(newPos.y() + dy, newPos.x() + dx);
+                        level.setPositionOf(nnewPos, this);
+                        System.out.println("Comi o corno");
+
+                    }else if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
                         level.addElement(new FoodBall(level), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
@@ -212,7 +252,9 @@ public class Blinky extends Element {
 
                             }
                         }
-                    }
+                    }/*else if(level.getElement(newPos.y(), newPos.x()) instanceof TinyPac){
+                        eat(newPos.y(), newPos.x());
+                    }*/
 
                 }
             }

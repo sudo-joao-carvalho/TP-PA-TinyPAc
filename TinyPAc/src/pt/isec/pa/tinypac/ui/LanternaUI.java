@@ -42,6 +42,7 @@ public class LanternaUI implements IGameEngineEvolve {
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
         try {
+            terminal.setCursorVisible(false);
             show();
             KeyStroke key = terminal.pollInput();
             if ( key != null &&

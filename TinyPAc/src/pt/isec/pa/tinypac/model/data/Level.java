@@ -19,15 +19,16 @@ public class Level {
     private int width;
     Maze maze;
 
+
     public Level(int levelNumber){
         String filePath     = "files/Level10" + levelNumber + ".txt";
         this.maze           = setMaze(filePath);
         //this.score          = 0;
+
     }
 
     //public void setScore(int num){this.score += num;}
     //public int getScore(){return this.score;}
-
     public Maze setMaze(String filePath) {
 
         try{
@@ -108,81 +109,6 @@ public class Level {
     public char getElementAt(int y, int x){
         return maze.get(y, x).getSymbol();
     }
-
-    /*public Maze setMaze(){
-
-        Maze auxMaze = new Maze(mapHeight, mapWidth);
-
-        for(int h = 0; h < mapHeight; h++){
-            for(int w = 0; w < mapWidth; w++){
-
-                char symbol = map[h][w];
-                IMazeElement element = null;
-
-                switch(symbol){
-                    case 'x' -> element = new Wall(h, w); //possivelmente vai ser necessario passar as coordenadas
-                    case 'W' -> element = new Warp(h, w);
-                    case 'o' -> element = new FoodBall(h, w);
-                    case 'F' -> element = new Fruit(h, w);
-                    case 'M' -> element = new TinyPac(h, w); //cada uma destas classes tem que dar override ao getSymbol da IMazeElement
-                    case 'O' -> element = new PowerBall(h, w);
-                    case 'Y' -> element = new Portal(h, w);
-                    case 'y' -> element = new GhostCave(h, w);
-                }
-                auxMaze.set(h, w, element);
-            }
-        }
-
-        return auxMaze;
-    }*/
-
-    /*public char[][] setMap() throws IOException {
-
-        char[][] auxMap;
-        //primeira leitura do ficheiro
-        BufferedReader reader = null;
-
-        try{
-            reader = new BufferedReader(new FileReader("../" + levelFile));
-            String line;
-            int height = 0;
-            int width = 0;
-
-            while((line = reader.readLine()) != null){ //OBTER OS VALORES DE ALTURA E LARGURA
-                height++;
-                width = Math.max(width, line.length());
-            }
-
-            reader.close();
-
-            //segunda leitura do ficheiro
-            auxMap = new char[height][width];
-            reader = new BufferedReader(new FileReader("../" + levelFile));
-            int y = 0;
-            while((line = reader.readLine()) != null){ //PREENCHER O  map
-                for(int x = 0; x < line.length(); x++){
-                    auxMap[y][x] = line.charAt(x);
-
-                    //colocar as coordenadas de cada elemento
-                }
-                y++;
-            }
-
-            reader.close();
-            this.mapHeight = height;
-            this.mapWidth = width;
-            return auxMap;
-        }finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }*/
 
     public TinyPac getTinyPac() {
         for(int y = 0; y < height;y++)

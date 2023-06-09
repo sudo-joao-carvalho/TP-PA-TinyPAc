@@ -16,8 +16,11 @@ public class TinyPac extends Element {
 
     private boolean isOP = false;
 
+    private int counter = 0;
+
     public TinyPac(Level level){
         super(level);
+
     }
 
     public int getLifes() {
@@ -116,31 +119,35 @@ public class TinyPac extends Element {
             return true;
         }
 
-        Level.Position myPos = level.getPositionOf(this);
+        /*System.out.println("isOP: " + isOP);
+        if(isOP){
 
-        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
-        if (lst.isEmpty()) {
-            return false;
-        }
-        Collections.shuffle(lst);
+            Level.Position myPos = level.getPositionOf(this);
 
-        for(Level.Position pos: lst){
-            if(pos.y() == y && pos.x() == x){
-                if((level.getElement(pos.y(), pos.x()) instanceof Blinky) || (level.getElement(pos.y(), pos.x()) instanceof Clyde) || (level.getElement(pos.y(), pos.x()) instanceof Inky) || (level.getElement(pos.y(), pos.x()) instanceof Pinky)){
-                    if((level.getElement(pos.y(), pos.x()).getGhostVulnerable())){
-                        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+            List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+            if (lst.isEmpty()) {
+                return false;
+            }
+            Collections.shuffle(lst);
 
-                        Level.Position newPos = new Level.Position(pos.y(), pos.x());
-                        level.setPositionOf(newPos, this);
+            for(Level.Position pos: lst){
+                if(pos.y() == y && pos.x() == x){
+                    if(!(level.getElement(pos.y(), pos.x()) instanceof Blinky) && !(level.getElement(pos.y(), pos.x()) instanceof Clyde) && !(level.getElement(pos.y(), pos.x()) instanceof Inky) && !(level.getElement(pos.y(), pos.x()) instanceof Pinky)){
+                        if((level.getElement(pos.y(), pos.x()).getGhostVulnerable())){
+                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
 
-                        SCORE += 50;
-                        //FALTA POR O FANTASMA A VOLTAR PARA A CAVE
-                        System.out.println("\nComi um fantasma");
+                            Level.Position newPos = new Level.Position(pos.y(), pos.x());
+                            level.setPositionOf(newPos, this);
+
+                            SCORE += 50;
+                            //FALTA POR O FANTASMA A VOLTAR PARA A CAVE
+                            System.out.println("\nComi um fantasma");
+                        }
                     }
                 }
-            }
 
-        }
+            }
+        }*/
 
         return false;
     }
@@ -154,6 +161,7 @@ public class TinyPac extends Element {
     }
 
     public boolean isOP(){return this.isOP;}
+
     @Override
     public void evolve(KeyType key){ //move
 
@@ -184,13 +192,81 @@ public class TinyPac extends Element {
 
                         }
                     }
-                }else{
-                    eat(myPos.y() + dy, myPos.x() + dx);
+                } else{
+
+                    if(!isOP){
+                        if(!(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
+                            eat(myPos.y() + dy, myPos.x() + dx);
+
+                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                            Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+                            level.setPositionOf(newPos, this);
+                            System.out.println("movi me para " + newPos);
+                        }else{
+                            System.out.println("encontrei um fantasma");
+                            //level.setPositionOf(spawnPosition, this);
+                        }
+
+                    }
+                    /*eat(myPos.y() + dy, myPos.x() + dx);
+
                     level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
 
                     Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
                     level.setPositionOf(newPos, this);
-                    System.out.println("movi me para " + newPos);
+                    System.out.println("movi me para " + newPos);*/
+
+                    /*if(!isOP){
+                        if(!(level.getElement(myPos.y(), myPos.x()) instanceof Blinky) && !(level.getElement(myPos.y(), myPos.x()) instanceof Clyde) && !(level.getElement(myPos.y(), myPos.x()) instanceof Inky) && !(level.getElement(myPos.y(), myPos.x()) instanceof Pinky)){
+                            eat(myPos.y() + dy, myPos.x() + dx);
+
+                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                            Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+                            level.setPositionOf(newPos, this);
+                            System.out.println("movi me para " + newPos);
+                        }else if((level.getElement(myPos.y(), myPos.x()) instanceof Blinky) || (level.getElement(myPos.y(), myPos.x()) instanceof Clyde) || (level.getElement(myPos.y(), myPos.x()) instanceof Inky) || (level.getElement(myPos.y(), myPos.x()) instanceof Pinky)){
+                            //level.setPositionOf(spawnPosition, this);
+
+                            level.setPositionOf(spawnPosition, this);
+                        }
+
+                    }else{
+                        Level.Position mmyPos = level.getPositionOf(this);
+
+                        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+                        if (lst.isEmpty()) {
+                            return ;
+                        }
+                        Collections.shuffle(lst);
+
+                        for(Level.Position pos: lst){
+                            if(pos.y() == mmyPos.y() && pos.x() == mmyPos.x()){
+                                if((level.getElement(pos.y(), pos.x()) instanceof Blinky) || (level.getElement(pos.y(), pos.x()) instanceof Clyde) || (level.getElement(pos.y(), pos.x()) instanceof Inky) || (level.getElement(pos.y(), pos.x()) instanceof Pinky)){
+                                    if((level.getElement(pos.y(), pos.x()).getGhostVulnerable())){
+                                        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                                        Level.Position newPos = new Level.Position(pos.y(), pos.x());
+                                        level.setPositionOf(newPos, this);
+
+                                        SCORE += 50;
+                                        //FALTA POR O FANTASMA A VOLTAR PARA A CAVE
+                                        System.out.println("\nComi um fantasma");
+                                    }
+                                }else{
+                                    eat(myPos.y() + dy, myPos.x() + dx);
+
+                                    level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                                    Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+                                    level.setPositionOf(newPos, this);
+                                    System.out.println("movi me para " + newPos);
+                                }
+                            }
+
+                        }
+                    }*/
                 }
             }
         }

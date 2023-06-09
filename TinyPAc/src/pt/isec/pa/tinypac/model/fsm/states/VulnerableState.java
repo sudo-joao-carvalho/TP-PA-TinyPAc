@@ -33,7 +33,7 @@ public class VulnerableState extends MobsStateAdapter {
 
     @Override
     public boolean evolve(){
-        setGhostsVulnerable(true);
+        //setGhostsVulnerable(true);
         Thread timerThread = new Thread(() -> {
             int seconds = 0;
             while (seconds < 10) {
