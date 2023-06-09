@@ -27,8 +27,11 @@ public class MoveState extends MobsStateAdapter {
     public boolean evolve(){
         if(checkVulnerable()){
             changeState(EMobsState.VULNERABLE);
+            return true;
+        }else{
+            changeState(EMobsState.MOVE);
+            return false;
         }
-        return true;
     }
 
     @Override

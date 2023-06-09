@@ -15,13 +15,14 @@ import java.util.Random;
 public class Blinky extends Element {
 
     public record Direction(int dy, int dx) {}
-
-    public static final char SYMBOL = 'B';
-
-    private boolean insideCave = true;
-
     private List<Direction> possibleDirections;
     private Direction direction;
+
+    public static final char SYMBOL = 'B';
+    private boolean insideCave = true;
+
+    private boolean ghostVulnerable = false;
+
     public Blinky(Level level){
         super(level);
         possibleDirections = new ArrayList<>();
@@ -70,52 +71,6 @@ public class Blinky extends Element {
                 seconds++;
             }
         });*/
-
-        //Level.Position myPos = level.getPositionOf(this);
-
-        /*while(chechIfInsideCave(myPos.y() - 1, myPos.x())){
-            System.out.println("\nDentro da jaula");
-            level.addElement(new GhostCave(level), myPos.y(), myPos.x());
-
-            Level.Position nnewPos = new Level.Position(myPos.y() - 1, myPos.x() + 0);
-            level.setPositionOf(nnewPos, this);
-        }*/
-
-        /*if(insideCave){
-
-            level.addElement(new GhostCave(level), myPos.y(), myPos.x());
-
-            Level.Position newPos = new Level.Position(myPos.y() - 1, myPos.x() + 0);
-            level.setPositionOf(newPos, this);
-
-            if(level.getElement(myPos.y() - 1, myPos.x()) instanceof FoodBall){
-                Level.Position nnewPos = new Level.Position(myPos.y() - 1, myPos.x() + 0);
-                level.setPositionOf(nnewPos, this);
-
-                insideCave = false;
-            }
-
-        }
-
-        if (isValidPosition(myPos.y() - 1, myPos.x())) {
-            Random random = new Random();
-
-            if (random.nextBoolean()) {
-                if (isValidPosition(myPos.y(), myPos.x() + 1)) {
-                    level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-
-                    Level.Position newPos = new Level.Position(myPos.y(), myPos.x() + 1);
-                    level.setPositionOf(newPos, this);
-                }
-            } else {
-                if (isValidPosition(myPos.y(), myPos.x() - 1)) {
-                    level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-
-                    Level.Position newPos = new Level.Position(myPos.y(), myPos.x() - 1);
-                    level.setPositionOf(newPos, this);
-                }
-            }
-        }*/
 
         Level.Position myPos = level.getPositionOf(this);
         int dx = 0;
@@ -197,10 +152,6 @@ public class Blinky extends Element {
             if (isValidPosition(newPos.y(), newPos.x())) {
                 // Verifica se a próxima posição não é uma parede
                 if (!(level.getElement(newPos.y(), newPos.x()) instanceof Wall)) {
-                    //level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
-                    //level.setPositionOf(newPos, this);
-                    //System.out.println("Blinky moveu-se para " + newPos);
-                    //return;
 
                     // Verifica se há uma FoodBall na posicao atual
                     if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
@@ -208,17 +159,19 @@ public class Blinky extends Element {
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
                         level.setPositionOf(nnewPos, this);
-
+                        System.out.println("Blinky moveu-se para " + newPos);
                     }else if(level.getElement(newPos.y(), newPos.x()) instanceof EmptyCell){
                         level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
                         level.setPositionOf(nnewPos, this);
+                        System.out.println("Blinky moveu-se para " + newPos);
                     }else if(level.getElement(newPos.y(), newPos.x()) instanceof PowerBall){
                         level.addElement(new PowerBall(level), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
                         level.setPositionOf(nnewPos, this);
+                        System.out.println("Blinky moveu-se para " + newPos);
                     }else if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
                         //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
                         for(Level.Position pos: level.getWarps()){

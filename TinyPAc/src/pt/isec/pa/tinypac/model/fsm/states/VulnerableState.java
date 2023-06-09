@@ -24,8 +24,23 @@ public class VulnerableState extends MobsStateAdapter {
 
     @Override
     public boolean evolve(){
-        notVulnerable();
-        changeState(EMobsState.MOVE);
+        Thread timerThread = new Thread(() -> {
+            int seconds = 0;
+            while (seconds < 10) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                seconds++;
+            }
+            notVulnerable();
+            changeState(EMobsState.MOVE);
+        });
+        timerThread.start();
+
+        //notVulnerable();
+        //changeState(EMobsState.MOVE);
         return true;
     }
 

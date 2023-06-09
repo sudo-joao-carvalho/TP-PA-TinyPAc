@@ -32,7 +32,7 @@ public class GameContext {
     //@Override
     public void evolve(IGameEngine gameEngine, long currentTime){ //evolve de mudança de estado da engine
 
-        if(this.getState() == EMobsState.MOVE || this.getState() == EMobsState.VULNERABLE){ // isto assegura que so se comecem a mover assim que o estado for MOVE
+        if(this.getState() == EMobsState.MOVE || this.getState() == EMobsState.VULNERABLE){ // isto assegura que so se comecem a mover assim que o estado for MOVE e nao logo quando ainda esta no waitbegin
             if(game.getLevel() == null)
                 return ;
 
