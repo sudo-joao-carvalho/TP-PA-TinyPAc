@@ -89,16 +89,60 @@ public class TinyPac extends Element {
         return true;
     }
 
-    //@Override
-    public void eat(int y, int x){
+    @Override
+    public boolean eat(int y, int x){
 
-        if(checkFood(y, x) instanceof FoodBall)
+        //void version
+        /*if(checkFood(y, x) instanceof FoodBall){
             SCORE += 1;
+        }
+
 
         if(checkFood(y, x) instanceof PowerBall){
             SCORE += 10;
             enterOP();
         }
+        */
+
+        if(checkFood(y, x) instanceof FoodBall){
+            SCORE += 1;
+            return true;
+        }
+
+
+        if(checkFood(y, x) instanceof PowerBall){
+            SCORE += 10;
+            enterOP();
+            return true;
+        }
+
+        Level.Position myPos = level.getPositionOf(this);
+
+        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        if (lst.isEmpty()) {
+            return false;
+        }
+        Collections.shuffle(lst);
+
+        for(Level.Position pos: lst){
+            if(pos.y() == y && pos.x() == x){
+                if((level.getElement(pos.y(), pos.x()) instanceof Blinky) || (level.getElement(pos.y(), pos.x()) instanceof Clyde) || (level.getElement(pos.y(), pos.x()) instanceof Inky) || (level.getElement(pos.y(), pos.x()) instanceof Pinky)){
+                    if((level.getElement(pos.y(), pos.x()).getGhostVulnerable())){
+                        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                        Level.Position newPos = new Level.Position(pos.y(), pos.x());
+                        level.setPositionOf(newPos, this);
+
+                        SCORE += 50;
+                        //FALTA POR O FANTASMA A VOLTAR PARA A CAVE
+                        System.out.println("\nComi um fantasma");
+                    }
+                }
+            }
+
+        }
+
+        return false;
     }
 
     public void enterOP(){

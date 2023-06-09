@@ -1,6 +1,7 @@
 package pt.isec.pa.tinypac.model.fsm.states;
 
 import com.googlecode.lanterna.input.KeyType;
+import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Game;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
@@ -18,12 +19,21 @@ public class VulnerableState extends MobsStateAdapter {
         game.getLevel().evolve(key);
     }*/
 
-    public void notVulnerable(){
+    public void notOP(){
         game.getLevel().getTinyPac().leaveOP();
     }
 
+    public void setGhostsVulnerable(boolean ghostsVulnerable){
+
+        for(Element element : game.getLevel().getGhosts()){
+            element.setGhostVulnerable(ghostsVulnerable);
+        }
+    }
+
+
     @Override
     public boolean evolve(){
+        setGhostsVulnerable(true);
         Thread timerThread = new Thread(() -> {
             int seconds = 0;
             while (seconds < 10) {
@@ -34,13 +44,12 @@ public class VulnerableState extends MobsStateAdapter {
                 }
                 seconds++;
             }
-            notVulnerable();
+            setGhostsVulnerable(false);
+            notOP();
             changeState(EMobsState.MOVE);
         });
         timerThread.start();
 
-        //notVulnerable();
-        //changeState(EMobsState.MOVE);
         return true;
     }
 

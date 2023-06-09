@@ -11,9 +11,14 @@ public class Clyde extends Element {
 
     public static final char SYMBOL = 'C';
 
+    private boolean ghostVulnerable = false;
+
     public Clyde(Level level) {
         super(level);
     }
+
+    public boolean getGhostVulnerable(){return this.ghostVulnerable;}
+    public void setGhostVulnerable(boolean ghostVulnerable){ this.ghostVulnerable = ghostVulnerable;}
 
     @Override
     public void evolve(KeyType key) {

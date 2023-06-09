@@ -34,6 +34,10 @@ public class Blinky extends Element {
         // Inicialize a direção inicial com um valor válido
         direction = possibleDirections.get(0);
     }
+    @Override
+    public boolean getGhostVulnerable(){return this.ghostVulnerable;}
+    @Override
+    public void setGhostVulnerable(boolean ghostVulnerable){ this.ghostVulnerable = ghostVulnerable;}
 
     public boolean checkWarp(int y, int x){
         Level.Position myPos = level.getPositionOf(this);
@@ -57,6 +61,23 @@ public class Blinky extends Element {
         Element element = level.getElement(y, x);
         return !(element instanceof Wall);
     }
+
+    /*@Override
+    public boolean eat(int y, int x){
+        Element element = level.getElement(y, x);
+
+        if(!ghostVulnerable){
+            if(element instanceof TinyPac){
+                level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+
+                Level.Position newPos = new Level.Position(pos.y(), pos.x());
+                level.setPositionOf(newPos, this);
+            }
+        }
+
+
+
+    }*/
 
     @Override
     public void evolve(KeyType key) {

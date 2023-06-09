@@ -11,6 +11,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.cell.*;
+import pt.isec.pa.tinypac.model.data.mob.Blinky;
 import pt.isec.pa.tinypac.model.data.mob.TinyPac;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
@@ -168,11 +169,17 @@ public class LanternaUI implements IGameEngineEvolve {
                         case Warp.SYMBOL -> TextColor.ANSI.RED;
                         case Wall.SYMBOL -> TextColor.ANSI.BLACK;
                         case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
+
+                        //GHOSTS
+                        case Blinky.SYMBOL -> TextColor.ANSI.BLACK;
                         default -> TextColor.ANSI.WHITE;
                     };
                     TextColor bc = switch (map[y][x]) {
                         case TinyPac.SYMBOL -> TextColor.ANSI.RED;
                         case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.CYAN;
+
+                        //GHOSTS
+                        case Blinky.SYMBOL -> TextColor.ANSI.WHITE;
                         default -> TextColor.ANSI.BLACK;
                     };
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
@@ -190,11 +197,17 @@ public class LanternaUI implements IGameEngineEvolve {
                         case Warp.SYMBOL -> TextColor.ANSI.RED;
                         case Wall.SYMBOL -> TextColor.ANSI.BLACK;
                         case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
+
+                        //GHOSTS
+                        case Blinky.SYMBOL -> TextColor.ANSI.BLACK;
                         default -> TextColor.ANSI.WHITE;
                     };
                     TextColor bc = switch (map[y][x]) {
                         case TinyPac.SYMBOL -> TextColor.ANSI.GREEN;
                         case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.RED;
+
+                        //GHOSTS
+                        case Blinky.SYMBOL -> TextColor.ANSI.BLUE;
                         default -> TextColor.ANSI.BLACK;
                     };
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);

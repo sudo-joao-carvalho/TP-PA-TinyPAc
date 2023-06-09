@@ -195,6 +195,19 @@ public class Level {
         return null;
     }
 
+    public List<Element> getGhosts(){
+
+        List<Element> lst = new ArrayList<>();
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if ((element instanceof Blinky) || (element instanceof Clyde) || (element instanceof Inky) || (element instanceof Pinky)){
+                        lst.add(element);
+                    }
+                }
+        return lst;
+    }
+
     public List<Position> getWarps(){
 
         List<Position> lst = new ArrayList<>();

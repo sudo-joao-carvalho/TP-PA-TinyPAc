@@ -10,10 +10,14 @@ import javax.swing.*;
 public class Pinky extends Element {
 
     public static final char SYMBOL = 'P';
+    private boolean ghostVulnerable = false;
 
     public Pinky(Level level) {
         super(level);
     }
+
+    public boolean getGhostVulnerable(){return this.ghostVulnerable;}
+    public void setGhostVulnerable(boolean ghostVulnerable){ this.ghostVulnerable = ghostVulnerable;}
 
     @Override
     public void evolve(KeyType key) {
