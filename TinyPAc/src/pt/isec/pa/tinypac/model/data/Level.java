@@ -97,9 +97,8 @@ public class Level {
             //GHOSTS SPAWN
                 Thread timerThread = new Thread(() -> {
                     int seconds = 0;
-                    while (seconds < 5) {
+                    while (seconds < 10) {
                         try {
-                            System.out.println("\noi");
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -110,7 +109,7 @@ public class Level {
                     for(Level.Position pos : getCave()){
                         Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
                         if(element instanceof Portal){
-                            addElement(new Blinky(this), pos.y(), pos.y());
+                            addElement(new Blinky(this), pos.y(), pos.x());
                         }
                     }
 

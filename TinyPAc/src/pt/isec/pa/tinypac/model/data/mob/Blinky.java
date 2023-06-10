@@ -91,6 +91,8 @@ public class Blinky extends Element {
 
                 // Verifica se há uma FoodBall na posicao atual, se houver sai da cave, se nao houver vai para uma nova posicao
                 if (level.getElement(myPos.y() - 1, myPos.x()) instanceof FoodBall || level.getElement(myPos.y() - 1, myPos.x()) instanceof EmptyCell) {
+                    level.addElement(new Portal(level), myPos.y(), myPos.x());
+
                     // Move Blinky para a nova posição
                     Level.Position nnewPos = new Level.Position(myPos.y() - 1, myPos.x());
                     level.setPositionOf(nnewPos, this);
@@ -161,16 +163,27 @@ public class Blinky extends Element {
                 if (!(level.getElement(newPos.y(), newPos.x()) instanceof Wall)) {
 
                     if(level.getElement(newPos.y(), newPos.x()) instanceof TinyPac){
-                        level.setPositionOf(myPos, level.getTinyPac());
-                        level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                        if(!ghostVulnerable){
+                            level.setPositionOf(myPos, level.getTinyPac());
+                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
 
-                        //IMPLEMENTAR AQUI UM TIMER PARA ELE VOLTAR A ANDAR
-                        eat( myPos.y(), myPos.x());
+                            eat( myPos.y(), myPos.x());
 
-                        // Move Blinky para a nova posição
-                        Level.Position nnewPos = new Level.Position(newPos.y() + dy, newPos.x() + dx);
-                        level.setPositionOf(nnewPos, this);
-                        System.out.println("Comi o corno");
+                            // Move Blinky para a nova posição
+                            Level.Position nnewPos = new Level.Position(newPos.y() + dy, newPos.x() + dx);
+                            level.setPositionOf(nnewPos, this);
+                            System.out.println("Comi o corno");
+                        }/*else{
+                            //mete o fantasma na cave de novo
+                            for(Level.Position pos : level.getCave()){
+                                Element element = level.getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
+                                Level.Position cavePos = new Level.Position(pos.y(), pos.x());
+                                if(element instanceof Portal){
+                                    level.addElement(new Blinky(level), pos.y(), pos.x());
+                                }
+                            }*
+
+                        }*/
 
                     }else if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
                         level.addElement(new FoodBall(level), myPos.y(), myPos.x());
