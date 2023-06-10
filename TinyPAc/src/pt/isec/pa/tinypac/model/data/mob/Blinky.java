@@ -20,7 +20,6 @@ public class Blinky extends Element {
 
     public static final char SYMBOL = 'B';
     private boolean insideCave = true;
-
     private boolean ghostVulnerable = false;
 
     public Blinky(Level level){
@@ -65,38 +64,6 @@ public class Blinky extends Element {
     @Override
     public boolean eat(int y, int x){
 
-        /*Level.Position myPos = level.getPositionOf(this);
-
-        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
-        if (lst.isEmpty()) {
-            return false;
-        }
-        Collections.shuffle(lst);
-
-        for(Level.Position pos: lst){
-            if(pos.y() == y && pos.x() == x){
-                if(level.getElement(pos.y(), pos.x()) instanceof TinyPac){
-                    if(!ghostVulnerable) {
-                        Level.Position tinySpawnPosition = level.getTinyPac().getSpawnPosition();
-                        level.setPositionOf(tinySpawnPosition, level.getTinyPac());
-                        level.addElement(new EmptyCell(level), y, x);
-
-                        Level.Position newPos = new Level.Position(y, x);
-                        level.setPositionOf(newPos, this);
-
-                        // Reduzir vidas do Pacman
-                        int currentLifes = level.getTinyPac().getLifes();
-                        level.getTinyPac().setLifes(currentLifes - 1);
-                        System.out.println("\nComi o pacman");
-                        System.out.println("\nVidas Pacman: " + level.getTinyPac().getLifes());
-
-                        return true;
-                    }
-                }
-            }
-        }*/
-        System.out.println("ghostVulnerable: " + ghostVulnerable);
-
          if(!ghostVulnerable) {
              int currentLifes = level.getTinyPac().getLifes();
              level.getTinyPac().setLifes(currentLifes - 1);
@@ -110,17 +77,6 @@ public class Blinky extends Element {
 
     @Override
     public void evolve(KeyType key) {
-        /*Thread timerThread = new Thread(() -> {
-            int seconds = 0;
-            while (seconds < 5) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                seconds++;
-            }
-        });*/
 
         Level.Position myPos = level.getPositionOf(this);
         int dx = 0;
@@ -199,10 +155,6 @@ public class Blinky extends Element {
 
             // Move Blinky para a nova posição
             Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
-            //Level.Position tinySpawnPosition = level.getTinyPacSpawnPosition();
-            //Level.Position troll = new Level.Position(23, 14); // 31, 29
-
-            //System.out.println("Spawn Position = " + tinySpawnPosition);
 
             if (isValidPosition(newPos.y(), newPos.x())) {
                 // Verifica se a próxima posição não é uma parede
@@ -212,7 +164,7 @@ public class Blinky extends Element {
                         level.setPositionOf(myPos, level.getTinyPac());
                         level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
 
-                        //level.addElement(new TinyPac(level), myPos.y(), myPos.x()); //IMPLEMENTAR AQUI UM TIMER PARA ELE VOLTAR A ANDAR
+                        //IMPLEMENTAR AQUI UM TIMER PARA ELE VOLTAR A ANDAR
                         eat( myPos.y(), myPos.x());
 
                         // Move Blinky para a nova posição

@@ -94,6 +94,30 @@ public class Level {
                 }
             }
 
+            //GHOSTS SPAWN
+                Thread timerThread = new Thread(() -> {
+                    int seconds = 0;
+                    while (seconds < 5) {
+                        try {
+                            System.out.println("\noi");
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        seconds++;
+                    }
+
+                    for(Level.Position pos : getCave()){
+                        Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
+                        if(element instanceof Portal){
+                            addElement(new Blinky(this), pos.y(), pos.y());
+                        }
+                    }
+
+                    System.out.println("Blinky spawnned");
+                });
+                timerThread.start();
+
             sc.close();
             return auxMaze;
 
@@ -141,6 +165,20 @@ public class Level {
             for(int x = 0;x < width; x++)
                 if (maze.get(y, x) instanceof Element element) {
                     if (element instanceof Warp){
+                        lst.add(new Position(y, x));
+                    }
+                }
+
+        return lst;
+    }
+
+    public List<Position> getCave(){
+
+        List<Position> lst = new ArrayList<>();
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof GhostCave){
                         lst.add(new Position(y, x));
                     }
                 }
