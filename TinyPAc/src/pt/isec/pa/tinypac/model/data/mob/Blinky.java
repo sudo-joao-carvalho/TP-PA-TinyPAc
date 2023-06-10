@@ -19,6 +19,7 @@ public class Blinky extends Element {
     private Direction direction;
 
     private List<Level.Position> positionHistory;
+    private int backIteration;
 
     public static final char SYMBOL = 'B';
     private boolean insideCave = true;
@@ -26,14 +27,15 @@ public class Blinky extends Element {
 
     public Blinky(Level level){
         super(level);
-        possibleDirections = new ArrayList<>();
+        positionHistory         = new ArrayList<>();
+        possibleDirections      = new ArrayList<>();
         possibleDirections.add(new Direction(0, -1)); // Cima
         possibleDirections.add(new Direction(0, 1));  // Baixo
         possibleDirections.add(new Direction(-1, 0)); // Esquerda
         possibleDirections.add(new Direction(1, 0));  // Direita
 
         // Inicialize a direção inicial com um valor válido
-        direction = possibleDirections.get(0);
+        direction               = possibleDirections.get(0);
     }
     @Override
     public boolean getGhostVulnerable(){return this.ghostVulnerable;}
@@ -86,6 +88,7 @@ public class Blinky extends Element {
 
         // Verifica se Blinky está dentro da GhostCave
         if (insideCave) {
+            positionHistory.clear(); //da clear do array
             // Verifica se há uma saída disponível
             if (isValidPosition(myPos.y() - 1, myPos.x())) {
                 // Remove a GhostCave da posição atual
@@ -106,6 +109,7 @@ public class Blinky extends Element {
                 // Define a nova posição acima da GhostCave
                 Level.Position newPos = new Level.Position(myPos.y() - 1, myPos.x());
                 level.setPositionOf(newPos, this);
+
 
             }
         }
@@ -164,6 +168,31 @@ public class Blinky extends Element {
                 // Verifica se a próxima posição não é uma parede
                 if (!(level.getElement(newPos.y(), newPos.x()) instanceof Wall)) {
 
+                    if(ghostVulnerable){
+
+                        if(positionHistory.size() == 0){
+                            //myPos = level.getPositionOf(this);
+                            level.addElement(new FoodBall(level), myPos.y(), myPos.x());
+                            // Move Blinky para a nova posição
+                            Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
+                            level.setPositionOf(nnewPos, this);
+                            return;
+                        }
+
+                        Element elementAhead = level.getElement(newPos.y(), newPos.x());
+
+                        Level.Position backPosition = new Level.Position(positionHistory.get(positionHistory.size() - 1).y(), positionHistory.get(positionHistory.size() - 1).x());
+
+                        level.addElement(new FoodBall(level), myPos.y(), myPos.x());
+                        level.setPositionOf(backPosition, this);
+
+                        positionHistory.remove(positionHistory.size() - 1);
+
+                        return;
+
+                    }
+
+
                     if(level.getElement(newPos.y(), newPos.x()) instanceof TinyPac){
                         if(!ghostVulnerable){
                             level.setPositionOf(myPos, level.getTinyPac());
@@ -173,10 +202,25 @@ public class Blinky extends Element {
 
                             // Move Blinky para a nova posição
                             Level.Position nnewPos = new Level.Position(newPos.y() + dy, newPos.x() + dx);
-                            level.setPositionOf(nnewPos, this);
-                            System.out.println("Comi o corno");
-                        }else{
+                            if(isValidPosition(nnewPos.y(), nnewPos.x())){
+                                level.setPositionOf(nnewPos, this);
+                                positionHistory.add(myPos);
+                                System.out.println("Comi o corno");
+                            }/*else{
+                                Level.Position nextPos = new Level.Position(newPos.y() + 1, newPos.x());
+                                level.setPositionOf(nextPos, this);
+                            }*/
+                            //FAZER
+                            else { //quando ele come o pacman mas na posicao a frente dele esta uma parede
+                                System.out.println("parede");
 
+                                // Move Blinky para a nova posição
+                                Level.Position nextPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
+                                level.setPositionOf(nextPos, this);
+                            }
+
+                        }else{
+                            //ghosts estao vulneraveis -> fazem o movimento contrario
                         }
 
                     }else if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
@@ -184,18 +228,21 @@ public class Blinky extends Element {
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
                         level.setPositionOf(nnewPos, this);
+                        positionHistory.add(myPos);
                         System.out.println("Blinky moveu-se para " + newPos);
                     }else if(level.getElement(newPos.y(), newPos.x()) instanceof EmptyCell){
                         level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
                         level.setPositionOf(nnewPos, this);
+                        positionHistory.add(myPos);
                         System.out.println("Blinky moveu-se para " + newPos);
                     }else if(level.getElement(newPos.y(), newPos.x()) instanceof PowerBall){
                         level.addElement(new PowerBall(level), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         Level.Position nnewPos = new Level.Position(newPos.y(), newPos.x());
                         level.setPositionOf(nnewPos, this);
+                        positionHistory.add(myPos);
                         System.out.println("Blinky moveu-se para " + newPos);
                     }else if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
                         //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
@@ -207,6 +254,7 @@ public class Blinky extends Element {
 
                                 Level.Position nnewPos = new Level.Position(pos.y() + dy, pos.x() + dx);
                                 level.setPositionOf(nnewPos, this);
+                                positionHistory.add(myPos);
                                 //System.out.println("\n warping to " + newPos);
 
                             }
