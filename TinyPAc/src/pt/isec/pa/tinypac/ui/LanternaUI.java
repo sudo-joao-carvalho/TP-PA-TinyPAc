@@ -11,8 +11,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.cell.*;
-import pt.isec.pa.tinypac.model.data.mob.Blinky;
-import pt.isec.pa.tinypac.model.data.mob.TinyPac;
+import pt.isec.pa.tinypac.model.data.mob.*;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.states.MoveState;
@@ -159,6 +158,9 @@ public class LanternaUI implements IGameEngineEvolve {
         if(gameContext.getState() == EMobsState.MOVE){
             screen.startScreen();
 
+            terminal.setCursorPosition(0, 2);
+            terminal.putString("Score: " + TinyPac.SCORE);
+
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
                 for (int x = 0; x < map[0].length; x++) {
@@ -170,7 +172,8 @@ public class LanternaUI implements IGameEngineEvolve {
                         case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
 
                         //GHOSTS
-                        case Blinky.SYMBOL -> TextColor.ANSI.BLACK;
+                        case Blinky.SYMBOL, Clyde.SYMBOL, Inky.SYMBOL, Pinky.SYMBOL -> TextColor.ANSI.BLACK;
+
                         default -> TextColor.ANSI.WHITE;
                     };
                     TextColor bc = switch (map[y][x]) {
@@ -179,6 +182,8 @@ public class LanternaUI implements IGameEngineEvolve {
 
                         //GHOSTS
                         case Blinky.SYMBOL -> TextColor.ANSI.WHITE;
+                        case Clyde.SYMBOL -> TextColor.ANSI.GREEN;
+
                         default -> TextColor.ANSI.BLACK;
                     };
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
@@ -186,6 +191,9 @@ public class LanternaUI implements IGameEngineEvolve {
             }
             screen.refresh();
         }else if(gameContext.getState() == EMobsState.VULNERABLE){
+            terminal.setCursorPosition(0, 2);
+            terminal.putString("Score: " + TinyPac.SCORE);
+
         //}else if(vulnerable){
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
@@ -198,7 +206,7 @@ public class LanternaUI implements IGameEngineEvolve {
                         case Fruit.SYMBOL -> TextColor.ANSI.MAGENTA_BRIGHT;
 
                         //GHOSTS
-                        case Blinky.SYMBOL -> TextColor.ANSI.BLACK;
+                        case Blinky.SYMBOL, Clyde.SYMBOL, Inky.SYMBOL, Pinky.SYMBOL -> TextColor.ANSI.BLACK;
                         default -> TextColor.ANSI.WHITE;
                     };
                     TextColor bc = switch (map[y][x]) {
@@ -206,7 +214,8 @@ public class LanternaUI implements IGameEngineEvolve {
                         case FoodBall.SYMBOL, PowerBall.SYMBOL, Warp.SYMBOL, Fruit.SYMBOL, EmptyCell.SYMBOL -> TextColor.ANSI.RED;
 
                         //GHOSTS
-                        case Blinky.SYMBOL -> TextColor.ANSI.BLUE;
+                        case Blinky.SYMBOL, Clyde.SYMBOL, Inky.SYMBOL, Pinky.SYMBOL -> TextColor.ANSI.BLUE;
+
                         default -> TextColor.ANSI.BLACK;
                     };
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);

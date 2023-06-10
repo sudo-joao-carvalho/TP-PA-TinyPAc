@@ -15,6 +15,7 @@ public class TinyPac extends Element {
     private int lifes = 3;
 
     private boolean isOP = false;
+    private boolean lostLife = false;
 
     private int counter = 0;
 
@@ -106,6 +107,12 @@ public class TinyPac extends Element {
             enterOP();
             return true;
         }
+        if(checkFood(y, x) instanceof Fruit){
+            SCORE += 10;
+            enterOP();
+            return true;
+        }
+
 
         return false;
     }
@@ -119,6 +126,8 @@ public class TinyPac extends Element {
     }
 
     public boolean isOP(){return this.isOP;}
+
+    public void setLostLife(boolean lostLife){ this.lostLife = lostLife;}
 
     @Override
     public void evolve(KeyType key){ //move
@@ -163,7 +172,29 @@ public class TinyPac extends Element {
                             System.out.println("movi me para " + newPos);
                         }else{
                             System.out.println("encontrei um fantasma");
-                            //level.setPositionOf(spawnPosition, this);
+
+                            //logica para para o boneco por 1 segundo ate se voltar a mover quando perde uma vida
+                            /*while(lostLife){
+                                Level.Position myPosTemp = new Level.Position(myPos.y(), myPos.x());
+                                Thread timerThread = new Thread(() -> {
+
+                                    int seconds = 0;
+                                    while (seconds < 10) {
+                                        try {
+                                            level.setPositionOf(myPosTemp, this);
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        seconds++;
+                                    }
+
+                                    lostLife = false;
+
+                                });
+                                timerThread.start();
+                            }*/
+
                         }
 
                     }else{

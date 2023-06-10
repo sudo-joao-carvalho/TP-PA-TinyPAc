@@ -95,9 +95,9 @@ public class Level {
             }
 
             //GHOSTS SPAWN
-                Thread timerThread = new Thread(() -> {
+                Thread timerThread1 = new Thread(() -> {
                     int seconds = 0;
-                    while (seconds < 5) {
+                    while (seconds < 10) {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
@@ -115,7 +115,29 @@ public class Level {
 
                     System.out.println("Blinky spawnned");
                 });
-                timerThread.start();
+                timerThread1.start();
+
+            /*Thread timerThread2 = new Thread(() -> {
+                int seconds = 0;
+                while (seconds < 7) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    seconds++;
+                }
+
+                for(Level.Position pos : getCave()){
+                    Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
+                    if(element instanceof Portal){
+                        addElement(new Clyde(this), pos.y(), pos.x());
+                    }
+                }
+
+                System.out.println("Clyde spawnned");
+            });
+            timerThread2.start();*/
 
             sc.close();
             return auxMaze;
