@@ -64,72 +64,70 @@ public class LanternaUI implements IGameEngineEvolve {
                     gameContext.retrieveKey(KeyType.ArrowUp);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
-                        gameContext.retrieveKey(KeyType.ArrowUp);
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 }
             }else if(gameContext.getState() == EMobsState.VULNERABLE){
                 if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
                     gameContext.retrieveKey(KeyType.ArrowUp);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
-                        gameContext.retrieveKey(KeyType.ArrowUp);
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
 
                     gameContext.evolve();
-                    if(gameContext.getState() == EMobsState.VULNERABLE){
-                        /*vulnerable = true;
+                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
+                        vulnerable = true;
                         Thread timerThread = new Thread(() -> {
                             int seconds = 0;
                             while (seconds < 10) {
@@ -143,9 +141,9 @@ public class LanternaUI implements IGameEngineEvolve {
                             gameContext.evolve(); //mudança de estado
                             vulnerable = false;
                         });
-                        timerThread.start();*/
+                        timerThread.start();
                         gameContext.evolve(); //mudança de estado
-                    }
+                    }*/
                 }
             }
 

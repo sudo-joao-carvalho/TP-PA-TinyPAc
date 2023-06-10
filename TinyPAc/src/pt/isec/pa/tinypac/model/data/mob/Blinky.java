@@ -18,6 +18,8 @@ public class Blinky extends Element {
     private List<Direction> possibleDirections;
     private Direction direction;
 
+    private List<Level.Position> positionHistory;
+
     public static final char SYMBOL = 'B';
     private boolean insideCave = true;
     private boolean ghostVulnerable = false;
@@ -173,17 +175,9 @@ public class Blinky extends Element {
                             Level.Position nnewPos = new Level.Position(newPos.y() + dy, newPos.x() + dx);
                             level.setPositionOf(nnewPos, this);
                             System.out.println("Comi o corno");
-                        }/*else{
-                            //mete o fantasma na cave de novo
-                            for(Level.Position pos : level.getCave()){
-                                Element element = level.getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
-                                Level.Position cavePos = new Level.Position(pos.y(), pos.x());
-                                if(element instanceof Portal){
-                                    level.addElement(new Blinky(level), pos.y(), pos.x());
-                                }
-                            }*
+                        }else{
 
-                        }*/
+                        }
 
                     }else if (level.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
                         level.addElement(new FoodBall(level), myPos.y(), myPos.x());

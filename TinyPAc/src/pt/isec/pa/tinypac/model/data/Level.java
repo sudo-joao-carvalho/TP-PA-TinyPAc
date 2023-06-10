@@ -144,6 +144,17 @@ public class Level {
         return null;
     }
 
+    public Blinky getBlinky() {
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof Blinky){
+                        return (Blinky) element;
+                    }
+                }
+        return null;
+    }
+
     public List<Element> getGhosts(){
 
         List<Element> lst = new ArrayList<>();
