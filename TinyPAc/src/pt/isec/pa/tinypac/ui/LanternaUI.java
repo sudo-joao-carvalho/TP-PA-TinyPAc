@@ -59,51 +59,53 @@ public class LanternaUI implements IGameEngineEvolve {
                     gameContext.evolve();
                 }
             }else if(gameContext.getState() == EMobsState.MOVE){
+                gameContext.evolve();
                 if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
                     gameContext.retrieveKey(KeyType.ArrowUp);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 }
             }else if(gameContext.getState() == EMobsState.VULNERABLE){
+                gameContext.evolve();
                 if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
                     gameContext.retrieveKey(KeyType.ArrowUp);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
 
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
 
-                    gameContext.evolve();
+                    //gameContext.evolve();
                     /*if(gameContext.getState() == EMobsState.VULNERABLE){
                         vulnerable = true;
                         Thread timerThread = new Thread(() -> {
@@ -277,6 +279,14 @@ public class LanternaUI implements IGameEngineEvolve {
                 }
             }*/
 
+        }else if(gameContext.getState() == EMobsState.END_LEVEL){
+            terminal.clearScreen();
+            terminal.flush();
+            terminal.setCursorPosition(20, 10);
+            terminal.putString("Jogo terminado");
+            terminal.flush();
+
+            screen.refresh();
         }
 
 

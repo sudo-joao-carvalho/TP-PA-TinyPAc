@@ -16,18 +16,18 @@ public class VulnerableState extends MobsStateAdapter {
         //SETTERS
         //game.getLevel().getTinyPac().enterOP();
     }
-    public int checkLevelOver(){
+    public boolean checkLevelOver(){
 
         if(TinyPac.SCORE >= 10){
             game.getLevel().setLevelComplete();
-            return 1;
+            return true;
         }
 
         if(game.getLevel().getTinyPac().getLifes() == 0){
-            return 2;
+            return true;
         }
 
-        return 0;
+        return false;
     }
 
     public void notOP(){
@@ -49,39 +49,15 @@ public class VulnerableState extends MobsStateAdapter {
             int seconds = 0;
             while (seconds < 10) {
                 try {
-                    /*if(checkLevelOver()){
+
+                    if(checkLevelOver()){
                         if(game.getLevel().getLevelNumber() == 20){
                             changeState(EMobsState.END_LEVEL);
+                            return;
                         }
-
-                        System.out.println("pontuacao atingida");
-                        TinyPac.SCORE = 0;
-                        game.setLevel(new Level());
 
                         changeState(EMobsState.WAIT_BEGIN);
-                    }*/
-
-                    switch(checkLevelOver()){
-                        case 1 -> {
-                            if(game.getLevel().getLevelNumber() == 20){
-                                changeState(EMobsState.END_LEVEL);
-                            }
-                            changeState(EMobsState.WAIT_BEGIN);
-
-                            System.out.println("pontuacao atingida");
-                            TinyPac.SCORE = 0;
-
-                            int currentLevelNumber = game.getLevel().getLevelNumber();
-                            game.setLevel(new Level(currentLevelNumber + 1));
-                        }
-
-                        case 2 -> {
-                            changeState(EMobsState.WAIT_BEGIN);
-                            System.out.println("Pacman perdeu todas as vidas");
-
-                            int currentLevelNumber = game.getLevel().getLevelNumber();
-                            game.setLevel(new Level(currentLevelNumber));
-                        }
+                        return;
                     }
 
                     Thread.sleep(1000);

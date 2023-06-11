@@ -15,6 +15,9 @@ public class EndLevelState extends MobsStateAdapter {
     }
 
     @Override
+    public boolean evolve(){return false;}
+
+    @Override
     public boolean pause(){return false;}
 
     @Override
