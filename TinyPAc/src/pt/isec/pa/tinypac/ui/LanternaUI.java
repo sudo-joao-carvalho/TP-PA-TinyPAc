@@ -63,63 +63,42 @@ public class LanternaUI implements IGameEngineEvolve {
                     gameContext.retrieveKey(KeyType.ArrowUp);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 }
             }else if(gameContext.getState() == EMobsState.VULNERABLE){
                 if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
                     gameContext.retrieveKey(KeyType.ArrowUp);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
 
                     gameContext.evolve();
-                    /*if(gameContext.getState() == EMobsState.VULNERABLE){
 
-                        gameContext.evolve(); //mudança de estado
-                    }*/
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
@@ -153,13 +132,14 @@ public class LanternaUI implements IGameEngineEvolve {
     private void show() throws IOException {
 
         terminal.setCursorVisible(false);
+        screen.startScreen();
 
-        //if(!vulnerable) {
         if(gameContext.getState() == EMobsState.MOVE){
-            screen.startScreen();
 
             terminal.setCursorPosition(0, 2);
             terminal.putString("Score: " + TinyPac.SCORE);
+            terminal.setCursorPosition(10, 2);
+            terminal.putString("Level: " + gameContext.getLevel().getLevelNumber());
 
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
@@ -191,10 +171,10 @@ public class LanternaUI implements IGameEngineEvolve {
             }
             screen.refresh();
         }else if(gameContext.getState() == EMobsState.VULNERABLE){
+
             terminal.setCursorPosition(0, 2);
             terminal.putString("Score: " + TinyPac.SCORE);
 
-        //}else if(vulnerable){
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
                 for (int x = 0; x < map[0].length; x++) {

@@ -18,8 +18,8 @@ public class GameContext {
     private KeyType currentKeyType = KeyType.ArrowDown;;//KeyType.ArrowRight;
 
     public GameContext(){
-        game = new Game(1);
-        this.gameState = new WaitBeginState(this, game);
+        game            = new Game(1);
+        this.gameState  = new WaitBeginState(this, game);
     }
 
     public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
@@ -32,12 +32,12 @@ public class GameContext {
     //@Override
     public void evolve(IGameEngine gameEngine, long currentTime){ //evolve de mudança de estado da engine
 
-        if(this.getState() == EMobsState.MOVE || this.getState() == EMobsState.VULNERABLE){ // isto assegura que so se comecem a mover assim que o estado for MOVE e nao logo quando ainda esta no waitbegin
+        //if(this.getState() == EMobsState.MOVE || this.getState() == EMobsState.VULNERABLE){ // isto assegura que so se comecem a mover assim que o estado for MOVE e nao logo quando ainda esta no waitbegin
             if(game.getLevel() == null)
                 return ;
 
             game.getLevel().evolve(currentKeyType);
-        }
+        //}
     }
 
     public Level getLevel(){return game.getLevel();}

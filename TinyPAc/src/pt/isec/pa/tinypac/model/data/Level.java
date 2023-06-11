@@ -19,16 +19,27 @@ public class Level {
     private int width;
     Maze maze;
 
+    //private static int levelNumber = 0;
+    private int levelNumber;
+
+    private boolean isLevelComplete = false;
 
     public Level(int levelNumber){
+        //levelNumber++;
+
+        this.levelNumber    = levelNumber;
         String filePath     = "files/Level10" + levelNumber + ".txt";
         this.maze           = setMaze(filePath);
-        //this.score          = 0;
 
     }
 
     //public void setScore(int num){this.score += num;}
     //public int getScore(){return this.score;}
+
+    public void setLevelComplete(){this.isLevelComplete = true;}
+    public boolean getLevelComplete(){return this.isLevelComplete;}
+
+    public int getLevelNumber(){return levelNumber;}
     public Maze setMaze(String filePath) {
 
         try{
@@ -97,7 +108,7 @@ public class Level {
             //GHOSTS SPAWN
                 Thread timerThread1 = new Thread(() -> {
                     int seconds = 0;
-                    while (seconds < 10) {
+                    while (seconds < 5) {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
@@ -137,7 +148,51 @@ public class Level {
 
                 System.out.println("Clyde spawnned");
             });
-            timerThread2.start();*/
+            timerThread3.start();*/
+
+            /*Thread timerThread3 = new Thread(() -> {
+                int seconds = 0;
+                while (seconds < 9) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    seconds++;
+                }
+
+                for(Level.Position pos : getCave()){
+                    Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
+                    if(element instanceof Portal){
+                        addElement(new Inky(this), pos.y(), pos.x());
+                    }
+                }
+
+                System.out.println("Inky spawnned");
+            });
+            timerThread4.start();*/
+
+            /*Thread timerThread4 = new Thread(() -> {
+                int seconds = 0;
+                while (seconds < 9) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    seconds++;
+                }
+
+                for(Level.Position pos : getCave()){
+                    Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
+                    if(element instanceof Portal){
+                        addElement(new Pinky(this), pos.y(), pos.x());
+                    }
+                }
+
+                System.out.println("Pinky spawnned");
+            });
+            timerThread4.start();*/
 
             sc.close();
             return auxMaze;

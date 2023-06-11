@@ -21,7 +21,7 @@ public enum EMobsState {
 
     }*/
 
-    WAIT_BEGIN, MOVE, VULNERABLE, END_LEVEL;
+    WAIT_BEGIN, MOVE, VULNERABLE, PAUSE, END_LEVEL;
 
     IMobsState createState(GameContext context, Game game){
         return switch(this){
@@ -29,6 +29,7 @@ public enum EMobsState {
             case MOVE -> new MoveState(context, game);
             case VULNERABLE -> new VulnerableState(context, game);
             case END_LEVEL -> new EndLevelState(context, game);
+            case PAUSE -> new PauseState(context, game);
         };
     }
 }

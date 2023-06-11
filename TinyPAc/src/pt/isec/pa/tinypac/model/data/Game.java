@@ -8,5 +8,6 @@ public class Game {
     }
 
     public Level getLevel() {return this.level;}
+    public void setLevel(Level newLevel){this.level = newLevel;}
 
 }
