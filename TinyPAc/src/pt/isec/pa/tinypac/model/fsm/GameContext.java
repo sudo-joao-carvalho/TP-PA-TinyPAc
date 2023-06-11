@@ -25,9 +25,11 @@ public class GameContext {
     public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
     void changeState(IMobsState newState){this.gameState = newState;}
 
-    public boolean evolve(){return gameState.evolve();} //evolve de mudança de estado
+    public boolean evolve(){return gameState.evolve();}//evolve de mudança de estado
 
     public boolean pause(){return gameState.pause();}
+
+    public boolean unpause(){return gameState.unpause();}
 
     //@Override
     public void evolve(IGameEngine gameEngine, long currentTime){ //evolve de mudança de estado da engine
@@ -38,6 +40,7 @@ public class GameContext {
 
             game.getLevel().evolve(currentKeyType);
         }
+
     }
 
     public Level getLevel(){return game.getLevel();}

@@ -45,9 +45,9 @@ public class LanternaUI implements IGameEngineEvolve {
             show();
             KeyStroke key = terminal.pollInput();
             if ( key != null &&
-                    (key.getKeyType() == KeyType.Escape ||
+                   // (key.getKeyType() == KeyType.Escape ||
                             (key.getKeyType() == KeyType.Character &&
-                                    key.getCharacter().equals('q')))
+                                    key.getCharacter().equals('q'))
             ){
                 //System.out.println("jogo encerrado");
                 gameEngine.stop();
@@ -62,45 +62,26 @@ public class LanternaUI implements IGameEngineEvolve {
                 gameContext.evolve();
                 if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
                     gameContext.retrieveKey(KeyType.ArrowUp);
-
-                    //gameContext.evolve();
-
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
-
-                    //gameContext.evolve();
-
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
-
-                    //gameContext.evolve();
-
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
-
-                    //gameContext.evolve();
-
+                }else if (key != null && (key.getKeyType() == KeyType.Escape)) {
+                    gameContext.pause();
                 }
             }else if(gameContext.getState() == EMobsState.VULNERABLE){
                 gameContext.evolve();
                 if(key != null && (key.getKeyType() == KeyType.ArrowUp)){
                     gameContext.retrieveKey(KeyType.ArrowUp);
-
-                    //gameContext.evolve();
-
                 } else if (key != null && (key.getKeyType() == KeyType.ArrowDown)) {
                     gameContext.retrieveKey(KeyType.ArrowDown);
-
-                    //gameContext.evolve();
-
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowRight)) {
                     gameContext.retrieveKey(KeyType.ArrowRight);
-
-                    //gameContext.evolve();
-
                 }
                 else if (key != null && (key.getKeyType() == KeyType.ArrowLeft)) {
                     gameContext.retrieveKey(KeyType.ArrowLeft);
@@ -125,6 +106,14 @@ public class LanternaUI implements IGameEngineEvolve {
                         gameContext.evolve(); //mudança de estado
                     }*/
                 }
+                else if (key != null && (key.getKeyType() == KeyType.Escape)) {
+                    gameContext.pause();
+                }
+            }else if(gameContext.getState() == EMobsState.PAUSE){
+                if (key != null && (key.getKeyType() == KeyType.Escape)) {
+                    gameContext.unpause();
+                }
+
             }
 
 
@@ -142,6 +131,8 @@ public class LanternaUI implements IGameEngineEvolve {
             terminal.putString("Score: " + TinyPac.SCORE);
             terminal.setCursorPosition(10, 2);
             terminal.putString("Level: " + gameContext.getLevel().getLevelNumber());
+            terminal.setCursorPosition(20, 2);
+            terminal.putString("Lifes: " + gameContext.getLevel().getTinyPac().getLifes());
 
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
@@ -176,6 +167,10 @@ public class LanternaUI implements IGameEngineEvolve {
 
             terminal.setCursorPosition(0, 2);
             terminal.putString("Score: " + TinyPac.SCORE);
+            terminal.setCursorPosition(10, 2);
+            terminal.putString("Level: " + gameContext.getLevel().getLevelNumber());
+            terminal.setCursorPosition(20, 2);
+            terminal.putString("Lifes: " + gameContext.getLevel().getTinyPac().getLifes());
 
             char[][] map = gameContext.getMap();
             for (int y = 0; y < map.length; y++) {
@@ -287,6 +282,12 @@ public class LanternaUI implements IGameEngineEvolve {
             terminal.flush();
 
             screen.refresh();
+        }else if(gameContext.getState() == EMobsState.PAUSE){
+            terminal.clearScreen();
+            terminal.flush();
+            terminal.setCursorPosition(20, 10);
+            terminal.putString("Jogo Pausado");
+            terminal.flush();
         }
 
 

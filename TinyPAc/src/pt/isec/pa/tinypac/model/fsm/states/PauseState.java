@@ -1,5 +1,6 @@
 package pt.isec.pa.tinypac.model.fsm.states;
 
+import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.model.data.Game;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
@@ -12,13 +13,20 @@ public class PauseState extends MobsStateAdapter {
 
         //SETTERS
     }
-    @Override
+
+    /*@Override
     public boolean evolve(){
+        System.out.println("jogo pausado");
+        changeState(EMobsState.MOVE);
         return true;
-    }
+    }*/
 
     @Override
-    public boolean pause(){return false;}
+    public boolean unpause(){
+        System.out.println("jogo unpaused");
+        changeState(EMobsState.MOVE);
+        return true;
+    }
 
     @Override
     public EMobsState getState(){return EMobsState.PAUSE;}

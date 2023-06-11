@@ -65,7 +65,11 @@ public class MoveState extends MobsStateAdapter {
     }
 
     @Override
-    public boolean pause(){return false;}
+    public boolean pause(){
+        System.out.println("jogo pausado");
+        changeState(EMobsState.PAUSE);
+        return true;
+    }
 
     @Override
     public EMobsState getState(){return EMobsState.MOVE;}

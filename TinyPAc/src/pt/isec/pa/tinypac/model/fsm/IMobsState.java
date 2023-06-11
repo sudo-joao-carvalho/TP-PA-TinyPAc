@@ -6,6 +6,8 @@ public interface IMobsState {
 
     boolean pause();
 
+    boolean unpause();
+
     EMobsState getState();
 
     boolean checkVulnerable();
