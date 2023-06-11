@@ -321,26 +321,6 @@ public class Level {
         return lst;
     }
 
-    /*public boolean isValidPosition(int y, int x, ){
-
-        Level.Position myPos = getPositionOf();
-
-        List<Level.Position> lst = getElementNeighbors(myPos.y(), myPos.x(), TinyPac.class);
-        if (lst.isEmpty())
-            return false;
-        Collections.shuffle(lst);
-
-        for(Level.Position pos: lst){
-            if(pos.y() == y && pos.x() == x){
-                return !(getElement(pos.y(), pos.x()) instanceof EmptyCell) &&
-                        !(getElement(pos.y(), pos.x()) instanceof Portal);
-            }
-
-        }
-
-        return false;
-    }*/
-
     public boolean evolve(KeyType key) {
         int n = 0;
 

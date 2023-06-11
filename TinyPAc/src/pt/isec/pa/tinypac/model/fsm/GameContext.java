@@ -28,7 +28,6 @@ public class GameContext {
     public boolean evolve(){return gameState.evolve();}//evolve de mudança de estado
 
     public boolean pause(){return gameState.pause();}
-
     public boolean unpause(){return gameState.unpause();}
 
     //@Override
@@ -45,19 +44,6 @@ public class GameContext {
 
     public Level getLevel(){return game.getLevel();}
     public char[][] getMap(){return game.getLevel().getMaze();}
-
-    /*public void changePacmanDirection(KeyType key) {
-        IMobsState currentState = this.gameState;
-        if (currentState instanceof MoveState moveState) {
-            moveState.changePacmanDirection(key);
-        }
-
-        if (currentState instanceof VulnerableState vulnerableState) {
-            vulnerableState.changePacmanDirection(key);
-        }
-
-    }*/
-
     public void retrieveKey(KeyType key){
         currentKeyType = key;
     }
