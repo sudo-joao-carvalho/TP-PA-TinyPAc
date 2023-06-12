@@ -35,7 +35,7 @@ public class LanternaUI implements IGameEngineEvolve {
                             .setInitialTerminalSize(new TerminalSize(50, 50))
                             .createTerminal();
         this.screen         = new TerminalScreen(terminal);
-        show();
+        //show();
     }
 
     @Override
@@ -162,6 +162,7 @@ public class LanternaUI implements IGameEngineEvolve {
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
                 }
             }
+
             screen.refresh();
         }else if(gameContext.getState() == EMobsState.VULNERABLE){
 
@@ -198,6 +199,7 @@ public class LanternaUI implements IGameEngineEvolve {
                     screen.setCharacter(x + 10, y + 2, TextCharacter.fromCharacter(map[y][x], tc, bc)[0]);
                 }
             }
+
             screen.refresh();
         }else if(gameContext.getState() == EMobsState.WAIT_BEGIN){
 
@@ -288,6 +290,8 @@ public class LanternaUI implements IGameEngineEvolve {
             terminal.setCursorPosition(20, 10);
             terminal.putString("Jogo Pausado");
             terminal.flush();
+
+            screen.refresh();
         }
 
 

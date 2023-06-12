@@ -1,12 +1,16 @@
+package pt.isec.pa.tinypac;
+
 import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.gameengine.GameEngine;
+import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
+import pt.isec.pa.tinypac.ui.gui.MainJFX;
 import pt.isec.pa.tinypac.ui.text.GameTextUI;
 import pt.isec.pa.tinypac.ui.LanternaUI;
 
 import java.io.IOException;
 
-public class Main {
+/*public class Main {
     public static void main(String[] args) throws IOException {
         GameContext context = new GameContext();
 
@@ -21,6 +25,18 @@ public class Main {
         gameEngine.start(350);
 
         gameEngine.waitForTheEnd();
+    }
+}*/
+
+import javafx.application.Application;
+
+public class Main {
+    public static GameContextManager gameCManager;
+    static{
+        gameCManager = new GameContextManager();
+    }
+    public static void main(String[] args) {
+        Application.launch(MainJFX.class,args);
     }
 }
 

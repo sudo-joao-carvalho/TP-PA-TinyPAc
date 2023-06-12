@@ -108,7 +108,7 @@ public class Level {
             //GHOSTS SPAWN
                 Thread timerThread1 = new Thread(() -> {
                     int seconds = 0;
-                    while (seconds < 5) {
+                    while (seconds < 15) {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {

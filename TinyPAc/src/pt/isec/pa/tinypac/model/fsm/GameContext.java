@@ -25,6 +25,8 @@ public class GameContext {
     public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
     void changeState(IMobsState newState){this.gameState = newState;}
 
+    public boolean start(){return gameState.start();}
+
     public boolean evolve(){return gameState.evolve();}//evolve de mudança de estado
 
     public boolean pause(){return gameState.pause();}
