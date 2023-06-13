@@ -13,7 +13,6 @@ public class GameContextManager {
     PropertyChangeSupport pcs;
 
     public GameContextManager(){
-        //fsm = new GameContext();
         pcs = new PropertyChangeSupport(this);
     }
 
@@ -30,8 +29,16 @@ public class GameContextManager {
 
     public EMobsState getState(){return fsm.getState();}
 
-    public boolean evolve(){return fsm.evolve();}//evolve de mudança de estado
+    public boolean evolve(){
+        var ret = fsm.evolve();
+        pcs.firePropertyChange(null, null, null);
+        return ret;
+    }//evolve de mudança de estado
 
-    public boolean pause(){return fsm.pause();}
+    public boolean pause(){
+        var ret = fsm.pause();
+        pcs.firePropertyChange(null, null, null);
+        return ret;
+    }
     public boolean unpause(){return fsm.unpause();}
 }

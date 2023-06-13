@@ -24,17 +24,17 @@ public class WaitBeginState extends MobsStateAdapter{
         }
     }
 
-    @Override
+   /* @Override
     public boolean start(){
         changeState(EMobsState.MOVE);
         return true;
-    }
-    /*@Override
+    }*/
+    @Override
     public boolean evolve(){
         //quando ele se mover vai passar para o estado seguinte que é MoveState
         changeState(EMobsState.MOVE);
         return true;
-    }*/
+    }
 
     @Override
     public boolean pause(){return false;}

@@ -50,7 +50,9 @@ public class RootPane extends BorderPane {
             // Adicione a interface de usuário correspondente ao estado atual
             switch (gameState) {
                 case WAIT_BEGIN:
-                    stackPane.getChildren().add(new WaitBeginUI(gameCManager));
+                    var waitBeginUI = new WaitBeginUI(gameCManager);
+                    stackPane.getChildren().add(waitBeginUI);
+                    waitBeginUI.requestFocus();
                     break;
                 case MOVE:
                     stackPane.getChildren().add(new MoveUI(gameCManager));
