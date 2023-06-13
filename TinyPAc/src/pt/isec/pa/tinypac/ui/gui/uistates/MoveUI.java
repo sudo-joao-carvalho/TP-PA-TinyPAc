@@ -2,8 +2,10 @@ package pt.isec.pa.tinypac.ui.gui.uistates;
 
 import com.googlecode.lanterna.input.KeyType;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,6 +24,8 @@ public class MoveUI extends BorderPane {
     GameContextManager gameCManager;
 
     private GridPane mazePane;
+    private VBox sidebar;
+
     public MoveUI(GameContextManager gameCManager) {
         this.gameCManager = gameCManager;
 
@@ -36,6 +40,19 @@ public class MoveUI extends BorderPane {
 
         mazePane = new GridPane();
         this.setCenter(mazePane);
+
+        sidebar = new VBox();
+        sidebar.setPadding(new Insets(20));
+        sidebar.setSpacing(10);
+        sidebar.setStyle("-fx-background-color: gray;");
+
+        Label livesLabel = new Label("Lifes: ");
+        Label scoreLabel = new Label("Score: ");
+        Label levelLabel = new Label("Level: ");
+
+        sidebar.getChildren().addAll(livesLabel, scoreLabel, levelLabel);
+
+        this.setRight(sidebar);
     }
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
@@ -60,12 +77,30 @@ public class MoveUI extends BorderPane {
     private void update() {
         if (gameCManager.getState() == EMobsState.MOVE) {
             this.setVisible(true);
+            updateSidebar();
             updateMazePane();
         } else {
             this.setVisible(false);
         }
 
     }
+
+    private void updateSidebar() {
+        // Atualize as informações da barra lateral com os dados relevantes, como vidas, pontuação e nível
+        int lives = gameCManager.getLevel().getTinyPac().getLifes();
+        int score = TinyPac.SCORE;
+        int level = gameCManager.getLevel().getLevelNumber();
+
+        Label livesLabel = (Label) sidebar.getChildren().get(0);
+        livesLabel.setText("Lifes: " + lives);
+
+        Label scoreLabel = (Label) sidebar.getChildren().get(1);
+        scoreLabel.setText("Score: " + score);
+
+        Label levelLabel = (Label) sidebar.getChildren().get(2);
+        levelLabel.setText("Level: " + level);
+    }
+
 
     private void updateMazePane() {
         mazePane.getChildren().clear(); // Limpa o pane existente

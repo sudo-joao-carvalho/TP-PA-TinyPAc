@@ -4,6 +4,7 @@ import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.gameengine.GameEngine;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
+import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.ui.gui.MainJFX;
@@ -58,6 +59,7 @@ public class GameContextManager {
     }
     public boolean unpause(){return fsm.unpause();}
 
+    public Level getLevel(){return fsm.getLevel();}
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}
     public void retrieveKey(KeyType key){
         fsm.retrieveKey(key);
