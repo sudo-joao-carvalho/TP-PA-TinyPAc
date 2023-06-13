@@ -1,6 +1,7 @@
 package pt.isec.pa.tinypac.model.data;
 
 import com.googlecode.lanterna.input.KeyType;
+import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.cell.*;
 import pt.isec.pa.tinypac.model.data.mob.*;
 
@@ -108,7 +109,7 @@ public class Level {
             //GHOSTS SPAWN
                 Thread timerThread1 = new Thread(() -> {
                     int seconds = 0;
-                    while (seconds < 15) {
+                    while (seconds < 5) {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
@@ -334,7 +335,7 @@ public class Level {
         return lst;
     }
 
-    public boolean evolve(KeyType key) {
+    public boolean evolve(KeyCode key) {
         int n = 0;
 
         List<Element> lst = new ArrayList<>();

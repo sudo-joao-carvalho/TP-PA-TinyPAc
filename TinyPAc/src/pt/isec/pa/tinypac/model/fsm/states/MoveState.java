@@ -19,7 +19,7 @@ public class MoveState extends MobsStateAdapter {
 
     public boolean checkLevelOver(){
 
-        if(TinyPac.SCORE >= 10){
+        if(TinyPac.SCORE >= 1000){
             game.getLevel().setLevelComplete();
             return true;
         }

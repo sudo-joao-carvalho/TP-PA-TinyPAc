@@ -49,7 +49,6 @@ public class WaitBeginUI extends BorderPane {
         setOnKeyPressed(event -> {
                 gameCManager.evolve();
         });
-
     }
 
 

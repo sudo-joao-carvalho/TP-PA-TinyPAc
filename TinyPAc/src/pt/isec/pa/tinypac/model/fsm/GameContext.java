@@ -2,6 +2,7 @@ package pt.isec.pa.tinypac.model.fsm;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Element;
@@ -19,7 +20,7 @@ public class GameContext {
 
     IMobsState gameState;
 
-    private KeyType currentKeyType = KeyType.ArrowDown;;//KeyType.ArrowRight;
+    private KeyCode currentKeyType = KeyCode.KP_DOWN;;//KeyType.ArrowRight;
 
     public GameContext(){
         game            = new Game(1);
@@ -52,7 +53,7 @@ public class GameContext {
     public char[][] getMap(){return game.getLevel().getMaze();}
 
     public IMazeElement[][] getMazeWithElements(){return game.getLevel().getMazeWithElements();}
-    public void retrieveKey(KeyType key){
+    public void retrieveKey(KeyCode key){
         currentKeyType = key;
     }
 }

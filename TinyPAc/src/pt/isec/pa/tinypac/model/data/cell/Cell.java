@@ -1,6 +1,7 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
 import com.googlecode.lanterna.input.KeyType;
+import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.Level;
@@ -17,7 +18,7 @@ public class Cell extends Element {
     }
 
     @Override
-    public void evolve(KeyType key) {
+    public void evolve(KeyCode key) {
 
     }
 

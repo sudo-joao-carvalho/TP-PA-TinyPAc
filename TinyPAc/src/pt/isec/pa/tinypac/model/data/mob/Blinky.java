@@ -1,6 +1,7 @@
 package pt.isec.pa.tinypac.model.data.mob;
 
 import com.googlecode.lanterna.input.KeyType;
+import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -80,7 +81,7 @@ public class Blinky extends Element {
     }
 
     @Override
-    public void evolve(KeyType key) {
+    public void evolve(KeyCode key) {
 
         Level.Position myPos = level.getPositionOf(this);
         int dx = 0;

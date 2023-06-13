@@ -1,7 +1,11 @@
 package pt.isec.pa.tinypac.ui.gui.uistates;
 
 import com.googlecode.lanterna.input.KeyType;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,9 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.cell.*;
@@ -32,23 +36,33 @@ public class MoveUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+        // Registre o AnimationTimer para começar a atualizar a posição do personagem
+        animationTimer.start();
     }
 
     private void createViews() {
 
-        this.setStyle("-fx-background-color: black;");
+        //this.setStyle("-fx-background-color: black;");
 
         mazePane = new GridPane();
+        mazePane.setStyle("-fx-background-color: black;");
         this.setCenter(mazePane);
 
         sidebar = new VBox();
         sidebar.setPadding(new Insets(20));
         sidebar.setSpacing(10);
-        sidebar.setStyle("-fx-background-color: gray;");
+        sidebar.setStyle("-fx-background-color: black; -fx-border-color: orange; -fx-border-width: 4px; -fx-text-fill: white; -fx-font-size: 40; -fx-font-weight: bold; -fx-padding: 10 10 10 10;");
+        sidebar.setPrefWidth(500);
+        sidebar.setPrefHeight(800);
+
+        this.setAlignment(mazePane, Pos.CENTER);
 
         Label livesLabel = new Label("Lifes: ");
+        livesLabel.setStyle("-fx-text-fill: white;");
         Label scoreLabel = new Label("Score: ");
+        scoreLabel.setStyle("-fx-text-fill: white;");
         Label levelLabel = new Label("Level: ");
+        levelLabel.setStyle("-fx-text-fill: white;");
 
         sidebar.getChildren().addAll(livesLabel, scoreLabel, levelLabel);
 
@@ -56,29 +70,43 @@ public class MoveUI extends BorderPane {
     }
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
+        setOnKeyPressed(t);
 
-        setOnKeyPressed( event -> {
-            if(event.getCode() == KeyCode.KP_RIGHT){
-                gameCManager.retrieveKey(KeyType.ArrowRight);
-            }
-            if(event.getCode() == KeyCode.KP_LEFT){
-                gameCManager.retrieveKey(KeyType.ArrowLeft);
-            }
-            if(event.getCode() == KeyCode.KP_UP){
-                gameCManager.retrieveKey(KeyType.ArrowUp);
-            }
-            if(event.getCode() == KeyCode.KP_DOWN){
-                gameCManager.retrieveKey(KeyType.ArrowDown);
-            }
-        });
     }
 
+    EventHandler<KeyEvent> t = new EventHandler<>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if(event.getCode() == KeyCode.RIGHT){
+                gameCManager.retrieveKey(KeyCode.RIGHT);
+            }
+            if(event.getCode() == KeyCode.LEFT){
+                gameCManager.retrieveKey(KeyCode.LEFT);
+            }
+            if(event.getCode() == KeyCode.UP){
+                gameCManager.retrieveKey(KeyCode.UP);
+            }
+            if(event.getCode() == KeyCode.DOWN){
+                gameCManager.retrieveKey(KeyCode.DOWN);
+            }
+
+            gameCManager.evolve();
+            //update();
+        }
+    };
+    AnimationTimer animationTimer = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            update();
+        }
+    };
 
     private void update() {
         if (gameCManager.getState() == EMobsState.MOVE) {
             this.setVisible(true);
             updateSidebar();
             updateMazePane();
+            //gameCManager.evolve();
         } else {
             this.setVisible(false);
         }

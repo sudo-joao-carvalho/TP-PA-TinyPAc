@@ -1,17 +1,14 @@
 package pt.isec.pa.tinypac.model;
 
-import com.googlecode.lanterna.input.KeyType;
-import pt.isec.pa.tinypac.gameengine.GameEngine;
-import pt.isec.pa.tinypac.model.data.Element;
+import javafx.scene.input.KeyCode;
+import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
-import pt.isec.pa.tinypac.ui.gui.MainJFX;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 public class GameContextManager {
 
@@ -37,10 +34,11 @@ public class GameContextManager {
             fsm.evolve(g, t); //quando acontecer isto temos que fazer um Platform.runLater(() ->{ context.evolve; });
         });
 
-        //gameEngine.registerClient(MainJFX);
+        //gameEngine.registerClient(LanternaUI);
         gameEngine.start(350);
 
         gameEngine.waitForTheEnd();*/
+
         pcs.firePropertyChange(null, null, null);
     }
 
@@ -61,7 +59,11 @@ public class GameContextManager {
 
     public Level getLevel(){return fsm.getLevel();}
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}
-    public void retrieveKey(KeyType key){
+    public void retrieveKey(KeyCode key){
         fsm.retrieveKey(key);
+    }
+
+    public void evolve(IGameEngine g, long t) {
+        fsm.evolve(g, t);
     }
 }

@@ -1,12 +1,12 @@
 package pt.isec.pa.tinypac;
 
 import com.googlecode.lanterna.input.KeyType;
+import javafx.application.Platform;
 import pt.isec.pa.tinypac.gameengine.GameEngine;
 import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.ui.gui.MainJFX;
 import pt.isec.pa.tinypac.ui.text.GameTextUI;
-import pt.isec.pa.tinypac.ui.LanternaUI;
 
 import java.io.IOException;
 
@@ -36,6 +36,19 @@ public class Main {
         gameCManager = new GameContextManager();
     }
     public static void main(String[] args) {
+
+        /*Platform.runLater(() -> {
+            GameEngine gameEngine = new GameEngine();
+
+            gameEngine.registerClient((g, t) -> {
+                gameCManager.evolve(g, t);
+            });
+
+            gameEngine.start(350);
+
+            gameEngine.waitForTheEnd();
+        });*/
+
         Application.launch(MainJFX.class,args);
     }
 }

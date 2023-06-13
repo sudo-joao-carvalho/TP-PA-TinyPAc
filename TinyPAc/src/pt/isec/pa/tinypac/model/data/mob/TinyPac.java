@@ -2,6 +2,7 @@ package pt.isec.pa.tinypac.model.data.mob;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.data.cell.*;
@@ -108,8 +109,7 @@ public class TinyPac extends Element {
             return true;
         }
         if(checkFood(y, x) instanceof Fruit){
-            SCORE += 10;
-            enterOP();
+            SCORE += 25;
             return true;
         }
 
@@ -130,16 +130,16 @@ public class TinyPac extends Element {
     public void setLostLife(boolean lostLife){ this.lostLife = lostLife;}
 
     @Override
-    public void evolve(KeyType key){ //move
+    public void evolve(KeyCode key){ //move
 
         Level.Position myPos = level.getPositionOf(this);
         int dx = 0;
         int dy = 0;
         switch (key) {
-            case ArrowUp -> dy = -1;
-            case ArrowDown -> dy = 1;
-            case ArrowLeft -> dx = -1;
-            case ArrowRight -> dx = 1;
+            case UP -> dy = -1;
+            case DOWN -> dy = 1;
+            case LEFT -> dx = -1;
+            case RIGHT -> dx = 1;
         }
         if (dx != 0 || dy != 0) {
             // Verifica se o movimento é válido

@@ -55,7 +55,9 @@ public class RootPane extends BorderPane {
                     waitBeginUI.requestFocus();
                     break;
                 case MOVE:
-                    stackPane.getChildren().add(new MoveUI(gameCManager));
+                    var moveUI = new MoveUI(gameCManager);
+                    stackPane.getChildren().add(moveUI);
+                    moveUI.requestFocus();
                     break;
                 case PAUSE:
                     stackPane.getChildren().add(new PauseUI(gameCManager));
