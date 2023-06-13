@@ -4,11 +4,15 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
+import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.Game;
+import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.Level;
 import pt.isec.pa.tinypac.model.fsm.states.MoveState;
 import pt.isec.pa.tinypac.model.fsm.states.VulnerableState;
 import pt.isec.pa.tinypac.model.fsm.states.WaitBeginState;
+
+import java.util.List;
 
 public class GameContext {
     Game game;
@@ -46,6 +50,8 @@ public class GameContext {
 
     public Level getLevel(){return game.getLevel();}
     public char[][] getMap(){return game.getLevel().getMaze();}
+
+    public IMazeElement[][] getMazeWithElements(){return game.getLevel().getMazeWithElements();}
     public void retrieveKey(KeyType key){
         currentKeyType = key;
     }

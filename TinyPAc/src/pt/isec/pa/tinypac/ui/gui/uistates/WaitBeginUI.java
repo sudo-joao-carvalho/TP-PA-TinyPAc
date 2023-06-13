@@ -21,7 +21,7 @@ public class WaitBeginUI extends BorderPane {
     GameContextManager gameCManager;
 
     Text waitText;
-    //Button botao;
+
     public WaitBeginUI(GameContextManager gameCManager) {
         this.gameCManager = gameCManager;
 
@@ -39,9 +39,7 @@ public class WaitBeginUI extends BorderPane {
         waitText.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         waitText.setFill(Color.WHITE);
 
-        //botao = new Button("COCO");
-
-        VBox vbox = new VBox(waitText/*, botao*/);
+        VBox vbox = new VBox(waitText);
         vbox.setAlignment(Pos.CENTER);
         this.setCenter(vbox);
     }
@@ -49,14 +47,8 @@ public class WaitBeginUI extends BorderPane {
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
                 gameCManager.evolve();
-                // Aqui você deve trocar para a próxima cena ou atualizar a interface conforme necessário
-            }
         });
-        /*botao.setOnAction(event -> {
-            gameCManager.evolve();
-        });*/
 
     }
 

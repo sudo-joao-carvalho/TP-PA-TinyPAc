@@ -210,6 +210,19 @@ public class Level {
         return maze.get(y, x).getSymbol();
     }
 
+    public IMazeElement[][] getMazeWithElements() {
+        IMazeElement[][] arr = new IMazeElement[height][width];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (maze.get(y, x) instanceof Element) {
+                    Element element = (Element) maze.get(y, x);
+                    arr[y][x] = element;
+                }
+            }
+        }
+        return arr;
+    }
+
     public TinyPac getTinyPac() {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
