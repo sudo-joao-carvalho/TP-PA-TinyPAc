@@ -14,7 +14,7 @@ import pt.isec.pa.tinypac.ui.gui.resources.ImageManager;
 public class PauseUI extends BorderPane {
 
     GameContextManager gameCManager;
-    Button oi;
+    Button btnResume, btnSaveGame, btnExit;
     public PauseUI(GameContextManager gameCManager) {
         this.gameCManager = gameCManager;
 
@@ -28,16 +28,35 @@ public class PauseUI extends BorderPane {
 
         this.setStyle("-fx-background-color: black;");
 
-        oi = new Button("oi");
-        oi.setPrefWidth(250);
-        oi.setPrefHeight(80);
+        btnResume = new Button("Resume");
+        btnResume.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 4px; -fx-text-fill: white; -fx-font-size: 40; -fx-font-weight: bold;");
+        btnResume.setPrefWidth(350);
+        btnResume.setPrefHeight(100);
 
-        this.setCenter(oi);
+        btnSaveGame = new Button("Save Game");
+        btnSaveGame.setStyle("-fx-background-color: black; -fx-border-color: cyan; -fx-border-width: 4px; -fx-text-fill: white; -fx-font-size: 40; -fx-font-weight: bold;");
+        btnSaveGame.setPrefWidth(350);
+        btnSaveGame.setPrefHeight(100);
+
+        btnExit  = new Button("Exit");
+        btnExit.setStyle("-fx-background-color: black; -fx-border-color: orange; -fx-border-width: 4px; -fx-text-fill: white; -fx-font-size: 40; -fx-font-weight: bold;");
+        btnExit.setPrefWidth(350);
+        btnExit.setPrefHeight(100);
+
+        VBox vBox = new VBox(/*pauseLabel, */btnResume, btnSaveGame, btnExit);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(20);
+
+        this.setCenter(vBox);
     }
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
-        oi.setOnAction( event -> {
+        btnResume.setOnAction( event -> {
             gameCManager.unpause();
+        });
+
+        btnExit.setOnAction( event -> {
+            Platform.exit();
         });
 
     }
