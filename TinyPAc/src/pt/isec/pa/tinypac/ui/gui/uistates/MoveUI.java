@@ -71,7 +71,6 @@ public class MoveUI extends BorderPane {
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         setOnKeyPressed(t);
-
     }
 
     EventHandler<KeyEvent> t = new EventHandler<>() {
@@ -89,8 +88,12 @@ public class MoveUI extends BorderPane {
             if(event.getCode() == KeyCode.DOWN){
                 gameCManager.retrieveKey(KeyCode.DOWN);
             }
+            if(event.getCode() == KeyCode.ESCAPE){
+                //gameCManager.retrieveKey(KeyCode.ESCAPE);
+                gameCManager.pause();
+            }
 
-            gameCManager.evolve();
+            //gameCManager.evolve();
             //update();
         }
     };

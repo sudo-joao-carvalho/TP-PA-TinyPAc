@@ -28,17 +28,6 @@ public class GameContextManager {
 
     public void start(){
         fsm = new GameContext();
-        /*GameEngine gameEngine = new GameEngine();
-
-        gameEngine.registerClient((g,t) -> {
-            fsm.evolve(g, t); //quando acontecer isto temos que fazer um Platform.runLater(() ->{ context.evolve; });
-        });
-
-        //gameEngine.registerClient(LanternaUI);
-        gameEngine.start(350);
-
-        gameEngine.waitForTheEnd();*/
-
         pcs.firePropertyChange(null, null, null);
     }
 
@@ -55,7 +44,11 @@ public class GameContextManager {
         pcs.firePropertyChange(null, null, null);
         return ret;
     }
-    public boolean unpause(){return fsm.unpause();}
+    public boolean unpause(){
+        var ret = fsm.unpause();
+        pcs.firePropertyChange(null, null, null);
+        return ret;
+    }
 
     public Level getLevel(){return fsm.getLevel();}
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}

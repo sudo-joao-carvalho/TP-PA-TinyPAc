@@ -61,7 +61,6 @@ public class MoveState extends MobsStateAdapter {
         changeState(EMobsState.MOVE);
         return true;
 
-
     }
 
     @Override
