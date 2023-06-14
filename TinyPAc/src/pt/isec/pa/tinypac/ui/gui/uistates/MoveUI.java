@@ -89,7 +89,6 @@ public class MoveUI extends BorderPane {
                 gameCManager.retrieveKey(KeyCode.DOWN);
             }
             if(event.getCode() == KeyCode.ESCAPE){
-                //gameCManager.retrieveKey(KeyCode.ESCAPE);
                 gameCManager.pause();
             }
 
