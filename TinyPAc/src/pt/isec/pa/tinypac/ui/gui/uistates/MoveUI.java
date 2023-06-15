@@ -94,17 +94,18 @@ public class MoveUI extends BorderPane {
             if(event.getCode() == KeyCode.ESCAPE){
                 gameCManager.pause();
             }
-
             gameCManager.evolve();
             //update();
         }
     };
 
     private void update() {
+        //this.requestFocus();
         if (gameCManager.getState() == EMobsState.MOVE) {
             this.setVisible(true);
             updateSidebar();
             updateMazePane();
+            //gameCManager.evolve();
             //gameCManager.evolve();
         } else {
             this.setVisible(false);

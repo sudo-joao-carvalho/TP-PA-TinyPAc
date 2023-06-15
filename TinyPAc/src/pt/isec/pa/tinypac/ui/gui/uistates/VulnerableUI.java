@@ -31,8 +31,6 @@ public class VulnerableUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
-        // Registre o AnimationTimer para começar a atualizar a posição do personagem
-        //animationTimer.start();
     }
 
     private void createViews() {
@@ -93,7 +91,7 @@ public class VulnerableUI extends BorderPane {
     };
 
     private void update() {
-        if (gameCManager.getState() == EMobsState.MOVE) {
+        if (gameCManager.getState() == EMobsState.VULNERABLE) {
             this.setVisible(true);
             updateSidebar();
             updateMazePane();
@@ -151,7 +149,7 @@ public class VulnerableUI extends BorderPane {
         // Você pode usar uma estrutura de switch/case ou um mapa para associar os elementos às imagens
 
         if (element instanceof Wall) {
-            return ImageManager.getImage("wall.png");
+            return ImageManager.getImage("red.png");
         } else if (element instanceof Warp) {
             return ImageManager.getImage("background.png");
         } else if (element instanceof PowerBall) {

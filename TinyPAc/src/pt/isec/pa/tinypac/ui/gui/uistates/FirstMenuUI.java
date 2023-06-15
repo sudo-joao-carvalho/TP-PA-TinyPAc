@@ -63,10 +63,6 @@ public class FirstMenuUI extends BorderPane {
 
 
     private void update() {
-        /*if (gameCManager.getState() != gameCManager.BEGIN) {
-            this.setVisible(false);
-            return;
-        }*/
 
         if(gameCManager.getFsm() == null) this.setVisible(true);
         else this.setVisible(false);

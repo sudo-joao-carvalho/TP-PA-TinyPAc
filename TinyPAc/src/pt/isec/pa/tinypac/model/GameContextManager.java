@@ -34,7 +34,7 @@ public class GameContextManager {
     public EMobsState getState(){return fsm.getState();}
 
     public boolean evolve(){
-        if(fsm == null) return false;
+        //if(fsm == null) return false;
 
         var ret = fsm.evolve();
         pcs.firePropertyChange(null, null, null);
@@ -60,6 +60,8 @@ public class GameContextManager {
     }
 
     public void evolve(IGameEngine g, long t) {
+        if(fsm == null) return ;
+
         fsm.evolve(g, t);
         pcs.firePropertyChange(null, null, null);
     }

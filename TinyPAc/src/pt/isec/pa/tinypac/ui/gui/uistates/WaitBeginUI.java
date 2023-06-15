@@ -54,7 +54,7 @@ public class WaitBeginUI extends BorderPane {
 
 
     private void update() {
-
+        //this.requestFocus();
         this.setVisible(gameCManager.getState() == EMobsState.WAIT_BEGIN);
 
     }
