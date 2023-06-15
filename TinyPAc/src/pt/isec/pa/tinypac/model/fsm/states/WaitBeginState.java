@@ -7,13 +7,15 @@ import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
+import static pt.isec.pa.tinypac.Main.gameCManager;
+
 public class WaitBeginState extends MobsStateAdapter{
 
     public WaitBeginState(GameContext context, Game game){
         super(context, game);
 
         //SETTERS
-        TinyPac.SCORE = 0;
+        //gameCManager.getLevel().getTinyPac().setScore(0);
 
         if(game.getLevel().getLevelComplete()){
             int currentLevelNumber = game.getLevel().getLevelNumber();

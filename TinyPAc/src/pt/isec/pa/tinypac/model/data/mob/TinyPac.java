@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TinyPac extends Element {
     public static final char SYMBOL = 'M';
-    public static int SCORE = 0;
+    private int score = 0;
     private int lifes = 3;
 
     private boolean isOP = false;
@@ -23,6 +23,14 @@ public class TinyPac extends Element {
     public TinyPac(Level level){
         super(level);
 
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getLifes() {
@@ -98,18 +106,18 @@ public class TinyPac extends Element {
     public boolean eat(int y, int x){
 
         if(checkFood(y, x) instanceof FoodBall){
-            SCORE += 1;
+            score += 1;
             return true;
         }
 
 
         if(checkFood(y, x) instanceof PowerBall){
-            SCORE += 10;
+            score += 10;
             enterOP();
             return true;
         }
         if(checkFood(y, x) instanceof Fruit){
-            SCORE += 25;
+            score += 25;
             return true;
         }
 
@@ -222,7 +230,7 @@ public class TinyPac extends Element {
                             Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
                             level.setPositionOf(newPos, this);
 
-                            SCORE += 50;
+                            score += 50;
                             //FALTA POR O FANTASMA A VOLTAR PARA A CAVE
                             System.out.println("\nComi um fantasma");
                         }

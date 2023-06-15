@@ -73,7 +73,7 @@ public class RootPane extends BorderPane {
                     stackPane.getChildren().add(new EndLevelUI(gameCManager));
                     break;
                 default:
-                    
+
                     break;
             }
         }

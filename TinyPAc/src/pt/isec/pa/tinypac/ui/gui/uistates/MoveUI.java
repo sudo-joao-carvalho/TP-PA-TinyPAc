@@ -116,7 +116,7 @@ public class MoveUI extends BorderPane {
     private void updateSidebar() {
         // Atualize as informações da barra lateral com os dados relevantes, como vidas, pontuação e nível
         int lives = gameCManager.getLevel().getTinyPac().getLifes();
-        int score = TinyPac.SCORE;
+        int score = gameCManager.getLevel().getTinyPac().getScore();
         int level = gameCManager.getLevel().getLevelNumber();
 
         Label livesLabel = (Label) sidebar.getChildren().get(0);

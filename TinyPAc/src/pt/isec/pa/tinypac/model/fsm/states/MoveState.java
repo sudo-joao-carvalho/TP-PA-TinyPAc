@@ -19,7 +19,7 @@ public class MoveState extends MobsStateAdapter {
 
     public boolean checkLevelOver(){
 
-        if(TinyPac.SCORE == 10){
+        if(game.getLevel().getTinyPac().getScore() >= 10){
             game.getLevel().setLevelComplete();
             return true;
         }
@@ -54,6 +54,7 @@ public class MoveState extends MobsStateAdapter {
                 return true;
             }
 
+            game.getLevel().getTinyPac().setScore(0);
             changeState(EMobsState.WAIT_BEGIN);
             return true;
         }

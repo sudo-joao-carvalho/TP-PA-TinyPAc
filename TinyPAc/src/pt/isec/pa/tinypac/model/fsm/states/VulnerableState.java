@@ -18,7 +18,7 @@ public class VulnerableState extends MobsStateAdapter {
     }
     public boolean checkLevelOver(){
 
-        if(TinyPac.SCORE == 10){
+        if(game.getLevel().getTinyPac().getScore() >= 10){
             game.getLevel().setLevelComplete();
             return true;
         }
@@ -45,7 +45,6 @@ public class VulnerableState extends MobsStateAdapter {
     @Override
     public boolean evolve(){
 
-        System.out.println("vulnerable state");
         Thread timerThread = new Thread(() -> { //thread que faz com que esteja neste estado durante 10 segundos
             int seconds = 0;
             while (seconds < 10) {
@@ -57,6 +56,7 @@ public class VulnerableState extends MobsStateAdapter {
                             return;
                         }
 
+                        game.getLevel().getTinyPac().setScore(0);
                         changeState(EMobsState.WAIT_BEGIN);
                         return;
                     }
