@@ -36,21 +36,10 @@ public class Main {
         gameCManager = new GameContextManager();
     }
     public static void main(String[] args) {
-
-        /*Platform.runLater(() -> {
-            GameEngine gameEngine = new GameEngine();
-
-            gameEngine.registerClient((g, t) -> {
-                gameCManager.evolve(g, t);
-            });
-
-            gameEngine.start(350);
-
-            gameEngine.waitForTheEnd();
-        });*/
-
         Application.launch(MainJFX.class,args);
     }
 }
 
+//por JavaDocs -> pelo menos 2/3 classes -> pelo menos no modelo de dados
+//fazer 3 testes sobre a maquina de estados
 //melhorar diagrama de estados... descriçoes meter move em tudo, meter so o endlevelsstate para o final do jogo, de resto voltar dos moves para o waitbegin

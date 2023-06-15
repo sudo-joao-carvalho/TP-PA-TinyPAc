@@ -36,8 +36,7 @@ public class MoveUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
-        // Registre o AnimationTimer para começar a atualizar a posição do personagem
-        //animationTimer.start();
+
     }
 
     private void createViews() {
@@ -68,6 +67,10 @@ public class MoveUI extends BorderPane {
 
         this.setRight(sidebar);
     }
+
+    /** JAVADOC
+     *
+     */
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         setOnKeyPressed(t);
@@ -92,16 +95,10 @@ public class MoveUI extends BorderPane {
                 gameCManager.pause();
             }
 
-            //gameCManager.evolve();
+            gameCManager.evolve();
             //update();
         }
     };
-    /*AnimationTimer animationTimer = new AnimationTimer() {
-        @Override
-        public void handle(long now) {
-            update();
-        }
-    };*/
 
     private void update() {
         if (gameCManager.getState() == EMobsState.MOVE) {
