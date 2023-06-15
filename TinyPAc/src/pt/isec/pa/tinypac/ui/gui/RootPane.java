@@ -43,11 +43,11 @@ public class RootPane extends BorderPane {
         if(gameCManager.getFsm() != null){
             EMobsState gameState = gameCManager.getState();
 
-            // Remova todas as interfaces de usuário do StackPane
+            // Remove todas as interfaces de usuário do StackPane
             StackPane stackPane = (StackPane) this.getCenter();
             stackPane.getChildren().clear();
 
-            // Adicione a interface de usuário correspondente ao estado atual
+            // Adicione a interface correspondente ao estado atual
             switch (gameState) {
                 case WAIT_BEGIN:
                     var waitBeginUI = new WaitBeginUI(gameCManager); //fazer estes news todos logo dentro do stacPane
@@ -73,8 +73,7 @@ public class RootPane extends BorderPane {
                     stackPane.getChildren().add(new EndLevelUI(gameCManager));
                     break;
                 default:
-                    // Caso de fallback caso um novo estado seja adicionado e não tenha sido tratado
-                    //stackPane.getChildren().add(new FirstMenuUI(gameCManager));
+                    
                     break;
             }
         }
