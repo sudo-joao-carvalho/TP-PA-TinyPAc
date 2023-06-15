@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.tinypac.model.GameContextManager;
@@ -53,6 +54,12 @@ public class PauseUI extends BorderPane {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         btnResume.setOnAction( event -> {
             gameCManager.unpause();
+        });
+
+        setOnKeyPressed( event -> {
+            if(event.getCode() == KeyCode.ESCAPE){
+                gameCManager.unpause();
+            }
         });
 
         btnExit.setOnAction( event -> {

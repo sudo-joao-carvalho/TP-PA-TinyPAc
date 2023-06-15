@@ -60,10 +60,14 @@ public class RootPane extends BorderPane {
                     moveUI.requestFocus();
                     break;
                 case PAUSE:
-                    stackPane.getChildren().add(new PauseUI(gameCManager));
+                    var pauseUI = new PauseUI(gameCManager);
+                    stackPane.getChildren().add(pauseUI);
+                    pauseUI.requestFocus();
                     break;
                 case VULNERABLE:
-                    stackPane.getChildren().add(new VulnerableUI(gameCManager));
+                    var vulnerableUI = new VulnerableUI(gameCManager);
+                    stackPane.getChildren().add(vulnerableUI);
+                    vulnerableUI.requestFocus();
                     break;
                 case END_LEVEL:
                     stackPane.getChildren().add(new EndLevelUI(gameCManager));
