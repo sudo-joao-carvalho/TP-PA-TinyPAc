@@ -33,7 +33,7 @@ public class MainJFX extends Application {
             // Atualize o estado do jogo no thread da aplicação do JavaFX
             Platform.runLater(() -> {
                 // Chame o método evolve do GameContextManager
-                if(gameCManager.getFsm() != null)
+                //if(gameCManager.getFsm() != null)
                     gameCManager.evolve(g, t);
             });
         });

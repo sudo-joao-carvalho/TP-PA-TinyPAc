@@ -34,6 +34,8 @@ public class GameContextManager {
     public EMobsState getState(){return fsm.getState();}
 
     public boolean evolve(){
+        if(fsm == null) return false;
+
         var ret = fsm.evolve();
         pcs.firePropertyChange(null, null, null);
         return ret;
@@ -54,9 +56,11 @@ public class GameContextManager {
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         fsm.retrieveKey(key);
+        pcs.firePropertyChange(null, null, null);
     }
 
     public void evolve(IGameEngine g, long t) {
         fsm.evolve(g, t);
+        pcs.firePropertyChange(null, null, null);
     }
 }

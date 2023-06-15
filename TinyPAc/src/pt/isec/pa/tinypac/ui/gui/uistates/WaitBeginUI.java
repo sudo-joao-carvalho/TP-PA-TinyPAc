@@ -47,7 +47,8 @@ public class WaitBeginUI extends BorderPane {
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         setOnKeyPressed(event -> {
-                gameCManager.evolve();
+                //gameCManager.evolve();
+            gameCManager.retrieveKey(KeyCode.ENTER);
         });
     }
 
