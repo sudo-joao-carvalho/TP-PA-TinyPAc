@@ -18,8 +18,6 @@ public class TinyPac extends Element {
     private boolean isOP = false;
     private boolean lostLife = false;
 
-    private static int counter = 0; //usar esta var estatica para 
-
 
 
     public TinyPac(Level level){

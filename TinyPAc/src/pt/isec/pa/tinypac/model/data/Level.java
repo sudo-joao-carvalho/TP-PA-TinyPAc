@@ -25,6 +25,8 @@ public class Level {
 
     private boolean isLevelComplete = false;
 
+    private static int counter = 0; //usar esta var estatica como multiplier do timer depois no evolve deste ficheiro fazer umif com multiplicadores diferentes para aquele instanceof daquele tipo de mob
+
     public Level(int levelNumber){
         //levelNumber++;
 
