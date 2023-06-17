@@ -49,7 +49,7 @@ public class AskGameSavedUI extends BorderPane {
 
         VBox vBox = new VBox(text, btnYes, btnNo);
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(20);
+        vBox.setSpacing(30);
 
         this.setCenter(vBox);
     }
@@ -57,10 +57,9 @@ public class AskGameSavedUI extends BorderPane {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         btnYes.setOnAction( event -> {
             gameCManager.load();
-            //gameCManager.evolve();
         });
         btnNo.setOnAction( event -> {
-            Platform.exit();
+            gameCManager.start();
         });
     }
 

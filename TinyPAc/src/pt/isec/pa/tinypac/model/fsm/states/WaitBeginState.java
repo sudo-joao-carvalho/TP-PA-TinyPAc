@@ -6,7 +6,9 @@ import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
-public class WaitBeginState extends MobsStateAdapter{
+import java.io.Serializable;
+
+public class WaitBeginState extends MobsStateAdapter implements Serializable {
 
     public WaitBeginState(GameContext context, GameData gameData){
         super(context, gameData);

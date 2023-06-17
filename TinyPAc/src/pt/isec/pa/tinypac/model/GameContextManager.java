@@ -56,9 +56,6 @@ public class GameContextManager {
     }
 
     public boolean save(){
-        /*var ret = fsm.save();
-        pcs.firePropertyChange(null, null, null);
-        return ret;*/
 
         File file = new File(FILE);
         try(FileOutputStream fout = new FileOutputStream(file);

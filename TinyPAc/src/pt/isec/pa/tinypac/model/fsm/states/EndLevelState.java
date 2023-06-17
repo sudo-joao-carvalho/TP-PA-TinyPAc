@@ -6,7 +6,9 @@ import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
-public class EndLevelState extends MobsStateAdapter {
+import java.io.Serializable;
+
+public class EndLevelState extends MobsStateAdapter implements Serializable {
 
     public EndLevelState(GameContext context, GameData gameData){
         super(context, gameData);

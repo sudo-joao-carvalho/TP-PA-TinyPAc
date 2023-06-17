@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class GameData implements Serializable{
 
-    public record Position(int y, int x) {}
+    public record Position(int y, int x) implements Serializable{}
 
     private int height;
     private int width;

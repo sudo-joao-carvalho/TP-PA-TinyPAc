@@ -7,7 +7,9 @@ import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
-public class MoveState extends MobsStateAdapter {
+import java.io.Serializable;
+
+public class MoveState extends MobsStateAdapter implements Serializable {
 
     public MoveState(GameContext context, GameData gameData){
         super(context, gameData);
