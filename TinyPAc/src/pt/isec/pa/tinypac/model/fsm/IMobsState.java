@@ -2,7 +2,8 @@ package pt.isec.pa.tinypac.model.fsm;
 
 public interface IMobsState {
 
-    boolean start();
+    boolean save();
+    boolean load();
     boolean evolve();
 
     boolean pause();

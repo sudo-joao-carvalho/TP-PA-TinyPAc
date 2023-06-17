@@ -52,14 +52,19 @@ public class PauseUI extends BorderPane {
     }
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
-        btnResume.setOnAction( event -> {
-            gameCManager.unpause();
-        });
-
         setOnKeyPressed( event -> {
             if(event.getCode() == KeyCode.ESCAPE){
                 gameCManager.unpause();
             }
+        });
+
+        btnResume.setOnAction( event -> {
+            gameCManager.unpause();
+        });
+
+        btnSaveGame.setOnAction( event -> {
+            gameCManager.save();
+            System.out.println("jogo guardado");
         });
 
         btnExit.setOnAction( event -> {

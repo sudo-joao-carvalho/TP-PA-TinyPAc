@@ -1,12 +1,12 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
-import pt.isec.pa.tinypac.model.data.Level;
+import pt.isec.pa.tinypac.model.data.GameData;
 
 public class EmptyCell extends Cell{
 
     public static final char SYMBOL = ' ';
-    public EmptyCell(Level level){
-        super(level);
+    public EmptyCell(GameData gameData){
+        super(gameData);
     }
 
     @Override

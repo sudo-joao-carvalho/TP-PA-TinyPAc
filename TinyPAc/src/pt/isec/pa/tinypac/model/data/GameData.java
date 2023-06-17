@@ -1,18 +1,21 @@
 package pt.isec.pa.tinypac.model.data;
 
-import com.googlecode.lanterna.input.KeyType;
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.cell.*;
 import pt.isec.pa.tinypac.model.data.mob.*;
+import pt.isec.pa.tinypac.model.memento.IMemento;
+import pt.isec.pa.tinypac.model.memento.IOriginator;
+import pt.isec.pa.tinypac.model.memento.Memento;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Level {
+public class GameData implements Serializable{
 
     public record Position(int y, int x) {}
 
@@ -27,7 +30,7 @@ public class Level {
 
     private static int counter = 0; //usar esta var estatica como multiplier do timer depois no evolve deste ficheiro fazer umif com multiplicadores diferentes para aquele instanceof daquele tipo de mob
 
-    public Level(int levelNumber){
+    public GameData(int levelNumber){
         //levelNumber++;
 
         this.levelNumber    = levelNumber;
@@ -43,6 +46,8 @@ public class Level {
     public boolean getLevelComplete(){return this.isLevelComplete;}
 
     public int getLevelNumber(){return levelNumber;}
+
+    public void setLevelNumber(int levelNumber){this.levelNumber = levelNumber;}
     public Maze setMaze(String filePath) {
 
         try{
@@ -120,7 +125,7 @@ public class Level {
                         seconds++;
                     }
 
-                    for(Level.Position pos : getCave()){
+                    for(GameData.Position pos : getCave()){
                         Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
                         if(element instanceof Portal){
                             addElement(new Blinky(this), pos.y(), pos.x());

@@ -1,22 +1,28 @@
 package pt.isec.pa.tinypac.model.fsm;
 
-import pt.isec.pa.tinypac.model.data.Game;
+//import pt.isec.pa.tinypac.model.data.Game;
+import pt.isec.pa.tinypac.model.data.GameData;
 
-public abstract class MobsStateAdapter implements IMobsState {
+import java.io.Serializable;
 
-    protected Game game;
+public abstract class MobsStateAdapter implements IMobsState, Serializable {
+
+    protected GameData gameData;
 
     protected GameContext context;
 
-    protected MobsStateAdapter(GameContext context, Game game){
+    protected MobsStateAdapter(GameContext context, GameData gameData){
         this.context    = context;
-        this.game       = game;
+        this.gameData       = gameData;
     }
 
-    protected void changeState(EMobsState newState){context.changeState(newState.createState(context, game));}
+    protected void changeState(EMobsState newState){context.changeState(newState.createState(context, gameData));}
 
     @Override
-    public boolean start(){return false;}
+    public boolean save(){return false;}
+
+    @Override
+    public boolean load(){return false;}
     @Override
     public boolean evolve(){return false;}
 

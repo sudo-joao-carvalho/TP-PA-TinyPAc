@@ -1,12 +1,12 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
-import pt.isec.pa.tinypac.model.data.Level;
+import pt.isec.pa.tinypac.model.data.GameData;
 
 public class Warp extends Cell{
 
     public static final char SYMBOL = 'W';
-    public Warp(Level level){
-        super(level);
+    public Warp(GameData gameData){
+        super(gameData);
     }
 
     @Override

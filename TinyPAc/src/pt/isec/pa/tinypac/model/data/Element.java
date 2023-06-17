@@ -1,17 +1,12 @@
 package pt.isec.pa.tinypac.model.data;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import javafx.scene.input.KeyCode;
-
-import javax.swing.*;
-import java.awt.event.KeyEvent;
 
 public abstract class Element implements IMazeElement{
 
-    protected Level level;
+    protected GameData gameData;
 
-    protected Element(Level level) {
-        this.level = level;
+    protected Element(GameData gameData) {
+        this.gameData = gameData;
     } // o facto de ter aqui o construtor eu depois n tenho que repetir nas classes derivadas
 
     abstract public void evolve(KeyCode key);

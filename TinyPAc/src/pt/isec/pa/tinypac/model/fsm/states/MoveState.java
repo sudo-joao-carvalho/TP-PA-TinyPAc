@@ -1,41 +1,39 @@
 package pt.isec.pa.tinypac.model.fsm.states;
 
-import com.googlecode.lanterna.input.KeyType;
 import pt.isec.pa.tinypac.model.data.Element;
-import pt.isec.pa.tinypac.model.data.Game;
-import pt.isec.pa.tinypac.model.data.Level;
-import pt.isec.pa.tinypac.model.data.mob.TinyPac;
+//import pt.isec.pa.tinypac.model.data.Game;
+import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
 public class MoveState extends MobsStateAdapter {
 
-    public MoveState(GameContext context, Game game){
-        super(context, game);
+    public MoveState(GameContext context, GameData gameData){
+        super(context, gameData);
 
         //SETTERS
     }
 
     public boolean checkLevelOver(){
 
-        if(game.getLevel().getTinyPac().getScore() >= 2){
-            game.getLevel().setLevelComplete();
+        if(gameData.getTinyPac().getScore() >= 2){
+            gameData.setLevelComplete();
             return true;
         }
 
-        if(game.getLevel().getTinyPac().getLifes() == 0){
+        if(gameData.getTinyPac().getLifes() == 0){
             return true;
         }
 
         return false;
     }
 
-    public boolean checkVulnerable(){return game.getLevel().getTinyPac().isOP();}
+    public boolean checkVulnerable(){return gameData.getTinyPac().isOP();}
 
     public void setGhostsVulnerable(boolean ghostsVulnerable){
 
-        for(Element element : game.getLevel().getGhosts()){
+        for(Element element : gameData.getGhosts()){
             element.setGhostVulnerable(ghostsVulnerable);
         }
     }
@@ -49,12 +47,12 @@ public class MoveState extends MobsStateAdapter {
         }
 
         if(checkLevelOver()){
-            if(game.getLevel().getLevelNumber() == 2){
+            if(gameData.getLevelNumber() == 2){
                 changeState(EMobsState.END_LEVEL);
                 return true;
             }
 
-            game.getLevel().getTinyPac().setScore(0);
+            gameData.getTinyPac().setScore(0);
             changeState(EMobsState.WAIT_BEGIN);
             return true;
         }

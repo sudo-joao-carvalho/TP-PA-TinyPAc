@@ -1,28 +1,33 @@
 package pt.isec.pa.tinypac.model.fsm.states;
 
-import pt.isec.pa.tinypac.model.data.Game;
-import pt.isec.pa.tinypac.model.data.Level;
-import pt.isec.pa.tinypac.model.data.mob.TinyPac;
+//import pt.isec.pa.tinypac.model.data.Game;
+import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.MobsStateAdapter;
 
-import static pt.isec.pa.tinypac.Main.gameCManager;
-
 public class WaitBeginState extends MobsStateAdapter{
 
-    public WaitBeginState(GameContext context, Game game){
-        super(context, game);
+    public WaitBeginState(GameContext context, GameData gameData){
+        super(context, gameData);
 
         //SETTERS
         //gameCManager.getLevel().getTinyPac().setScore(0);
 
-        if(game.getLevel().getLevelComplete()){
+        /*if(game.getLevel().getLevelComplete()){
             int currentLevelNumber = game.getLevel().getLevelNumber();
-            game.setLevel(new Level(currentLevelNumber + 1));
+            game.setLevel(new GameData(currentLevelNumber + 1));
         }else{
             int currentLevelNumber = game.getLevel().getLevelNumber();
-            game.setLevel(new Level(currentLevelNumber));
+            game.setLevel(new GameData(currentLevelNumber));
+        }*/
+
+        if(gameData.getLevelComplete()){
+            int currentLevelNumber = gameData.getLevelNumber();
+            context.setGameData(new GameData(currentLevelNumber + 1));
+        }else{
+            int currentLevelNumber = gameData.getLevelNumber();
+            context.setGameData(new GameData(currentLevelNumber));
         }
     }
 

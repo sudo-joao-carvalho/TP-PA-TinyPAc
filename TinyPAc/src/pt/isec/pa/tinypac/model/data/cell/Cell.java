@@ -1,20 +1,15 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
-import com.googlecode.lanterna.input.KeyType;
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
-import pt.isec.pa.tinypac.model.data.IMazeElement;
-import pt.isec.pa.tinypac.model.data.Level;
-import com.googlecode.lanterna.input.KeyStroke;
-
-import javax.swing.*;
+import pt.isec.pa.tinypac.model.data.GameData;
 
 public class Cell extends Element {
 
     private static final char SYMBOL = 'x';
 
-    public Cell(Level level){
-        super(level); // depois na herança cada celula vai ter um type diferente
+    public Cell(GameData gameData){
+        super(gameData); // depois na herança cada celula vai ter um type diferente
     }
 
     @Override

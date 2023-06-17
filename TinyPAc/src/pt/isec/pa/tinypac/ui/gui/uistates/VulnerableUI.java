@@ -104,7 +104,7 @@ public class VulnerableUI extends BorderPane {
 
     private void updateSidebar() {
         // Atualize as informações da barra lateral com os dados relevantes, como vidas, pontuação e nível
-        int lives = gameCManager.getLevel().getTinyPac().getLifes();
+        /*int lives = gameCManager.getLevel().getTinyPac().getLifes();
         int score = gameCManager.getLevel().getTinyPac().getScore();
         int level = gameCManager.getLevel().getLevelNumber();
 
@@ -115,7 +115,7 @@ public class VulnerableUI extends BorderPane {
         scoreLabel.setText("Score: " + score);
 
         Label levelLabel = (Label) sidebar.getChildren().get(2);
-        levelLabel.setText("Level: " + level);
+        levelLabel.setText("Level: " + level);*/
     }
 
 

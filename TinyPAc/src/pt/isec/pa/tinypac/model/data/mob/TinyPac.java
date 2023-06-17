@@ -1,10 +1,8 @@
 package pt.isec.pa.tinypac.model.data.mob;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
-import pt.isec.pa.tinypac.model.data.Level;
+import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.data.cell.*;
 
 import java.util.Collections;
@@ -20,8 +18,8 @@ public class TinyPac extends Element {
 
 
 
-    public TinyPac(Level level){
-        super(level);
+    public TinyPac(GameData gameData){
+        super(gameData);
 
     }
 
@@ -42,17 +40,17 @@ public class TinyPac extends Element {
     }
 
     public boolean checkWarp(int y, int x){
-        Level.Position myPos = level.getPositionOf(this);
+        GameData.Position myPos = gameData.getPositionOf(this);
 
-        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        List<GameData.Position> lst = gameData.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
         if (lst.isEmpty()) {
             return false;
         }
         Collections.shuffle(lst);
 
-        for(Level.Position pos: lst){
+        for(GameData.Position pos: lst){
             if(pos.y() == y && pos.x() == x){
-                return level.getElement(pos.y(), pos.x()) instanceof Warp;
+                return gameData.getElement(pos.y(), pos.x()) instanceof Warp;
             }
         }
 
@@ -60,18 +58,18 @@ public class TinyPac extends Element {
     }
 
     public Element checkFood(int y, int x){
-        Level.Position myPos = level.getPositionOf(this);
+        GameData.Position myPos = gameData.getPositionOf(this);
 
-        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        List<GameData.Position> lst = gameData.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
         if (lst.isEmpty()) {
             return null;
         }
         Collections.shuffle(lst);
 
-        for(Level.Position pos: lst){
+        for(GameData.Position pos: lst){
             if(pos.y() == y && pos.x() == x){
-                if(level.getElement(pos.y(), pos.x()) instanceof FoodBall || level.getElement(pos.y(), pos.x()) instanceof PowerBall)
-                    return level.getElement(pos.y(), pos.x());
+                if(gameData.getElement(pos.y(), pos.x()) instanceof FoodBall || gameData.getElement(pos.y(), pos.x()) instanceof PowerBall)
+                    return gameData.getElement(pos.y(), pos.x());
                 else return null;
             }
 
@@ -83,18 +81,18 @@ public class TinyPac extends Element {
 
     public boolean isValidPosition(int y, int x){
 
-        Level.Position myPos = level.getPositionOf(this);
+        GameData.Position myPos = gameData.getPositionOf(this);
 
-        List<Level.Position> lst = level.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
+        List<GameData.Position> lst = gameData.getElementNeighbors(myPos.y(), myPos.x(), Element.class);
         if (lst.isEmpty()) {
             return false;
         }
         Collections.shuffle(lst);
 
-        for(Level.Position pos: lst){
+        for(GameData.Position pos: lst){
             if(pos.y() == y && pos.x() == x){
-                return !(level.getElement(pos.y(), pos.x()) instanceof Wall) &&
-                        !(level.getElement(pos.y(), pos.x()) instanceof Portal);
+                return !(gameData.getElement(pos.y(), pos.x()) instanceof Wall) &&
+                        !(gameData.getElement(pos.y(), pos.x()) instanceof Portal);
             }
 
         }
@@ -140,7 +138,7 @@ public class TinyPac extends Element {
     @Override
     public void evolve(KeyCode key){ //move
 
-        Level.Position myPos = level.getPositionOf(this);
+        GameData.Position myPos = gameData.getPositionOf(this);
         int dx = 0;
         int dy = 0;
         switch (key) {
@@ -155,14 +153,14 @@ public class TinyPac extends Element {
 
                 if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
                     //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
-                    for(Level.Position pos: level.getWarps()){
+                    for(GameData.Position pos: gameData.getWarps()){
 
                         if(pos.y() != myPos.y() + dy || pos.x() != myPos.x() + dx){
-                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                            gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
                             //System.out.println("\nnovo warp na posicao " + myPos);
 
-                            Level.Position newPos = new Level.Position(pos.y() + dy, pos.x() + dx);
-                            level.setPositionOf(newPos, this);
+                            GameData.Position newPos = new GameData.Position(pos.y() + dy, pos.x() + dx);
+                            gameData.setPositionOf(newPos, this);
                             //System.out.println("\n warping to " + newPos);
 
                         }
@@ -170,13 +168,13 @@ public class TinyPac extends Element {
                 } else{
 
                     if(!isOP){
-                        if(!(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
+                        if(!(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) && !(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) && !(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) && !(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
                             eat(myPos.y() + dy, myPos.x() + dx);
 
-                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                            gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
 
-                            Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
-                            level.setPositionOf(newPos, this);
+                            GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
+                            gameData.setPositionOf(newPos, this);
                             System.out.println("movi me para " + newPos);
                         }else{
                             System.out.println("encontrei um fantasma");
@@ -206,29 +204,29 @@ public class TinyPac extends Element {
                         }
 
                     }else{
-                        if(!(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) && !(level.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
+                        if(!(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) && !(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) && !(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) && !(gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
                             eat(myPos.y() + dy, myPos.x() + dx);
 
-                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                            gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
 
-                            Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
-                            level.setPositionOf(newPos, this);
+                            GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
+                            gameData.setPositionOf(newPos, this);
                             System.out.println("movi me para " + newPos);
                         }else{
-                            level.addElement(new EmptyCell(level), myPos.y(), myPos.x());
+                            gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
 
                             //mete o fantasma na cave de novo
-                            for(Level.Position pos : level.getCave()){
-                                Element element = level.getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
-                                Level.Position cavePos = new Level.Position(pos.y(), pos.x());
+                            for(GameData.Position pos : gameData.getCave()){
+                                Element element = gameData.getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
+                                GameData.Position cavePos = new GameData.Position(pos.y(), pos.x());
                                 if(element instanceof Portal){
-                                    level.addElement(new Blinky(level), pos.y(), pos.x());
-                                    level.getBlinky().setGhostVulnerable(true);
+                                    gameData.addElement(new Blinky(gameData), pos.y(), pos.x());
+                                    gameData.getBlinky().setGhostVulnerable(true);
                                 }
                             }
 
-                            Level.Position newPos = new Level.Position(myPos.y() + dy, myPos.x() + dx);
-                            level.setPositionOf(newPos, this);
+                            GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
+                            gameData.setPositionOf(newPos, this);
 
                             score += 50;
                             //FALTA POR O FANTASMA A VOLTAR PARA A CAVE

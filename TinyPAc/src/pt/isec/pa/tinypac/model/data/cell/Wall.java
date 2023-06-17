@@ -1,6 +1,6 @@
 package pt.isec.pa.tinypac.model.data.cell;
 
-import pt.isec.pa.tinypac.model.data.Level;
+import pt.isec.pa.tinypac.model.data.GameData;
 
 public class Wall extends Cell{
 
@@ -9,8 +9,8 @@ public class Wall extends Cell{
         super(wallCordY, wallCordX);
     }*/
 
-    public Wall(Level level){
-        super(level);
+    public Wall(GameData gameData){
+        super(gameData);
     }
     @Override
     public char getSymbol(){

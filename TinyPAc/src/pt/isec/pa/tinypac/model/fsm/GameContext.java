@@ -1,36 +1,39 @@
 package pt.isec.pa.tinypac.model.fsm;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
-import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
-import pt.isec.pa.tinypac.model.data.Element;
-import pt.isec.pa.tinypac.model.data.Game;
+//import pt.isec.pa.tinypac.model.data.Game;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
-import pt.isec.pa.tinypac.model.data.Level;
-import pt.isec.pa.tinypac.model.fsm.states.MoveState;
-import pt.isec.pa.tinypac.model.fsm.states.VulnerableState;
+import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.fsm.states.WaitBeginState;
+import pt.isec.pa.tinypac.model.memento.IMemento;
+import pt.isec.pa.tinypac.model.memento.IOriginator;
+import pt.isec.pa.tinypac.model.memento.Memento;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class GameContext {
-    Game game;
+public class GameContext implements Serializable, IOriginator {
+    GameData gameData;
 
     IMobsState gameState;
 
     private KeyCode currentKeyType = KeyCode.KP_DOWN;;//KeyType.ArrowRight;
 
     public GameContext(){
-        game            = new Game(1);
-        this.gameState  = new WaitBeginState(this, game);
+        //game            = new Game(1);
+        gameData        = new GameData(1);
+        this.gameState  = new WaitBeginState(this, gameData);
     }
+
+    public void setGameData(GameData gameData){this.gameData = gameData;}
 
     public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
     void changeState(IMobsState newState){this.gameState = newState;}
 
     //public boolean start(){return gameState.start();}
+    //public boolean save(){};
+
+    //public boolean load(){};
 
     public boolean evolve(){return gameState.evolve();}//evolve de mudança de estado
 
@@ -41,18 +44,31 @@ public class GameContext {
     public void evolve(IGameEngine gameEngine, long currentTime){ //evolve de mudança de estado da engine
 
         if(this.getState() == EMobsState.MOVE || this.getState() == EMobsState.VULNERABLE){ // isto assegura que so se comecem a mover assim que o estado for MOVE e nao logo quando ainda esta no waitbegin
-            if(game.getLevel() == null)
+            if(/*game.getLevel()*/gameData == null)
                 return ;
 
-            game.getLevel().evolve(currentKeyType);
+            //game.getLevel().evolve(currentKeyType);
+            gameData.evolve(currentKeyType);
         }
 
     }
 
-    public Level getLevel(){return game.getLevel();}
-    public char[][] getMap(){return game.getLevel().getMaze();}
-    public IMazeElement[][] getMazeWithElements(){return game.getLevel().getMazeWithElements();}
+    //public GameData getLevel(){return game.getLevel();}
+    public char[][] getMap(){/*return game.getLevel().getMaze();*/return gameData.getMaze();}
+    public IMazeElement[][] getMazeWithElements(){/*return game.getLevel().getMazeWithElements();*/return gameData.getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         currentKeyType = key;
+    }
+
+    @Override
+    public IMemento save(){return new Memento(this);}
+
+    @Override
+    public void restore(IMemento memento){
+        Object obj = memento.getSnapshot();
+        if(obj instanceof GameContext g){
+            gameData = g.gameData;
+            gameState = g.gameState;
+        }
     }
 }

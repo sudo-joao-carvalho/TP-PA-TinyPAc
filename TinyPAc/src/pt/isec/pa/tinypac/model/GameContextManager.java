@@ -3,15 +3,17 @@ package pt.isec.pa.tinypac.model;
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
-import pt.isec.pa.tinypac.model.data.Level;
+import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.*;
 
 public class GameContextManager {
 
+    private static final String FILE ="files/game.dat";
     private GameContext fsm;
 
     PropertyChangeSupport pcs;
@@ -53,7 +55,44 @@ public class GameContextManager {
         return ret;
     }
 
-    public Level getLevel(){return fsm.getLevel();}
+    public boolean save(){
+        /*var ret = fsm.save();
+        pcs.firePropertyChange(null, null, null);
+        return ret;*/
+
+        File file = new File(FILE);
+        try(FileOutputStream fout = new FileOutputStream(file);
+            ObjectOutputStream oout = new ObjectOutputStream(fout)){
+            oout.writeObject(fsm);
+            //ModelLog.getInstance().add("Jogo guardado");
+        } catch (Exception e) {
+            //ModelLog.getInstance().add("Erro a guardar o fichero");
+            e.printStackTrace();
+        }
+
+        pcs.firePropertyChange(null, null, null);
+        return true;
+
+    }
+
+    public boolean load(){
+        File file = new File(FILE);
+        try (FileInputStream finp = new FileInputStream(file);
+             ObjectInputStream oinp = new ObjectInputStream(finp);)
+        {
+            //ModelLog.getInstance().add("Existe um jogo guardado!");
+            fsm = (GameContext) oinp.readObject();
+            //file.delete();
+        } catch (Exception e) {
+            //ModelLog.getInstance().add("Nao existe um jogo guardado!");
+            fsm = new GameContext();
+        }
+
+        pcs.firePropertyChange(null, null, null);
+        return true;
+    }
+
+    //public GameData getLevel(){return fsm.getLevel();}
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         fsm.retrieveKey(key);
