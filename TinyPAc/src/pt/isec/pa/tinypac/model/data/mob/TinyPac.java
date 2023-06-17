@@ -5,10 +5,11 @@ import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.data.cell.*;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-public class TinyPac extends Element {
+public class TinyPac extends Element implements Serializable {
     public static final char SYMBOL = 'M';
     private int score = 0;
     private int lifes = 3;

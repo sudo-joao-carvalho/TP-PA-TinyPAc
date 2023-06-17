@@ -8,7 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import pt.isec.pa.tinypac.model.GameContextManager;
+import pt.isec.pa.tinypac.ui.gui.RootPane;
 import pt.isec.pa.tinypac.ui.gui.resources.ImageManager;
+
+import java.io.File;
 
 public class FirstMenuUI extends BorderPane {
     GameContextManager gameCManager;
@@ -54,7 +57,14 @@ public class FirstMenuUI extends BorderPane {
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         btnStartGame.setOnAction( event -> {
-            gameCManager.start();
+            File saveFile = new File("files/save.dat");
+
+            if(saveFile.exists()){
+                RootPane rootPane = (RootPane) getScene().getRoot();
+                rootPane.showAskGameSavedUI();
+            }else{
+                gameCManager.start();
+            }
         });
         btnExit.setOnAction( event -> {
             Platform.exit();

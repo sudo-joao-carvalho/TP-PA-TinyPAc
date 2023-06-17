@@ -2,7 +2,9 @@ package pt.isec.pa.tinypac.model.data.cell;
 
 import pt.isec.pa.tinypac.model.data.GameData;
 
-public class PowerBall extends Cell{
+import java.io.Serializable;
+
+public class PowerBall extends Cell implements Serializable {
 
     public static final char SYMBOL = 'O';
     public PowerBall(GameData gameData){

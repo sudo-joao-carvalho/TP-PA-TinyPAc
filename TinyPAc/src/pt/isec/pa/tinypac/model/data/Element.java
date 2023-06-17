@@ -1,7 +1,9 @@
 package pt.isec.pa.tinypac.model.data;
 import javafx.scene.input.KeyCode;
 
-public abstract class Element implements IMazeElement{
+import java.io.Serializable;
+
+public abstract class Element implements IMazeElement, Serializable {
 
     protected GameData gameData;
 

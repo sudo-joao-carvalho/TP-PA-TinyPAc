@@ -4,7 +4,9 @@ import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.GameData;
 
-public class Inky extends Element {
+import java.io.Serializable;
+
+public class Inky extends Element implements Serializable {
 
     public static final char SYMBOL = 'I';
     private boolean ghostVulnerable = false;

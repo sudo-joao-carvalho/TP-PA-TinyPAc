@@ -4,7 +4,9 @@ import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.GameData;
 
-public class Cell extends Element {
+import java.io.Serializable;
+
+public class Cell extends Element implements Serializable {
 
     private static final char SYMBOL = 'x';
 

@@ -13,7 +13,7 @@ import java.io.*;
 
 public class GameContextManager {
 
-    private static final String FILE ="files/game.dat";
+    private static final String FILE ="files/save.dat";
     private GameContext fsm;
 
     PropertyChangeSupport pcs;

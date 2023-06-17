@@ -92,4 +92,13 @@ public class RootPane extends BorderPane {
         firstMenuUI.requestFocus();
     }
 
+    public void showAskGameSavedUI(){
+        StackPane stackPane = (StackPane) this.getCenter();
+        stackPane.getChildren().clear();
+
+        AskGameSavedUI askGameSavedUI = new AskGameSavedUI(gameCManager);
+        stackPane.getChildren().add(askGameSavedUI);
+        askGameSavedUI.requestFocus();
+    }
+
 }

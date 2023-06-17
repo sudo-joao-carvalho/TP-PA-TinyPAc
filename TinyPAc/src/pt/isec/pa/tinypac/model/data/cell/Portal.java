@@ -2,7 +2,9 @@ package pt.isec.pa.tinypac.model.data.cell;
 
 import pt.isec.pa.tinypac.model.data.GameData;
 
-public class Portal extends Cell{
+import java.io.Serializable;
+
+public class Portal extends Cell implements Serializable {
 
     public static final char SYMBOL = 'Y';
     public Portal(GameData gameData){

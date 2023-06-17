@@ -5,13 +5,14 @@ import pt.isec.pa.tinypac.model.data.Element;
 import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.data.cell.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Blinky extends Element {
+public class Blinky extends Element implements Serializable {
 
-    public record Direction(int dy, int dx) {}
+    public record Direction(int dy, int dx) implements Serializable{}
     private List<Direction> possibleDirections;
     private Direction direction;
 

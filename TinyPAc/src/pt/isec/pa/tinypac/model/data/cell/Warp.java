@@ -2,7 +2,9 @@ package pt.isec.pa.tinypac.model.data.cell;
 
 import pt.isec.pa.tinypac.model.data.GameData;
 
-public class Warp extends Cell{
+import java.io.Serializable;
+
+public class Warp extends Cell implements Serializable {
 
     public static final char SYMBOL = 'W';
     public Warp(GameData gameData){
