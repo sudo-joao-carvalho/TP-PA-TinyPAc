@@ -15,7 +15,10 @@ public class EndLevelState extends MobsStateAdapter {
     }
 
     @Override
-    public boolean evolve(){return false;}
+    public boolean evolve(){
+        //changeState(EMobsState.WAIT_BEGIN);
+        return true;
+    }
 
     @Override
     public boolean pause(){return false;}

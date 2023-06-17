@@ -51,7 +51,7 @@ public class VulnerableState extends MobsStateAdapter {
                 try {
 
                     if(checkLevelOver()){
-                        if(game.getLevel().getLevelNumber() == 20){
+                        if(game.getLevel().getLevelNumber() == 2){
                             changeState(EMobsState.END_LEVEL);
                             return;
                         }

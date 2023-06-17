@@ -40,11 +40,13 @@ public class RootPane extends BorderPane {
 
     private void update(){
 
+        StackPane stackPane = (StackPane) this.getCenter();
+
         if(gameCManager.getFsm() != null){
             EMobsState gameState = gameCManager.getState();
 
             // Remove todas as interfaces de usuário do StackPane
-            StackPane stackPane = (StackPane) this.getCenter();
+            //StackPane stackPane = (StackPane) this.getCenter();
             stackPane.getChildren().clear();
 
             // Adicione a interface correspondente ao estado atual
@@ -70,14 +72,24 @@ public class RootPane extends BorderPane {
                     vulnerableUI.requestFocus();
                     break;
                 case END_LEVEL:
-                    stackPane.getChildren().add(new EndLevelUI(gameCManager));
+                    var endLevelUI = new EndLevelUI(gameCManager);
+                    stackPane.getChildren().add(endLevelUI);
+                    endLevelUI.requestFocus();
                     break;
                 default:
-
                     break;
             }
         }
 
+    }
+
+    public void showFirstMenuUI() {
+        StackPane stackPane = (StackPane) this.getCenter();
+        stackPane.getChildren().clear();
+
+        FirstMenuUI firstMenuUI = new FirstMenuUI(gameCManager);
+        stackPane.getChildren().add(firstMenuUI);
+        firstMenuUI.requestFocus();
     }
 
 }

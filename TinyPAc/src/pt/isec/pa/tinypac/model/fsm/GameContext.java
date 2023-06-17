@@ -51,7 +51,6 @@ public class GameContext {
 
     public Level getLevel(){return game.getLevel();}
     public char[][] getMap(){return game.getLevel().getMaze();}
-
     public IMazeElement[][] getMazeWithElements(){return game.getLevel().getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         currentKeyType = key;

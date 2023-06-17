@@ -105,8 +105,6 @@ public class MoveUI extends BorderPane {
             this.setVisible(true);
             updateSidebar();
             updateMazePane();
-            //gameCManager.evolve();
-            //gameCManager.evolve();
         } else {
             this.setVisible(false);
         }
@@ -149,8 +147,8 @@ public class MoveUI extends BorderPane {
         Image image = getImageForElement(element); // Obtém a imagem correspondente ao elemento
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(30);
-        imageView.setFitHeight(30);
+        imageView.setFitWidth(20);
+        imageView.setFitHeight(20);
 
         return imageView;
     }

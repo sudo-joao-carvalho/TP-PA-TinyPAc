@@ -29,7 +29,7 @@ public class WaitBeginUI extends BorderPane {
         registerHandlers();
         update();
 
-        requestFocus();
+        //requestFocus();
     }
 
     private void createViews() {

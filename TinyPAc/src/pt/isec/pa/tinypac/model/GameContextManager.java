@@ -23,6 +23,7 @@ public class GameContextManager {
     public GameContext getFsm() {
         return fsm;
     }
+    public void setFsmNull(){fsm = null;}
 
     public void addPropertyChangeListener(PropertyChangeListener listener){pcs.addPropertyChangeListener(listener);}
 

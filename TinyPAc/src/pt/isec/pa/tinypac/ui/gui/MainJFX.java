@@ -12,7 +12,6 @@ import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 
 public class MainJFX extends Application {
-    //GameBWManager gameBWManager;
     GameContextManager gameCManager;
 
     @Override
