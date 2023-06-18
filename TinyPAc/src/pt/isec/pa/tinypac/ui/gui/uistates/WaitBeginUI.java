@@ -28,6 +28,8 @@ public class WaitBeginUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+
+        this.requestFocus();
     }
 
     private void createViews() {
@@ -53,7 +55,10 @@ public class WaitBeginUI extends BorderPane {
 
     private void update() {
         //this.requestFocus();
-        this.setVisible(gameCManager.getState() == EMobsState.WAIT_BEGIN);
+        if(gameCManager.getFsm() != null){
+            this.setVisible(gameCManager.getState() == EMobsState.WAIT_BEGIN);
+        }else this.setVisible(false);
+
 
     }
 }

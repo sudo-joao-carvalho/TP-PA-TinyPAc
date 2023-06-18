@@ -14,9 +14,9 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
     public VulnerableState(GameContext context, GameData gameData){
         super(context, gameData);
         //SETTERS
-        //game.getLevel().getTinyPac().enterOP();
+        gameData.getTinyPac().enterOP();
     }
-    public boolean checkLevelOver(){
+    /*public boolean checkLevelOver(){
 
         if(gameData.getTinyPac().getScore() >= 10){
             gameData.setLevelComplete();
@@ -28,7 +28,7 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
         }
 
         return false;
-    }
+    }*/
 
     public void notOP(){
         gameData.getTinyPac().leaveOP();
@@ -50,7 +50,7 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
             while (seconds < 10) {
                 try {
 
-                    if(checkLevelOver()){
+                    /*if(checkLevelOver()){
                         if(gameData.getLevelNumber() == 2){
                             changeState(EMobsState.END_LEVEL);
                             return;
@@ -59,7 +59,29 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
                         gameData.getTinyPac().setScore(0);
                         changeState(EMobsState.WAIT_BEGIN);
                         return;
+                    }*/
+
+                    //System.out.println("ola4");
+
+                    if(gameData.getTinyPac().getScore() >= 2){
+                        gameData.setLevelComplete();
+                        changeState(EMobsState.WAIT_BEGIN);
+                        return ;
                     }
+
+                    if(gameData.getTinyPac().getLifes() == 0){
+                        gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
+                        changeState(EMobsState.END_LEVEL);
+                        return ;
+                    }
+
+                    if(gameData.getLevelNumber() == 2){
+                        gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
+                        changeState(EMobsState.END_LEVEL);
+                        return ;
+                    }
+
+                    changeState(EMobsState.MOVE);
 
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

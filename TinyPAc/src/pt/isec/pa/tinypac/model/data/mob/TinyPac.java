@@ -69,7 +69,7 @@ public class TinyPac extends Element implements Serializable {
 
         for(GameData.Position pos: lst){
             if(pos.y() == y && pos.x() == x){
-                if(gameData.getElement(pos.y(), pos.x()) instanceof FoodBall || gameData.getElement(pos.y(), pos.x()) instanceof PowerBall)
+                if(gameData.getElement(pos.y(), pos.x()) instanceof FoodBall || gameData.getElement(pos.y(), pos.x()) instanceof PowerBall || gameData.getElement(pos.y(), pos.x()) instanceof Fruit)
                     return gameData.getElement(pos.y(), pos.x());
                 else return null;
             }
@@ -113,6 +113,8 @@ public class TinyPac extends Element implements Serializable {
         if(checkFood(y, x) instanceof PowerBall){
             score += 10;
             enterOP();
+            System.out.println("comi uma bola");
+            //System.out.println(isOP);
             return true;
         }
         if(checkFood(y, x) instanceof Fruit){
@@ -176,9 +178,9 @@ public class TinyPac extends Element implements Serializable {
 
                             GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
                             gameData.setPositionOf(newPos, this);
-                            System.out.println("movi me para " + newPos);
+                            //System.out.println("movi me para " + newPos);
                         }else{
-                            System.out.println("encontrei um fantasma");
+                            //System.out.println("encontrei um fantasma");
 
                             //logica para para o boneco por 1 segundo ate se voltar a mover quando perde uma vida
                             /*while(lostLife){
@@ -212,17 +214,32 @@ public class TinyPac extends Element implements Serializable {
 
                             GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
                             gameData.setPositionOf(newPos, this);
-                            System.out.println("movi me para " + newPos);
-                        }else{
+                            //System.out.println("movi me para " + newPos);
+                        }else if((gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) || (gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) || (gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) || (gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
+                            Element e = gameData.getElement(myPos.y() + dy, myPos.x() + dx);
+
+
                             gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
+
 
                             //mete o fantasma na cave de novo
                             for(GameData.Position pos : gameData.getCave()){
                                 Element element = gameData.getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
                                 GameData.Position cavePos = new GameData.Position(pos.y(), pos.x());
                                 if(element instanceof Portal){
-                                    gameData.addElement(new Blinky(gameData), pos.y(), pos.x());
-                                    gameData.getBlinky().setGhostVulnerable(true);
+                                    if(e instanceof Blinky){
+                                        gameData.addElement(new Blinky(gameData), pos.y(), pos.x());
+                                        gameData.getBlinky().setGhostVulnerable(true);
+                                    }else if(e instanceof  Clyde){
+                                        gameData.addElement(new Clyde(gameData), pos.y(), pos.x());
+                                        gameData.getClyde().setGhostVulnerable(true);
+                                    }else if(e instanceof  Inky){
+                                        gameData.addElement(new Inky(gameData), pos.y(), pos.x());
+                                        gameData.getInky().setGhostVulnerable(true);
+                                    }else if(e instanceof  Pinky){
+                                        gameData.addElement(new Inky(gameData), pos.y(), pos.x());
+                                        gameData.getPinky().setGhostVulnerable(true);
+                                    }
                                 }
                             }
 
@@ -230,8 +247,6 @@ public class TinyPac extends Element implements Serializable {
                             gameData.setPositionOf(newPos, this);
 
                             score += 50;
-                            //FALTA POR O FANTASMA A VOLTAR PARA A CAVE
-                            System.out.println("\nComi um fantasma");
                         }
                     }
 

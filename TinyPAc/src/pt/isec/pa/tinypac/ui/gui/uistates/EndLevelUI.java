@@ -25,6 +25,8 @@ public class EndLevelUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+
+        this.requestFocus();
     }
 
     private void createViews() {
@@ -60,9 +62,13 @@ public class EndLevelUI extends BorderPane {
 
 
     private void update() {
-        if (gameCManager.getState() == EMobsState.END_LEVEL) {
-            this.setVisible(true);
+
+        if(gameCManager.getFsm() != null){
+            if (gameCManager.getState() == EMobsState.END_LEVEL) {
+                this.setVisible(true);
+            }else this.setVisible(false);
         }else this.setVisible(false);
+
 
     }
 }

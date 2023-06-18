@@ -31,6 +31,8 @@ public class VulnerableUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+
+        this.requestFocus();
     }
 
     private void createViews() {
@@ -85,21 +87,24 @@ public class VulnerableUI extends BorderPane {
                 gameCManager.pause();
             }
 
-            gameCManager.evolve();
+            //gameCManager.evolve();
             System.out.println(gameCManager.getState());
             //update();
         }
     };
 
     private void update() {
-        if (gameCManager.getState() == EMobsState.VULNERABLE) {
-            this.setVisible(true);
-            updateSidebar();
-            updateMazePane();
-            //gameCManager.evolve();
-        } else {
-            this.setVisible(false);
-        }
+
+        if(gameCManager.getFsm() != null){
+            if (gameCManager.getState() == EMobsState.VULNERABLE) {
+                this.setVisible(true);
+                updateSidebar();
+                updateMazePane();
+                //gameCManager.evolve();
+            } else {
+                this.setVisible(false);
+            }
+        }else this.setVisible(false);
 
     }
 
@@ -139,8 +144,8 @@ public class VulnerableUI extends BorderPane {
         Image image = getImageForElement(element); // Obtém a imagem correspondente ao elemento
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(30);
-        imageView.setFitHeight(30);
+        imageView.setFitWidth(25);
+        imageView.setFitHeight(25);
 
         return imageView;
     }

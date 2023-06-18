@@ -69,8 +69,8 @@ public class Blinky extends Element implements Serializable {
          if(!ghostVulnerable) {
              int currentLifes = gameData.getTinyPac().getLifes();
              gameData.getTinyPac().setLifes(currentLifes - 1);
-             System.out.println("\nComi o pacman");
-             System.out.println("\nVidas Pacman: " + gameData.getTinyPac().getLifes());
+             //System.out.println("\nComi o pacman");
+             //System.out.println("\nVidas Pacman: " + gameData.getTinyPac().getLifes());
          }
 
         return false;
@@ -104,7 +104,7 @@ public class Blinky extends Element implements Serializable {
                     gameData.setPositionOf(nnewPos, this);
 
                     insideCave = false; // Blinky saiu da GhostCave
-                    System.out.println("sai da cave");
+                    //System.out.println("sai da cave");
                 }
 
                 // Define a nova posição acima da GhostCave
@@ -225,11 +225,11 @@ public class Blinky extends Element implements Serializable {
                                 gameData.setPositionOf(nnewPos, this);
                                 positionHistory.add(myPos);
                                 //level.getTinyPac().setLostLife(true);
-                                System.out.println("Comi o corno");
+                                //System.out.println("Comi o corno");
                             }
                             //FAZER
                             else { //quando ele come o pacman mas na posicao a frente dele esta uma parede
-                                System.out.println("parede");
+                                //System.out.println("parede");
 
                                 // Move Blinky para a nova posição
                                 GameData.Position nextPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
@@ -246,28 +246,28 @@ public class Blinky extends Element implements Serializable {
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        System.out.println("Blinky moveu-se para " + newPos);
+                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if (gameData.getElement(newPos.y(), newPos.x()) instanceof Fruit) {
                         gameData.addElement(new Fruit(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        System.out.println("Blinky moveu-se para " + newPos);
+                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if(gameData.getElement(newPos.y(), newPos.x()) instanceof EmptyCell){
                         gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        System.out.println("Blinky moveu-se para " + newPos);
+                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if(gameData.getElement(newPos.y(), newPos.x()) instanceof PowerBall){
                         gameData.addElement(new PowerBall(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        System.out.println("Blinky moveu-se para " + newPos);
+                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
                         //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
                         for(GameData.Position pos: gameData.getWarps()){

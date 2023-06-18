@@ -2,6 +2,7 @@ package pt.isec.pa.tinypac.model;
 
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
+import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
@@ -12,7 +13,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 
-public class GameContextManager {
+public class GameContextManager implements IGameEngineEvolve {
 
     private static final String FILE ="files/save.dat";
     private GameContext fsm;
@@ -41,7 +42,7 @@ public class GameContextManager {
 
     public boolean evolve(){
         //if(fsm == null) return false;
-        System.out.println("ola");
+
         var ret = fsm.evolve();
         pcs.firePropertyChange(null, null, null);
         return ret;
@@ -64,9 +65,7 @@ public class GameContextManager {
         try(FileOutputStream fout = new FileOutputStream(file);
             ObjectOutputStream oout = new ObjectOutputStream(fout)){
             oout.writeObject(fsm);
-            //ModelLog.getInstance().add("Jogo guardado");
         } catch (Exception e) {
-            //ModelLog.getInstance().add("Erro a guardar o fichero");
             e.printStackTrace();
         }
 
@@ -80,11 +79,8 @@ public class GameContextManager {
         try (FileInputStream finp = new FileInputStream(file);
              ObjectInputStream oinp = new ObjectInputStream(finp);)
         {
-            //ModelLog.getInstance().add("Existe um jogo guardado!");
             fsm = (GameContext) oinp.readObject();
-            //file.delete();
         } catch (Exception e) {
-            //ModelLog.getInstance().add("Nao existe um jogo guardado!");
             fsm = new GameContext();
         }
 
@@ -98,13 +94,16 @@ public class GameContextManager {
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         fsm.retrieveKey(key);
+        //currentKeyType = key;
         pcs.firePropertyChange(null, null, null);
     }
 
     public void evolve(IGameEngine g, long t) {
         if(fsm == null) return ;
 
+        fsm.evolve();
         fsm.evolve(g, t);
+
         pcs.firePropertyChange(null, null, null);
     }
 }

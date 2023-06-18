@@ -26,6 +26,7 @@ public class GameContext implements Serializable, IOriginator {
     }
 
     public void setGameData(GameData gameData){this.gameData = gameData;}
+    public GameData getGameData(){return this.gameData;}
 
     public EMobsState getState(){return gameState.getState();} //foi dado override no MenuState para ele poder ir buscar o state a propria enumeraçao
     void changeState(IMobsState newState){this.gameState = newState;}
@@ -35,10 +36,7 @@ public class GameContext implements Serializable, IOriginator {
 
     //public boolean load(){};
 
-    public boolean evolve(){
-        System.out.println("ola2");
-        return gameState.evolve();
-    }//evolve de mudança de estado
+    public boolean evolve(){ return gameState.evolve(); }//evolve de mudança de estado
 
     public boolean pause(){return gameState.pause();}
     public boolean unpause(){return gameState.unpause();}
@@ -51,9 +49,9 @@ public class GameContext implements Serializable, IOriginator {
                 return ;
 
             //game.getLevel().evolve(currentKeyType);
+            //evolve();
             gameData.evolve(currentKeyType);
         }
-
     }
 
     //public GameData getLevel(){return game.getLevel();}

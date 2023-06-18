@@ -22,25 +22,21 @@ public class GameData implements Serializable{
     private int height;
     private int width;
     Maze maze;
-
-    //private static int levelNumber = 0;
     private int levelNumber;
 
     private boolean isLevelComplete = false;
 
+    TopFive top5;
     private static int counter = 0; //usar esta var estatica como multiplier do timer depois no evolve deste ficheiro fazer umif com multiplicadores diferentes para aquele instanceof daquele tipo de mob
 
     public GameData(int levelNumber){
-        //levelNumber++;
 
         this.levelNumber    = levelNumber;
         String filePath     = "files/Level10" + levelNumber + ".txt";
         this.maze           = setMaze(filePath);
+        this.top5 = new TopFive();
 
     }
-
-    //public void setScore(int num){this.score += num;}
-    //public int getScore(){return this.score;}
 
     public void setLevelComplete(){this.isLevelComplete = true;}
     public boolean getLevelComplete(){return this.isLevelComplete;}
@@ -212,6 +208,7 @@ public class GameData implements Serializable{
 
     }
 
+    public TopFive getTop5(){return this.top5;}
     public void addElement(Element element, int y, int x){maze.set(y, x, element);}
 
     public char getElementAt(int y, int x){
@@ -236,6 +233,7 @@ public class GameData implements Serializable{
             for(int x = 0;x < width; x++)
                 if (maze.get(y, x) instanceof Element element) {
                     if (element instanceof TinyPac){
+                        //System.out.println(((TinyPac) element).isOP());
                         return (TinyPac) element;
                     }
                 }
@@ -248,6 +246,39 @@ public class GameData implements Serializable{
                 if (maze.get(y, x) instanceof Element element) {
                     if (element instanceof Blinky){
                         return (Blinky) element;
+                    }
+                }
+        return null;
+    }
+
+    public Clyde getClyde() {
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof Clyde){
+                        return (Clyde) element;
+                    }
+                }
+        return null;
+    }
+
+    public Inky getInky() {
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof Inky){
+                        return (Inky) element;
+                    }
+                }
+        return null;
+    }
+
+    public Pinky getPinky() {
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y, x) instanceof Element element) {
+                    if (element instanceof Pinky){
+                        return (Pinky) element;
                     }
                 }
         return null;

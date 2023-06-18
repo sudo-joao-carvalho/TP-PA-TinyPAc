@@ -23,6 +23,8 @@ public class PauseUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+
+        this.requestFocus();
     }
 
     private void createViews() {
@@ -77,13 +79,13 @@ public class PauseUI extends BorderPane {
 
 
     private void update() {
-        if (gameCManager.getState() != EMobsState.PAUSE) {
-            this.setVisible(false);
-            return;
-        }
 
-        /*if(gameCManager.getFsm() == null) this.setVisible(true);
-        else this.setVisible(false);*/
+        if(gameCManager.getFsm() != null){
+            if (gameCManager.getState() != EMobsState.PAUSE) {
+                this.setVisible(false);
+                return;
+            }
+        }else this.setVisible(false);
 
     }
 }

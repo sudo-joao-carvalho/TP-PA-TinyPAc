@@ -1,10 +1,10 @@
 package pt.isec.pa.tinypac.model.data;
 
 /*public class Game {
-    private GameData gameData;
+    private Level level;
 
     public Game(int levelNumber){
-        this.gameData = new GameData(levelNumber);
+        this.level = new Level(levelNumber);
     }
 
     public GameData getLevel() {return this.gameData;}

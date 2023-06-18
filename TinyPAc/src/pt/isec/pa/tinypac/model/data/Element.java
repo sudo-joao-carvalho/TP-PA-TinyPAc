@@ -13,7 +13,6 @@ public abstract class Element implements IMazeElement, Serializable {
 
     abstract public void evolve(KeyCode key);
 
-    //public boolean evovle(){return false;}
     public boolean eat(int y, int x){return false;}
 
     public boolean getGhostVulnerable(){return false;}

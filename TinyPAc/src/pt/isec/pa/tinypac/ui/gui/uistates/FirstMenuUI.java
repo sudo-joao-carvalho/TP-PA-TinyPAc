@@ -24,6 +24,8 @@ public class FirstMenuUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+
+        this.requestFocus();
     }
 
     private void createViews() {
@@ -91,6 +93,10 @@ public class FirstMenuUI extends BorderPane {
             }else{
                 gameCManager.start();
             }
+        });
+        btnTopFive.setOnAction( event -> {
+            RootPane rootPane = (RootPane) getScene().getRoot();
+            rootPane.showTop5();
         });
         btnExit.setOnAction( event -> {
             RootPane rootPane = (RootPane) getScene().getRoot();

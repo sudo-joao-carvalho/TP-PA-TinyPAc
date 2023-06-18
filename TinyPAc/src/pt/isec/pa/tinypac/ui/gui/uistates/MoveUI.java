@@ -38,6 +38,8 @@ public class MoveUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
+
+        this.requestFocus();
     }
 
     private void createViews() {
@@ -98,22 +100,22 @@ public class MoveUI extends BorderPane {
             if(event.getCode() == KeyCode.ESCAPE){
                 gameCManager.pause();
             }
-            gameCManager.evolve();
             System.out.println(gameCManager.getState());
-            //update();
         }
     };
 
     private void update() {
         //this.requestFocus();
-        if (gameCManager.getState() == EMobsState.MOVE) {
-            this.setVisible(true);
-            updateSidebar();
-            updateMazePane();
+        if(gameCManager.getFsm() != null){
+            if (gameCManager.getState() == EMobsState.MOVE) {
+                this.setVisible(true);
+                updateSidebar();
+                updateMazePane();
 
-        } else {
-            this.setVisible(false);
-        }
+            } else {
+                this.setVisible(false);
+            }
+        }else this.setVisible(false);
     }
 
     private void updateSidebar() {
@@ -152,8 +154,8 @@ public class MoveUI extends BorderPane {
         Image image = getImageForElement(element); // Obtém a imagem correspondente ao elemento
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(20);
-        imageView.setFitHeight(20);
+        imageView.setFitWidth(25);
+        imageView.setFitHeight(25);
 
         return imageView;
     }

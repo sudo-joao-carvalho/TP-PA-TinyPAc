@@ -46,7 +46,6 @@ public class MainJFX extends Application {
 
     private void firstStage(Stage stage, String title) {
         RootPane root = new RootPane(gameCManager);
-        //Scene scene = new Scene(root,700,400);
         Scene scene = new Scene(root,1920,1280);
         stage.setScene(scene);
         stage.setTitle(title);

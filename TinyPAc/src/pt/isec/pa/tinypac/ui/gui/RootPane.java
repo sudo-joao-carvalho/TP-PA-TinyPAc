@@ -11,6 +11,13 @@ public class RootPane extends BorderPane {
 
     GameContextManager gameCManager;
 
+    private StackPane stackPane;
+    private FirstMenuUI firstMenuUI;
+    private WaitBeginUI waitBeginUI;
+    private MoveUI moveUI;
+    private VulnerableUI vulnerableUI;
+    private PauseUI pauseUI;
+    private EndLevelUI endLevelUI;
     public RootPane(GameContextManager gameCManager){
         this.gameCManager = gameCManager;
 
@@ -21,15 +28,18 @@ public class RootPane extends BorderPane {
 
     private void createViews(){
 
-        /*StackPane stackPane = new StackPane(
-            new FirstMenuUI(gameCManager),
-            new WaitBeginUI(gameCManager),
-            new MoveUI(gameCManager),
-            new VulnerableUI(gameCManager),
-            new PauseUI(gameCManager),
-            new EndLevelUI(gameCManager)
-        );*/
-        StackPane stackPane = new StackPane(new FirstMenuUI(gameCManager));
+        firstMenuUI = new FirstMenuUI(gameCManager);
+        /*waitBeginUI = new WaitBeginUI(gameCManager);
+        moveUI = new MoveUI(gameCManager);
+        vulnerableUI = new VulnerableUI(gameCManager);
+        pauseUI = new PauseUI(gameCManager);
+        endLevelUI = new EndLevelUI(gameCManager);*/
+
+        //this.stackPane = new StackPane();
+
+
+        this.stackPane = new StackPane(firstMenuUI);
+        //stackPane.getChildren().addAll(firstMenuUI, waitBeginUI, moveUI, vulnerableUI, pauseUI,endLevelUI);
 
         this.setCenter(stackPane);
     }
@@ -52,27 +62,27 @@ public class RootPane extends BorderPane {
             // Adicione a interface correspondente ao estado atual
             switch (gameState) {
                 case WAIT_BEGIN:
-                    var waitBeginUI = new WaitBeginUI(gameCManager); //fazer estes news todos logo dentro do stacPane
+                    waitBeginUI = new WaitBeginUI(gameCManager);
                     stackPane.getChildren().add(waitBeginUI);
                     waitBeginUI.requestFocus();
                     break;
                 case MOVE:
-                    var moveUI = new MoveUI(gameCManager);
+                    moveUI = new MoveUI(gameCManager);
                     stackPane.getChildren().add(moveUI);
                     moveUI.requestFocus();
                     break;
                 case PAUSE:
-                    var pauseUI = new PauseUI(gameCManager);
+                    pauseUI = new PauseUI(gameCManager);
                     stackPane.getChildren().add(pauseUI);
                     pauseUI.requestFocus();
                     break;
                 case VULNERABLE:
-                    var vulnerableUI = new VulnerableUI(gameCManager);
+                    vulnerableUI = new VulnerableUI(gameCManager);
                     stackPane.getChildren().add(vulnerableUI);
                     vulnerableUI.requestFocus();
                     break;
                 case END_LEVEL:
-                    var endLevelUI = new EndLevelUI(gameCManager);
+                    endLevelUI = new EndLevelUI(gameCManager);
                     stackPane.getChildren().add(endLevelUI);
                     endLevelUI.requestFocus();
                     break;
@@ -108,6 +118,15 @@ public class RootPane extends BorderPane {
         ShowConfirmationUI showConfirmationUI = new ShowConfirmationUI(gameCManager);
         stackPane.getChildren().add(showConfirmationUI);
         showConfirmationUI.requestFocus();
+    }
+
+    public void showTop5(){
+        StackPane stackPane = (StackPane) this.getCenter();
+        stackPane.getChildren().clear();
+
+        TopFiveUI showTop5 = new TopFiveUI(gameCManager);
+        stackPane.getChildren().add(showTop5);
+        showTop5.requestFocus();
     }
 
 }

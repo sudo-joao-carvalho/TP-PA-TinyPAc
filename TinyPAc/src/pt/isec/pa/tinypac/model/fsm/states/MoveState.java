@@ -17,7 +17,7 @@ public class MoveState extends MobsStateAdapter implements Serializable {
         //SETTERS
     }
 
-    public boolean checkLevelOver(){
+    /*public boolean checkLevelOver(){
 
         if(gameData.getTinyPac().getScore() >= 2){
             gameData.setLevelComplete();
@@ -29,9 +29,12 @@ public class MoveState extends MobsStateAdapter implements Serializable {
         }
 
         return false;
-    }
+    }*/
 
-    public boolean checkVulnerable(){return gameData.getTinyPac().isOP();}
+    public boolean checkVulnerable(){
+        //System.out.println(gameData.getTinyPac().isOP());
+        return gameData.getTinyPac().isOP();
+    }
 
     public void setGhostsVulnerable(boolean ghostsVulnerable){
 
@@ -42,26 +45,35 @@ public class MoveState extends MobsStateAdapter implements Serializable {
 
     @Override
     public boolean evolve(){
-        System.out.println("ola4");
         if(checkVulnerable()){
             setGhostsVulnerable(true);
             changeState(EMobsState.VULNERABLE);
             return true;
         }
 
-        if(checkLevelOver()){
-            if(gameData.getLevelNumber() == 2){
-                changeState(EMobsState.END_LEVEL);
-                return true;
-            }
-
-            gameData.getTinyPac().setScore(0);
+        if(gameData.getTinyPac().getScore() >= 2){
+            System.out.println(gameData.getTinyPac().getScore());
+            gameData.setLevelComplete();
             changeState(EMobsState.WAIT_BEGIN);
             return true;
         }
 
-        //changeState(EMobsState.MOVE);
-        return false;
+        if(gameData.getTinyPac().getLifes() == 0){
+            gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
+            changeState(EMobsState.END_LEVEL);
+            return true;
+        }
+
+        if(gameData.getLevelNumber() == 2){
+            gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
+            changeState(EMobsState.END_LEVEL);
+            return true;
+        }
+
+        changeState(EMobsState.MOVE);
+        return true;
+
+
 
     }
 
