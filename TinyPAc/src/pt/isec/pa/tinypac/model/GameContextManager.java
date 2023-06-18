@@ -6,6 +6,7 @@ import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
+import pt.isec.pa.tinypac.model.memento.CareTaker;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -15,6 +16,7 @@ public class GameContextManager {
 
     private static final String FILE ="files/save.dat";
     private GameContext fsm;
+    private CareTaker careTaker;
 
     PropertyChangeSupport pcs;
 
@@ -25,12 +27,13 @@ public class GameContextManager {
     public GameContext getFsm() {
         return fsm;
     }
-    public void setFsmNull(){fsm = null;}
+    //public void setFsmNull(){fsm = null;}
 
     public void addPropertyChangeListener(PropertyChangeListener listener){pcs.addPropertyChangeListener(listener);}
 
     public void start(){
         fsm = new GameContext();
+        //this.careTaker = new CareTaker(fsm);
         pcs.firePropertyChange(null, null, null);
     }
 
@@ -38,7 +41,7 @@ public class GameContextManager {
 
     public boolean evolve(){
         //if(fsm == null) return false;
-
+        System.out.println("ola");
         var ret = fsm.evolve();
         pcs.firePropertyChange(null, null, null);
         return ret;
@@ -89,7 +92,9 @@ public class GameContextManager {
         return true;
     }
 
-    //public GameData getLevel(){return fsm.getLevel();}
+    public int getScore(){return fsm.getScore();}
+    public int getLifes(){return fsm.getLifes();}
+    public int getLevelNumber(){return fsm.getLevelNumber();}
     public IMazeElement[][] getMazeWithElements(){return fsm.getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         fsm.retrieveKey(key);

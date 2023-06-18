@@ -17,7 +17,7 @@ public class GameContext implements Serializable, IOriginator {
 
     IMobsState gameState;
 
-    private KeyCode currentKeyType = KeyCode.KP_DOWN;;//KeyType.ArrowRight;
+    private KeyCode currentKeyType = null;//KeyCode.KP_DOWN;;//KeyType.ArrowRight;
 
     public GameContext(){
         //game            = new Game(1);
@@ -35,7 +35,10 @@ public class GameContext implements Serializable, IOriginator {
 
     //public boolean load(){};
 
-    public boolean evolve(){return gameState.evolve();}//evolve de mudança de estado
+    public boolean evolve(){
+        System.out.println("ola2");
+        return gameState.evolve();
+    }//evolve de mudança de estado
 
     public boolean pause(){return gameState.pause();}
     public boolean unpause(){return gameState.unpause();}
@@ -55,6 +58,10 @@ public class GameContext implements Serializable, IOriginator {
 
     //public GameData getLevel(){return game.getLevel();}
     public char[][] getMap(){/*return game.getLevel().getMaze();*/return gameData.getMaze();}
+
+    public int getScore(){return gameData.getTinyPac().getScore();}
+    public int getLifes(){return gameData.getTinyPac().getLifes();}
+    public int getLevelNumber(){return gameData.getLevelNumber();}
     public IMazeElement[][] getMazeWithElements(){/*return game.getLevel().getMazeWithElements();*/return gameData.getMazeWithElements();}
     public void retrieveKey(KeyCode key){
         currentKeyType = key;

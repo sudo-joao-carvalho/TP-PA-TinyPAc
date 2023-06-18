@@ -17,6 +17,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import pt.isec.pa.tinypac.model.GameContextManager;
+import pt.isec.pa.tinypac.model.data.Element;
+import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.cell.*;
 import pt.isec.pa.tinypac.model.data.mob.*;
@@ -36,7 +38,6 @@ public class MoveUI extends BorderPane {
         createViews();
         registerHandlers();
         update();
-
     }
 
     private void createViews() {
@@ -72,7 +73,10 @@ public class MoveUI extends BorderPane {
      *
      */
     private void registerHandlers() {
-        gameCManager.addPropertyChangeListener(evt -> { update(); });
+        gameCManager.addPropertyChangeListener(evt -> {
+            //gameCManager.evolve();
+            update();
+        });
         setOnKeyPressed(t);
     }
 
@@ -95,6 +99,7 @@ public class MoveUI extends BorderPane {
                 gameCManager.pause();
             }
             gameCManager.evolve();
+            System.out.println(gameCManager.getState());
             //update();
         }
     };
@@ -105,17 +110,17 @@ public class MoveUI extends BorderPane {
             this.setVisible(true);
             updateSidebar();
             updateMazePane();
+
         } else {
             this.setVisible(false);
         }
-
     }
 
     private void updateSidebar() {
         // Atualize as informações da barra lateral com os dados relevantes, como vidas, pontuação e nível
-        /*int lives = gameCManager.getLevel().getTinyPac().getLifes();
-        int score = gameCManager.getLevel().getTinyPac().getScore();
-        int level = gameCManager.getLevel().getLevelNumber();
+        int lives = gameCManager.getLifes();
+        int score = gameCManager.getScore();
+        int level = gameCManager.getLevelNumber();
 
         Label livesLabel = (Label) sidebar.getChildren().get(0);
         livesLabel.setText("Lifes: " + lives);
@@ -124,7 +129,7 @@ public class MoveUI extends BorderPane {
         scoreLabel.setText("Score: " + score);
 
         Label levelLabel = (Label) sidebar.getChildren().get(2);
-        levelLabel.setText("Level: " + level);*/
+        levelLabel.setText("Level: " + level);
     }
 
 

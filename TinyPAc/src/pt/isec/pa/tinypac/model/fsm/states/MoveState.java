@@ -42,6 +42,7 @@ public class MoveState extends MobsStateAdapter implements Serializable {
 
     @Override
     public boolean evolve(){
+        System.out.println("ola4");
         if(checkVulnerable()){
             setGhostsVulnerable(true);
             changeState(EMobsState.VULNERABLE);
@@ -59,8 +60,8 @@ public class MoveState extends MobsStateAdapter implements Serializable {
             return true;
         }
 
-        changeState(EMobsState.MOVE);
-        return true;
+        //changeState(EMobsState.MOVE);
+        return false;
 
     }
 

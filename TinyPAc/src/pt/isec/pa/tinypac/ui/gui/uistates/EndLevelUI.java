@@ -50,7 +50,7 @@ public class EndLevelUI extends BorderPane {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
 
         btnBackToMenu.setOnAction(event -> {
-            gameCManager.setFsmNull();
+            //gameCManager.setFsmNull();
 
             // Notifica o RootPane para mostrar o FirstMenuUI
             RootPane rootPane = (RootPane) getScene().getRoot();

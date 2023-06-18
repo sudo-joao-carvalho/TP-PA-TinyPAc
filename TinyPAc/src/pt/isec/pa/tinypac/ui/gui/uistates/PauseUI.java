@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
+import pt.isec.pa.tinypac.ui.gui.RootPane;
 import pt.isec.pa.tinypac.ui.gui.resources.ImageManager;
 
 public class PauseUI extends BorderPane {
@@ -68,6 +69,7 @@ public class PauseUI extends BorderPane {
         });
 
         btnExit.setOnAction( event -> {
+            gameCManager.save();
             Platform.exit();
         });
 

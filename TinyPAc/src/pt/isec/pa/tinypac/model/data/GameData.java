@@ -136,7 +136,7 @@ public class GameData implements Serializable{
                 });
                 timerThread1.start();
 
-            /*Thread timerThread2 = new Thread(() -> {
+            Thread timerThread2 = new Thread(() -> {
                 int seconds = 0;
                 while (seconds < 7) {
                     try {
@@ -147,7 +147,7 @@ public class GameData implements Serializable{
                     seconds++;
                 }
 
-                for(Level.Position pos : getCave()){
+                for(GameData.Position pos : getCave()){
                     Element element = getElement(pos.y() - 2, pos.x()); //ver se o elemento é o Portal
                     if(element instanceof Portal){
                         addElement(new Clyde(this), pos.y(), pos.x());
@@ -156,7 +156,7 @@ public class GameData implements Serializable{
 
                 System.out.println("Clyde spawnned");
             });
-            timerThread3.start();*/
+            timerThread2.start();
 
             /*Thread timerThread3 = new Thread(() -> {
                 int seconds = 0;
@@ -178,7 +178,7 @@ public class GameData implements Serializable{
 
                 System.out.println("Inky spawnned");
             });
-            timerThread4.start();*/
+            timerThread3.start();*/
 
             /*Thread timerThread4 = new Thread(() -> {
                 int seconds = 0;

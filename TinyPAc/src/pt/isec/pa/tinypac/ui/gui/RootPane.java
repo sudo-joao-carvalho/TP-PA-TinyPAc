@@ -101,4 +101,13 @@ public class RootPane extends BorderPane {
         askGameSavedUI.requestFocus();
     }
 
+    public void showConfirmation(){
+        StackPane stackPane = (StackPane) this.getCenter();
+        stackPane.getChildren().clear();
+
+        ShowConfirmationUI showConfirmationUI = new ShowConfirmationUI(gameCManager);
+        stackPane.getChildren().add(showConfirmationUI);
+        showConfirmationUI.requestFocus();
+    }
+
 }
