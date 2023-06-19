@@ -37,7 +37,7 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
             while (seconds < 10) {
                 try {
 
-                    if(gameData.getNumOfFood() == 290){
+                    if(gameData.getNumOfFood() == 0){
                         gameData.setLevelComplete();
                         changeState(EMobsState.WAIT_BEGIN);
                         return ;
@@ -49,7 +49,7 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
                         return ;
                     }
 
-                    if(gameData.getLevelNumber() == 1){
+                    if(gameData.getLevelNumber() == 20){
                         if(gameData.getLevelComplete()){
                             gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
                             changeState(EMobsState.END_LEVEL);
@@ -57,8 +57,6 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
                         }
 
                     }
-
-                    changeState(EMobsState.MOVE);
 
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -77,7 +75,6 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
 
     @Override
     public boolean pause(){
-        System.out.println("jogo pausado");
         changeState(EMobsState.PAUSE);
         return true;
     }

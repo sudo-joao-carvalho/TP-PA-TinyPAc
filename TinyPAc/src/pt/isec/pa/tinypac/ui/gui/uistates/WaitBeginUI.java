@@ -1,13 +1,7 @@
 package pt.isec.pa.tinypac.ui.gui.uistates;
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -15,7 +9,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
-import pt.isec.pa.tinypac.ui.gui.resources.ImageManager;
 
 public class WaitBeginUI extends BorderPane {
     GameContextManager gameCManager;
@@ -48,7 +41,6 @@ public class WaitBeginUI extends BorderPane {
         gameCManager.addPropertyChangeListener(evt -> { update(); });
         setOnKeyPressed(event -> {
             gameCManager.evolve();
-            //gameCManager.retrieveKey(KeyCode.ENTER);
         });
     }
 

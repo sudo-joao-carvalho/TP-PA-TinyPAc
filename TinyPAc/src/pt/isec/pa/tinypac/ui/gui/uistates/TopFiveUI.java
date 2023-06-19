@@ -1,6 +1,5 @@
 package pt.isec.pa.tinypac.ui.gui.uistates;
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -10,11 +9,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import pt.isec.pa.tinypac.model.GameContextManager;
-import pt.isec.pa.tinypac.model.data.TopFive;
 import pt.isec.pa.tinypac.ui.gui.RootPane;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class TopFiveUI extends BorderPane {
 
@@ -80,32 +78,8 @@ public class TopFiveUI extends BorderPane {
         });
     }
 
-
-    /*private void update() {
-        if (gameCManager.getFsm() != null) {
-            var top5 = gameCManager.getTopFiveArrayList();
-            if (!top5.isEmpty()) {
-                player1.setText((1) + ". " + top5.get(0));
-            }
-            if (top5.size() >= 2) {
-                player2.setText((2) + ". " + top5.get(1));
-            }
-            if (top5.size() >= 3) {
-                player3.setText((3) + ". " + top5.get(2));
-            }
-            if (top5.size() >= 4) {
-                player4.setText((4) + ". " + top5.get(3));
-            }
-            if (top5.size() >= 5) {
-                player5.setText((5) + ". " + top5.get(4));
-            }
-        }
-
-    }*/
-
     private void update() {
         if(gameCManager.getFsm() != null){
-            System.out.println("cu");
             if (gameCManager.getTopFiveArrayList() != null) {
                 ArrayList<Integer> top5 = gameCManager.getTopFiveArrayList();
 

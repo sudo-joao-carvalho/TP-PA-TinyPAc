@@ -84,12 +84,10 @@ public class VulnerableUI extends BorderPane {
                 gameCManager.retrieveKey(KeyCode.DOWN);
             }
             if(event.getCode() == KeyCode.ESCAPE){
+                gameCManager.retrieveKey(null);
                 gameCManager.pause();
             }
 
-            //gameCManager.evolve();
-            System.out.println(gameCManager.getState());
-            //update();
         }
     };
 

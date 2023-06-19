@@ -16,27 +16,45 @@ public class TinyPac extends Element implements Serializable {
 
     private boolean isOP = false;
 
+    /**
+     *  Constructor
+     */
     public TinyPac(GameData gameData){
         super(gameData);
 
     }
 
+    /**
+     *  Returns Score variable
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     *  Sets Score variable
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     *  Returns TinyPac lifes
+     */
     public int getLifes() {
         return lifes;
     }
 
+    /**
+     *  Sets TinyPac lifes
+     */
     public void setLifes(int lifes) {
         this.lifes = lifes;
     }
 
+    /**
+     *  Returns true if there is a warp int he given Position
+     */
     public boolean checkWarp(int y, int x){
         GameData.Position myPos = gameData.getPositionOf(this);
 
@@ -55,6 +73,9 @@ public class TinyPac extends Element implements Serializable {
         return false;
     }
 
+    /**
+     *  Returns the Elements considered food if they are in the given Position
+     */
     public Element checkFood(int y, int x){
         GameData.Position myPos = gameData.getPositionOf(this);
 
@@ -77,6 +98,9 @@ public class TinyPac extends Element implements Serializable {
 
     }
 
+    /**
+     *  Returns true if there is a Wall in the given Position
+     */
     public boolean isValidPosition(int y, int x){
 
         GameData.Position myPos = gameData.getPositionOf(this);
@@ -98,12 +122,16 @@ public class TinyPac extends Element implements Serializable {
         return true;
     }
 
+    /**
+     *  Eat function
+     */
     @Override
     public boolean eat(int y, int x){
 
         if(checkFood(y, x) instanceof FoodBall){
             score += 1;
             gameData.eatFood();
+            gameData.setBallsEaten(gameData.getBallsEaten() + 1);
             return true;
         }
 
@@ -113,6 +141,7 @@ public class TinyPac extends Element implements Serializable {
             enterOP();
             score += 1;
             gameData.eatFood();
+            gameData.setBallsEaten(gameData.getBallsEaten() + 1);
             return true;
         }
         if(checkFood(y, x) instanceof Fruit){
@@ -124,16 +153,28 @@ public class TinyPac extends Element implements Serializable {
         return false;
     }
 
+    /**
+     *  Enters in OP Mode (Set OP variable true)
+     */
     public void enterOP(){
         this.isOP = true;
     }
 
+    /**
+     *  Leaves OP Mode (Set OP variable false)
+     */
     public void leaveOP(){
         this.isOP = false;
     }
 
+    /**
+     *  Returns isOP value
+     */
     public boolean isOP(){return this.isOP;}
 
+    /**
+     *  Function with the move pattern of TinyPac
+     */
     @Override
     public void evolve(KeyCode key){ //move
 
@@ -156,11 +197,9 @@ public class TinyPac extends Element implements Serializable {
 
                         if(pos.y() != myPos.y() + dy || pos.x() != myPos.x() + dx){
                             gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
-                            //System.out.println("\nnovo warp na posicao " + myPos);
 
                             GameData.Position newPos = new GameData.Position(pos.y() + dy, pos.x() + dx);
                             gameData.setPositionOf(newPos, this);
-                            //System.out.println("\n warping to " + newPos);
 
                         }
                     }
@@ -174,31 +213,7 @@ public class TinyPac extends Element implements Serializable {
 
                             GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
                             gameData.setPositionOf(newPos, this);
-                            //System.out.println("movi me para " + newPos);
                         }else{
-                            //System.out.println("encontrei um fantasma");
-
-                            //logica para para o boneco por 1 segundo ate se voltar a mover quando perde uma vida
-                            /*while(lostLife){
-                                Level.Position myPosTemp = new Level.Position(myPos.y(), myPos.x());
-                                Thread timerThread = new Thread(() -> {
-
-                                    int seconds = 0;
-                                    while (seconds < 10) {
-                                        try {
-                                            level.setPositionOf(myPosTemp, this);
-                                            Thread.sleep(1000);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        seconds++;
-                                    }
-
-                                    lostLife = false;
-
-                                });
-                                timerThread.start();
-                            }*/
 
                         }
 
@@ -210,7 +225,6 @@ public class TinyPac extends Element implements Serializable {
 
                             GameData.Position newPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
                             gameData.setPositionOf(newPos, this);
-                            //System.out.println("movi me para " + newPos);
                         }else if((gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Blinky) || (gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Clyde) || (gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Inky) || (gameData.getElement(myPos.y() + dy, myPos.x() + dx) instanceof Pinky)){
                             Element e = gameData.getElement(myPos.y() + dy, myPos.x() + dx);
 

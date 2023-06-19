@@ -1,13 +1,10 @@
 package pt.isec.pa.tinypac.ui.gui.uistates;
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.model.fsm.EMobsState;
@@ -55,7 +52,6 @@ public class EndLevelUI extends BorderPane {
             gameCManager.saveTop5();
             gameCManager.setFsmNull();
 
-            // Notifica o RootPane para mostrar o FirstMenuUI
             RootPane rootPane = (RootPane) getScene().getRoot();
             rootPane.showFirstMenuUI();
         });

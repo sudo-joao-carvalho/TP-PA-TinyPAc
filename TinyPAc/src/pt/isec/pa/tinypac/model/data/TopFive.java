@@ -20,17 +20,17 @@ public class TopFive implements Serializable {
         if(top5.size() < 5){
             top5.add(score);
         }else{
-            boolean added = false; // Flag para indicar se a pontuação foi adicionada
+            boolean added = false;
             for (int i = 0; i < top5.size(); i++) {
                 if (score >= top5.get(i)) {
                     top5.add(i, score);
                     added = true;
-                    break; // Parar de percorrer a lista assim que a pontuação for adicionada
+                    break;
                 }
             }
             if (added) {
                 if (top5.size() == 6) {
-                    top5.remove(5); // Remover a última pontuação se a lista tiver mais de 5 elementos
+                    top5.remove(6);
                 }
             }
         }

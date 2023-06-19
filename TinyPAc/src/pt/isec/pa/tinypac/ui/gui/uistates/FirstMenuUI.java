@@ -1,13 +1,11 @@
 package pt.isec.pa.tinypac.ui.gui.uistates;
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
 import pt.isec.pa.tinypac.model.GameContextManager;
 import pt.isec.pa.tinypac.ui.gui.RootPane;
 import pt.isec.pa.tinypac.ui.gui.resources.ImageManager;
@@ -58,24 +56,23 @@ public class FirstMenuUI extends BorderPane {
         GridPane footerGrid = new GridPane();
         footerGrid.setStyle("-fx-background-color: black;");
         footerGrid.setAlignment(Pos.CENTER);
-        footerGrid.setHgap(100); // Espaçamento horizontal entre colunas
-        footerGrid.setVgap(100); // Espaçamento vertical entre linhas
+        footerGrid.setHgap(100);
+        footerGrid.setVgap(100);
 
         Label text1 = new Label("DEIS-ISEC-IPC\n\nLEI\n\nProgramação Avançada\n\n2022/2023");
         text1.setStyle("-fx-text-fill: white");
         Label text2 = new Label("TRABALHO ACADÉMICO\n\nJoão Carvalho 2019131769");
         text2.setStyle("-fx-text-fill: white");
         ImageView footerImage = new ImageView(ImageManager.getImage("isec-logo.png"));
-        footerImage.setFitWidth(180); // Defina a largura desejada da imagem
-        footerImage.setFitHeight(100); // Defina a altura desejada da imagem
+        footerImage.setFitWidth(180);
+        footerImage.setFitHeight(100);
 
-        // Adicione os elementos ao GridPane
         footerGrid.add(text1, 0, 0);
         footerGrid.add(footerImage, 1, 0);
         footerGrid.add(text2, 2, 0);
 
         RowConstraints rowConstraints = new RowConstraints();
-        rowConstraints.setPrefHeight(150); // Defina a altura desejada
+        rowConstraints.setPrefHeight(150);
 
         footerGrid.getRowConstraints().add(rowConstraints);
 
@@ -98,8 +95,6 @@ public class FirstMenuUI extends BorderPane {
             File saveFile = new File("files/topFive.dat");
 
             if(saveFile.exists()){
-                //System.out.println(gameCManager.loadTop5());
-                System.out.println("existe");
                 gameCManager.loadTop5();
                 RootPane rootPane = (RootPane) getScene().getRoot();
                 rootPane.showTop5();

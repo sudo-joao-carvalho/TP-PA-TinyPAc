@@ -1,24 +1,15 @@
 package pt.isec.pa.tinypac.ui.gui.uistates;
 
-import com.googlecode.lanterna.input.KeyType;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import pt.isec.pa.tinypac.model.GameContextManager;
-import pt.isec.pa.tinypac.model.data.Element;
-import pt.isec.pa.tinypac.model.data.GameData;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.data.cell.*;
 import pt.isec.pa.tinypac.model.data.mob.*;
@@ -73,9 +64,6 @@ public class MoveUI extends BorderPane {
         this.setRight(sidebar);
     }
 
-    /** JAVADOC
-     *
-     */
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> {
             update();
@@ -99,9 +87,9 @@ public class MoveUI extends BorderPane {
                 gameCManager.retrieveKey(KeyCode.DOWN);
             }
             if(event.getCode() == KeyCode.ESCAPE){
+                gameCManager.retrieveKey(null);
                 gameCManager.pause();
             }
-            System.out.println(gameCManager.getState());
         }
     };
 

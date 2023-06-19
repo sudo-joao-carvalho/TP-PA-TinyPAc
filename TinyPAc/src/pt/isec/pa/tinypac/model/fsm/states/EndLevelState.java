@@ -18,7 +18,6 @@ public class EndLevelState extends MobsStateAdapter implements Serializable {
 
     @Override
     public boolean evolve(){
-        //changeState(EMobsState.WAIT_BEGIN);
         return true;
     }
 

@@ -69,8 +69,6 @@ public class Blinky extends Element implements Serializable {
          if(!ghostVulnerable) {
              int currentLifes = gameData.getTinyPac().getLifes();
              gameData.getTinyPac().setLifes(currentLifes - 1);
-             //System.out.println("\nComi o pacman");
-             //System.out.println("\nVidas Pacman: " + gameData.getTinyPac().getLifes());
          }
 
         return false;
@@ -104,7 +102,6 @@ public class Blinky extends Element implements Serializable {
                     gameData.setPositionOf(nnewPos, this);
 
                     insideCave = false; // Blinky saiu da GhostCave
-                    //System.out.println("sai da cave");
                 }
 
                 // Define a nova posição acima da GhostCave
@@ -172,6 +169,12 @@ public class Blinky extends Element implements Serializable {
                     if(ghostVulnerable){
 
                         if(positionHistory.size() == 0){
+                            if((gameData.getElement(newPos.y(), newPos.x()) instanceof Clyde) || (gameData.getElement(newPos.y(), newPos.x()) instanceof Inky) || (gameData.getElement(newPos.y(), newPos.x()) instanceof Pinky)){
+                                Element e = gameData.getElement(newPos.y(), newPos.x());
+
+                                gameData.setPositionOf(myPos, e);
+                                gameData.setPositionOf(newPos, this);
+                            }
                             //myPos = level.getPositionOf(this);
                             if(gameData.getElement(newPos.y(), newPos.x()) instanceof FoodBall)
                                 gameData.addElement(new FoodBall(gameData), myPos.y(), myPos.x());
@@ -224,12 +227,9 @@ public class Blinky extends Element implements Serializable {
                             if(isValidPosition(nnewPos.y(), nnewPos.x())){
                                 gameData.setPositionOf(nnewPos, this);
                                 positionHistory.add(myPos);
-                                //level.getTinyPac().setLostLife(true);
-                                //System.out.println("Comi o corno");
                             }
                             //FAZER
                             else { //quando ele come o pacman mas na posicao a frente dele esta uma parede
-                                //System.out.println("parede");
 
                                 // Move Blinky para a nova posição
                                 GameData.Position nextPos = new GameData.Position(myPos.y() + dy, myPos.x() + dx);
@@ -240,46 +240,45 @@ public class Blinky extends Element implements Serializable {
                             //ghosts estao vulneraveis -> fazem o movimento contrario
                         }
 
+                    }else if((gameData.getElement(newPos.y(), newPos.x()) instanceof Clyde) || (gameData.getElement(newPos.y(), newPos.x()) instanceof Inky) || (gameData.getElement(newPos.y(), newPos.x()) instanceof Pinky)){
+                        Element e = gameData.getElement(newPos.y(), newPos.x());
+
+                        gameData.setPositionOf(myPos, e);
+                        gameData.setPositionOf(newPos, this);
                     }else if (gameData.getElement(newPos.y(), newPos.x()) instanceof FoodBall)  {
                         gameData.addElement(new FoodBall(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if (gameData.getElement(newPos.y(), newPos.x()) instanceof Fruit) {
                         gameData.addElement(new Fruit(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if(gameData.getElement(newPos.y(), newPos.x()) instanceof EmptyCell){
                         gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if(gameData.getElement(newPos.y(), newPos.x()) instanceof PowerBall){
                         gameData.addElement(new PowerBall(gameData), myPos.y(), myPos.x());
                         // Move Blinky para a nova posição
                         GameData.Position nnewPos = new GameData.Position(newPos.y(), newPos.x());
                         gameData.setPositionOf(nnewPos, this);
                         positionHistory.add(myPos);
-                        //System.out.println("Blinky moveu-se para " + newPos);
                     }else if(checkWarp(myPos.y() + dy, myPos.x() + dx)){
                         //Level.Position entryWarpPosition = new Level.Position(myPos.y(), myPos.x());
                         for(GameData.Position pos: gameData.getWarps()){
 
                             if(pos.y() != myPos.y() + dy || pos.x() != myPos.x() + dx){
                                 gameData.addElement(new EmptyCell(gameData), myPos.y(), myPos.x());
-                                //System.out.println("\nnovo warp na posicao " + myPos);
 
                                 GameData.Position nnewPos = new GameData.Position(pos.y() + dy, pos.x() + dx);
                                 gameData.setPositionOf(nnewPos, this);
                                 positionHistory.add(myPos);
-                                //System.out.println("\n warping to " + newPos);
 
                             }
                         }

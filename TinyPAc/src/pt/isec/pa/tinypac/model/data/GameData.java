@@ -3,9 +3,6 @@ package pt.isec.pa.tinypac.model.data;
 import javafx.scene.input.KeyCode;
 import pt.isec.pa.tinypac.model.data.cell.*;
 import pt.isec.pa.tinypac.model.data.mob.*;
-import pt.isec.pa.tinypac.model.memento.IMemento;
-import pt.isec.pa.tinypac.model.memento.IOriginator;
-import pt.isec.pa.tinypac.model.memento.Memento;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,8 +26,13 @@ public class GameData implements Serializable{
     TopFive top5;
 
     private int numOfFood;
+
+    private int ballsEaten = 0;
     private static int counter = 0; //usar esta var estatica como multiplier do timer depois no evolve deste ficheiro fazer umif com multiplicadores diferentes para aquele instanceof daquele tipo de mob
 
+    /**
+     *  Constructor
+     */
     public GameData(int levelNumber){
 
         this.levelNumber    = levelNumber;
@@ -41,12 +43,28 @@ public class GameData implements Serializable{
 
     }
 
+    /**
+     *  Sets isLevelComplete boolean value
+     */
     public void setLevelComplete(){this.isLevelComplete = true;}
+    /**
+     *  Returns isLevelComplete boolean value
+     */
     public boolean getLevelComplete(){return this.isLevelComplete;}
 
+    /**
+     *  Returns levelNumber value
+     */
     public int getLevelNumber(){return levelNumber;}
 
+    /**
+     *  Returns levelNumber value
+     */
     public void setLevelNumber(int levelNumber){this.levelNumber = levelNumber;}
+
+    /**
+     *  Sets Maze with IMazeElements
+     */
     public Maze setMaze(String filePath) {
 
         try{
@@ -131,13 +149,12 @@ public class GameData implements Serializable{
                         }
                     }
 
-                    System.out.println("Blinky spawnned");
                 });
                 timerThread1.start();
 
-            Thread timerThread2 = new Thread(() -> {
+            /*Thread timerThread2 = new Thread(() -> {
                 int seconds = 0;
-                while (seconds < 7) {
+                while (seconds < 8) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -155,7 +172,7 @@ public class GameData implements Serializable{
 
                 System.out.println("Clyde spawnned");
             });
-            timerThread2.start();
+            timerThread2.start();*/
 
             /*Thread timerThread3 = new Thread(() -> {
                 int seconds = 0;
@@ -211,14 +228,45 @@ public class GameData implements Serializable{
 
     }
 
+    /**
+     *  Sets ballsEaten amount
+     */
+    public void setBallsEaten(int ballsEaten) {
+        this.ballsEaten = ballsEaten;
+    }
+
+    /**
+     *  Returns ballsEaten amount
+     */
+    public int getBallsEaten() {
+        return ballsEaten;
+    }
+
+    /**
+     *  Return TopFive
+     */
     public TopFive getTop5(){return this.top5;}
+
+    /**
+     *  Sets TopFive
+     */
     public void setTop5(TopFive top5){this.top5 = top5;}
+
+    /**
+     *  Adds an element to the maze
+     */
     public void addElement(Element element, int y, int x){maze.set(y, x, element);}
 
+    /**
+     *  Returns an element at the given Position
+     */
     public char getElementAt(int y, int x){
         return maze.get(y, x).getSymbol();
     }
 
+    /**
+     *  Returns the Maze with elements (characters)
+     */
     public IMazeElement[][] getMazeWithElements() {
         IMazeElement[][] arr = new IMazeElement[height][width];
         for (int y = 0; y < height; y++) {
@@ -232,18 +280,23 @@ public class GameData implements Serializable{
         return arr;
     }
 
+    /**
+     *  Returns TinyPac Element
+     */
     public TinyPac getTinyPac() {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
                 if (maze.get(y, x) instanceof Element element) {
                     if (element instanceof TinyPac){
-                        //System.out.println(((TinyPac) element).isOP());
                         return (TinyPac) element;
                     }
                 }
         return null;
     }
 
+    /**
+     *  Returns Blinky Element
+     */
     public Blinky getBlinky() {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
@@ -255,6 +308,9 @@ public class GameData implements Serializable{
         return null;
     }
 
+    /**
+     *  Returns Clyde Element
+     */
     public Clyde getClyde() {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
@@ -266,6 +322,9 @@ public class GameData implements Serializable{
         return null;
     }
 
+    /**
+     *  Returns Inky Element
+     */
     public Inky getInky() {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
@@ -277,6 +336,9 @@ public class GameData implements Serializable{
         return null;
     }
 
+    /**
+     *  Returns Pinky Element
+     */
     public Pinky getPinky() {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
@@ -288,6 +350,9 @@ public class GameData implements Serializable{
         return null;
     }
 
+    /**
+     *  Returns a List with Ghosts Elements
+     */
     public List<Element> getGhosts(){
 
         List<Element> lst = new ArrayList<>();
@@ -301,6 +366,9 @@ public class GameData implements Serializable{
         return lst;
     }
 
+    /**
+     *  Returns a List with Warp Element
+     */
     public List<Position> getWarps(){
 
         List<Position> lst = new ArrayList<>();
@@ -315,6 +383,9 @@ public class GameData implements Serializable{
         return lst;
     }
 
+    /**
+     *  Returns a List with Cave Positions
+     */
     public List<Position> getCave(){
 
         List<Position> lst = new ArrayList<>();
@@ -329,6 +400,20 @@ public class GameData implements Serializable{
         return lst;
     }
 
+    /**
+     *  Returns Fruit Element
+     */
+    public Fruit getFruit(int y,int x) {
+        IMazeElement e = maze.get(y,x);
+        if (e instanceof Element element)
+            if(e instanceof Fruit)
+                return (Fruit) element;
+        return null;
+    }
+
+    /**
+     *  Return TinyPac Element
+     */
     public Element getElement(int y,int x) {
         IMazeElement e = maze.get(y,x);
         if (e instanceof Element element)
@@ -336,6 +421,9 @@ public class GameData implements Serializable{
         return null;
     }
 
+    /**
+     *  Return the Position of an Element
+     */
     public Position getPositionOf(Element element) {
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
@@ -344,6 +432,9 @@ public class GameData implements Serializable{
         return null;
     }
 
+    /**
+     *  Increments the variable numOfFood that holds the number o Food in the maze
+     */
     public int setNumOfFood(){
         for(int y = 0; y < height;y++)
             for(int x = 0;x < width; x++)
@@ -356,30 +447,28 @@ public class GameData implements Serializable{
 
     }
 
+    /**
+     *  Decrements the varibale numOfFood
+     */
     public void eatFood(){
         this.numOfFood--;
     }
 
+    /**
+     *  Return numOfFood value
+     */
     public int getNumOfFood(){return this.numOfFood;}
 
+    /**
+     *  Sets the Position of an Element in the Maze
+     */
     public void setPositionOf(Position position, Element element) {
         maze.set(position.y(), position.x(), element);
     }
 
-    public boolean onlyOneSpecies() {
-        int n = 0;
-
-        for(int y = 0; y < height;y++)
-            for(int x = 0;x < width; x++)
-                if (maze.get(y,x) instanceof Element element) {
-                    if (element instanceof TinyPac)
-                        n++;
-                    /*else if (organism instanceof Virus)
-                        nr_virus++;*/
-                }
-        return (n==0);
-    }
-
+    /**
+     *  Returns the neighbors of an Element
+     */
     public <T extends Element> List<Position> getElementNeighbors(int y, int x, Class<T> type) {
         List<Position> lst = new ArrayList<>();
         for (int yd = -1; yd <= 1; yd++) {
@@ -395,19 +484,17 @@ public class GameData implements Serializable{
         return lst;
     }
 
+
+    /**
+     *  Calls the evolve functions from the Elements
+     */
     public boolean evolve(KeyCode key) {
-        int n = 0;
 
         List<Element> lst = new ArrayList<>();
         for(int y = 0; y < height;y++) {
             for (int x = 0; x < width; x++) {
                 if (maze.get(y, x) instanceof Element element) {
                     lst.add(element);
-                    if (element instanceof TinyPac)
-                        //maze.set(y, x + 1, element);
-                        n++;
-                    /*else if (organism instanceof Virus)
-                        nr_virus++;*/
                 }
             }
         }
@@ -419,6 +506,9 @@ public class GameData implements Serializable{
         return true;
     }
 
+    /**
+     *  Returns Maze (characters)
+     */
     public char[][] getMaze(){return this.maze.getMaze();}
 
 }

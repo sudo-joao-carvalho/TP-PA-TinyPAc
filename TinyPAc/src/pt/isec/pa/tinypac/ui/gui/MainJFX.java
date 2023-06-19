@@ -6,10 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pt.isec.pa.tinypac.Main;
 import pt.isec.pa.tinypac.gameengine.GameEngine;
-import pt.isec.pa.tinypac.gameengine.IGameEngine;
-import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.GameContextManager;
-import pt.isec.pa.tinypac.model.fsm.EMobsState;
+
 
 public class MainJFX extends Application {
     GameContextManager gameCManager;
@@ -27,20 +25,13 @@ public class MainJFX extends Application {
         firstStage(stage,"PacMan");
 
         GameEngine gameEngine = new GameEngine();
-        // Registre o MainJFX como cliente da GameEngine
         gameEngine.registerClient((g, t) -> {
-            // Atualize o estado do jogo no thread da aplicação do JavaFX
             Platform.runLater(() -> {
-                // Chame o método evolve do GameContextManager
-                //if(gameCManager.getFsm() != null)
                     gameCManager.evolve(g, t);
             });
         });
 
-        // Inicie a GameEngine
         gameEngine.start(350);
-
-        //gameEngine.waitForTheEnd();
 
     }
 

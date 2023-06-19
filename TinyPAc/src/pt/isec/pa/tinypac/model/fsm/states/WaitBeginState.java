@@ -14,34 +14,15 @@ public class WaitBeginState extends MobsStateAdapter implements Serializable {
         super(context, gameData);
 
         //SETTERS
-        //gameCManager.getLevel().getTinyPac().setScore(0);
-
-        /*if(game.getLevel().getLevelComplete()){
-            int currentLevelNumber = game.getLevel().getLevelNumber();
-            game.setLevel(new GameData(currentLevelNumber + 1));
-        }else{
-            int currentLevelNumber = game.getLevel().getLevelNumber();
-            game.setLevel(new GameData(currentLevelNumber));
-        }*/
-
-        /*if(gameData.getLevelComplete()){
-            int currentLevelNumber = gameData.getLevelNumber();
-            context.setGameData(new GameData(currentLevelNumber + 1));
-        }else{
-            int currentLevelNumber = gameData.getLevelNumber();
-            context.setGameData(new GameData(currentLevelNumber));
-        }*/
 
         if(gameData.getTinyPac().getScore() != 0){
             if(gameData.getLevelComplete()){
                 int currentLevelNumber = gameData.getLevelNumber();
-                //context.setGameData(new GameData(currentLevelNumber + 1));
                 this.gameData = new GameData(currentLevelNumber + 1);
                 context.setGameData(this.gameData);
                 this.context.retrieveKey(null);
             }else{
                 int currentLevelNumber = gameData.getLevelNumber();
-                //context.setGameData(new GameData(currentLevelNumber));
                 this.gameData = new GameData(currentLevelNumber);
                 context.setGameData(this.gameData);
                 this.context.retrieveKey(null);
@@ -49,11 +30,6 @@ public class WaitBeginState extends MobsStateAdapter implements Serializable {
         }
     }
 
-   /* @Override
-    public boolean start(){
-        changeState(EMobsState.MOVE);
-        return true;
-    }*/
     @Override
     public boolean evolve(){
         //quando ele se mover vai passar para o estado seguinte que é MoveState
