@@ -51,10 +51,9 @@ public class MoveState extends MobsStateAdapter implements Serializable {
             return true;
         }
 
-        if(gameData.getTinyPac().getScore() >= 2){
-            System.out.println(gameData.getTinyPac().getScore());
+        if(gameData.getNumOfFood() == 290){
             gameData.setLevelComplete();
-            changeState(EMobsState.WAIT_BEGIN);
+            changeState(EMobsState.WAIT_BEGIN); //WAIT_BEGIN
             return true;
         }
 
@@ -64,10 +63,12 @@ public class MoveState extends MobsStateAdapter implements Serializable {
             return true;
         }
 
-        if(gameData.getLevelNumber() == 2){
-            gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
-            changeState(EMobsState.END_LEVEL);
-            return true;
+        if(gameData.getLevelNumber() == 1){
+            if(gameData.getLevelComplete()){
+                gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
+                changeState(EMobsState.END_LEVEL);
+                return true;
+            }
         }
 
         changeState(EMobsState.MOVE);

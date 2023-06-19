@@ -11,13 +11,10 @@ import java.util.List;
 
 public class TinyPac extends Element implements Serializable {
     public static final char SYMBOL = 'M';
-    private int score = 0;
+    private static int score = 0;
     private int lifes = 3;
 
     private boolean isOP = false;
-    private boolean lostLife = false;
-
-
 
     public TinyPac(GameData gameData){
         super(gameData);
@@ -106,6 +103,7 @@ public class TinyPac extends Element implements Serializable {
 
         if(checkFood(y, x) instanceof FoodBall){
             score += 1;
+            gameData.eatFood();
             return true;
         }
 
@@ -113,8 +111,8 @@ public class TinyPac extends Element implements Serializable {
         if(checkFood(y, x) instanceof PowerBall){
             score += 10;
             enterOP();
-            System.out.println("comi uma bola");
-            //System.out.println(isOP);
+            score += 1;
+            gameData.eatFood();
             return true;
         }
         if(checkFood(y, x) instanceof Fruit){
@@ -135,8 +133,6 @@ public class TinyPac extends Element implements Serializable {
     }
 
     public boolean isOP(){return this.isOP;}
-
-    public void setLostLife(boolean lostLife){ this.lostLife = lostLife;}
 
     @Override
     public void evolve(KeyCode key){ //move

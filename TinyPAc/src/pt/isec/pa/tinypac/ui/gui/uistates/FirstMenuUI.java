@@ -95,8 +95,15 @@ public class FirstMenuUI extends BorderPane {
             }
         });
         btnTopFive.setOnAction( event -> {
-            RootPane rootPane = (RootPane) getScene().getRoot();
-            rootPane.showTop5();
+            File saveFile = new File("files/topFive.dat");
+
+            if(saveFile.exists()){
+                //System.out.println(gameCManager.loadTop5());
+                System.out.println("existe");
+                gameCManager.loadTop5();
+                RootPane rootPane = (RootPane) getScene().getRoot();
+                rootPane.showTop5();
+            }
         });
         btnExit.setOnAction( event -> {
             RootPane rootPane = (RootPane) getScene().getRoot();

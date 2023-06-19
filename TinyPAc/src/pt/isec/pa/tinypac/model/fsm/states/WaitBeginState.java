@@ -31,6 +31,22 @@ public class WaitBeginState extends MobsStateAdapter implements Serializable {
             int currentLevelNumber = gameData.getLevelNumber();
             context.setGameData(new GameData(currentLevelNumber));
         }*/
+
+        if(gameData.getTinyPac().getScore() != 0){
+            if(gameData.getLevelComplete()){
+                int currentLevelNumber = gameData.getLevelNumber();
+                //context.setGameData(new GameData(currentLevelNumber + 1));
+                this.gameData = new GameData(currentLevelNumber + 1);
+                context.setGameData(this.gameData);
+                this.context.retrieveKey(null);
+            }else{
+                int currentLevelNumber = gameData.getLevelNumber();
+                //context.setGameData(new GameData(currentLevelNumber));
+                this.gameData = new GameData(currentLevelNumber);
+                context.setGameData(this.gameData);
+                this.context.retrieveKey(null);
+            }
+        }
     }
 
    /* @Override
@@ -41,13 +57,6 @@ public class WaitBeginState extends MobsStateAdapter implements Serializable {
     @Override
     public boolean evolve(){
         //quando ele se mover vai passar para o estado seguinte que é MoveState
-        if(gameData.getLevelComplete()){
-            int currentLevelNumber = gameData.getLevelNumber();
-            context.setGameData(new GameData(currentLevelNumber + 1));
-        }else{
-
-        }
-
         changeState(EMobsState.MOVE);
         return true;
     }

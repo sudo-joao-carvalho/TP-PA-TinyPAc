@@ -10,15 +10,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import pt.isec.pa.tinypac.model.GameContextManager;
+import pt.isec.pa.tinypac.model.data.TopFive;
 import pt.isec.pa.tinypac.ui.gui.RootPane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TopFiveUI extends BorderPane {
 
     GameContextManager gameCManager;
-
     Text text;
     Text player1, player2, player3, player4, player5;
-
     Button btnGoBack;
     public TopFiveUI(GameContextManager gameCManager) {
         this.gameCManager = gameCManager;
@@ -37,23 +39,24 @@ public class TopFiveUI extends BorderPane {
         text.setFont(Font.font("Verdana", FontWeight.BOLD, 200));
         text.setFill(Color.WHITE);
 
-        player1 = new Text("Score 1");
+        //player1 = new Text("1. " + gameCManager.getTopFive().getTop5().get(1));
+        player1 = new Text();
         player1.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         player1.setFill(Color.WHITE);
 
-        player2 = new Text("Score 2");
+        player2 = new Text();
         player2.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         player2.setFill(Color.WHITE);
 
-        player3 = new Text("Score 3");
+        player3 = new Text();
         player3.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         player3.setFill(Color.WHITE);
 
-        player4 = new Text("Score 4");
+        player4 = new Text();
         player4.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         player4.setFill(Color.WHITE);
 
-        player5 = new Text("Score 5");
+        player5 = new Text();
         player5.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         player5.setFill(Color.WHITE);
 
@@ -78,10 +81,61 @@ public class TopFiveUI extends BorderPane {
     }
 
 
+    /*private void update() {
+        if (gameCManager.getFsm() != null) {
+            var top5 = gameCManager.getTopFiveArrayList();
+            if (!top5.isEmpty()) {
+                player1.setText((1) + ". " + top5.get(0));
+            }
+            if (top5.size() >= 2) {
+                player2.setText((2) + ". " + top5.get(1));
+            }
+            if (top5.size() >= 3) {
+                player3.setText((3) + ". " + top5.get(2));
+            }
+            if (top5.size() >= 4) {
+                player4.setText((4) + ". " + top5.get(3));
+            }
+            if (top5.size() >= 5) {
+                player5.setText((5) + ". " + top5.get(4));
+            }
+        }
+
+    }*/
+
     private void update() {
+        if(gameCManager.getFsm() != null){
+            System.out.println("cu");
+            if (gameCManager.getTopFiveArrayList() != null) {
+                ArrayList<Integer> top5 = gameCManager.getTopFiveArrayList();
 
-        if(gameCManager.getFsm() == null) this.setVisible(true);
-        else this.setVisible(false);
-
+                if (!top5.isEmpty()) {
+                    player1.setText((1) + ". " + top5.get(0));
+                } else {
+                    player1.setText("");
+                }
+                if (top5.size() >= 2) {
+                    player2.setText((2) + ". " + top5.get(1));
+                } else {
+                    player2.setText("");
+                }
+                if (top5.size() >= 3) {
+                    player3.setText((3) + ". " + top5.get(2));
+                } else {
+                    player3.setText("");
+                }
+                if (top5.size() >= 4) {
+                    player4.setText((4) + ". " + top5.get(3));
+                } else {
+                    player4.setText("");
+                }
+                if (top5.size() >= 5) {
+                    player5.setText((5) + ". " + top5.get(4));
+                } else {
+                    player5.setText("");
+                }
+            }
+        }
     }
+
 }

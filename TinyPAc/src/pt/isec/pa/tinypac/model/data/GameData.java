@@ -27,6 +27,8 @@ public class GameData implements Serializable{
     private boolean isLevelComplete = false;
 
     TopFive top5;
+
+    private int numOfFood;
     private static int counter = 0; //usar esta var estatica como multiplier do timer depois no evolve deste ficheiro fazer umif com multiplicadores diferentes para aquele instanceof daquele tipo de mob
 
     public GameData(int levelNumber){
@@ -35,6 +37,7 @@ public class GameData implements Serializable{
         String filePath     = "files/Level10" + levelNumber + ".txt";
         this.maze           = setMaze(filePath);
         this.top5 = new TopFive();
+        this.numOfFood = setNumOfFood();
 
     }
 
@@ -209,6 +212,7 @@ public class GameData implements Serializable{
     }
 
     public TopFive getTop5(){return this.top5;}
+    public void setTop5(TopFive top5){this.top5 = top5;}
     public void addElement(Element element, int y, int x){maze.set(y, x, element);}
 
     public char getElementAt(int y, int x){
@@ -339,6 +343,24 @@ public class GameData implements Serializable{
                     return new Position(y,x);
         return null;
     }
+
+    public int setNumOfFood(){
+        for(int y = 0; y < height;y++)
+            for(int x = 0;x < width; x++)
+                if (maze.get(y,x) instanceof Element element)
+                    if(element instanceof FoodBall || element instanceof PowerBall){
+                        this.numOfFood++;
+                    }
+
+        return this.numOfFood;
+
+    }
+
+    public void eatFood(){
+        this.numOfFood--;
+    }
+
+    public int getNumOfFood(){return this.numOfFood;}
 
     public void setPositionOf(Position position, Element element) {
         maze.set(position.y(), position.x(), element);

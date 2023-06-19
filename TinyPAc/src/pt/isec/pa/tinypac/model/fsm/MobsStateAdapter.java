@@ -24,10 +24,7 @@ public abstract class MobsStateAdapter implements IMobsState, Serializable {
     @Override
     public boolean load(){return false;}
     @Override
-    public boolean evolve(){
-        System.out.println("ola3");
-        return false;
-    }
+    public boolean evolve(){return false;}
 
     @Override
     public boolean pause(){return false;}

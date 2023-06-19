@@ -65,8 +65,10 @@ public class MoveUI extends BorderPane {
         scoreLabel.setStyle("-fx-text-fill: white;");
         Label levelLabel = new Label("Level: ");
         levelLabel.setStyle("-fx-text-fill: white;");
+        Label numOfFoodLabel = new Label("NumOfFood: ");
+        levelLabel.setStyle("-fx-text-fill: white;");
 
-        sidebar.getChildren().addAll(livesLabel, scoreLabel, levelLabel);
+        sidebar.getChildren().addAll(livesLabel, scoreLabel, levelLabel, numOfFoodLabel);
 
         this.setRight(sidebar);
     }
@@ -76,7 +78,6 @@ public class MoveUI extends BorderPane {
      */
     private void registerHandlers() {
         gameCManager.addPropertyChangeListener(evt -> {
-            //gameCManager.evolve();
             update();
         });
         setOnKeyPressed(t);
@@ -123,6 +124,7 @@ public class MoveUI extends BorderPane {
         int lives = gameCManager.getLifes();
         int score = gameCManager.getScore();
         int level = gameCManager.getLevelNumber();
+        int numOfFood = gameCManager.getNumOfFood();
 
         Label livesLabel = (Label) sidebar.getChildren().get(0);
         livesLabel.setText("Lifes: " + lives);
@@ -132,6 +134,9 @@ public class MoveUI extends BorderPane {
 
         Label levelLabel = (Label) sidebar.getChildren().get(2);
         levelLabel.setText("Level: " + level);
+
+        Label numOfFoodLabel = (Label) sidebar.getChildren().get(3);
+        numOfFoodLabel.setText("NumOfFood: " + numOfFood);
     }
 
 

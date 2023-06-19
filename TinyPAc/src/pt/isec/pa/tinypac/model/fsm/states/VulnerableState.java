@@ -16,19 +16,6 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
         //SETTERS
         gameData.getTinyPac().enterOP();
     }
-    /*public boolean checkLevelOver(){
-
-        if(gameData.getTinyPac().getScore() >= 10){
-            gameData.setLevelComplete();
-            return true;
-        }
-
-        if(gameData.getTinyPac().getLifes() == 0){
-            return true;
-        }
-
-        return false;
-    }*/
 
     public void notOP(){
         gameData.getTinyPac().leaveOP();
@@ -50,20 +37,7 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
             while (seconds < 10) {
                 try {
 
-                    /*if(checkLevelOver()){
-                        if(gameData.getLevelNumber() == 2){
-                            changeState(EMobsState.END_LEVEL);
-                            return;
-                        }
-
-                        gameData.getTinyPac().setScore(0);
-                        changeState(EMobsState.WAIT_BEGIN);
-                        return;
-                    }*/
-
-                    //System.out.println("ola4");
-
-                    if(gameData.getTinyPac().getScore() >= 2){
+                    if(gameData.getNumOfFood() == 290){
                         gameData.setLevelComplete();
                         changeState(EMobsState.WAIT_BEGIN);
                         return ;
@@ -75,10 +49,13 @@ public class VulnerableState extends MobsStateAdapter implements Serializable {
                         return ;
                     }
 
-                    if(gameData.getLevelNumber() == 2){
-                        gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
-                        changeState(EMobsState.END_LEVEL);
-                        return ;
+                    if(gameData.getLevelNumber() == 1){
+                        if(gameData.getLevelComplete()){
+                            gameData.getTop5().addToTop5(gameData.getTinyPac().getScore());
+                            changeState(EMobsState.END_LEVEL);
+                            return ;
+                        }
+
                     }
 
                     changeState(EMobsState.MOVE);
